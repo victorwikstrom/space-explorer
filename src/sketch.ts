@@ -7,10 +7,18 @@
  * sound files, images etc...
  */
 function preload() {
-    // Tyvärr har jag inte fått till den globala typningen för
-    // inladdningen av ljud men fungerar bra enligt nedan..
-    // sound = (window as any).loadSound('../assets/mySound.wav');
-}
+   //Finns typings för loadSound!!
+    // let sound = loadSound('../assets/sounds/key.wav', (sound) => {
+    // console.log('SUCCESS', sound);
+    // }, (error) => {
+    //     console.log ('ERROR', error);
+    // }, (percentage) => {
+    //     console.log ('%', percentage);
+    // });
+    
+    // console.log('OUTSIDE', sound);
+     }
+  
 
 /**
  * Built in setup function in P5
