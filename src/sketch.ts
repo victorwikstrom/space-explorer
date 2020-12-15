@@ -8,13 +8,13 @@
  */
 function preload() {
    //Finns typings för loadSound!!
-    // let sound = loadSound('../assets/sounds/key.wav', (sound) => {
-    // console.log('SUCCESS', sound);
-    // }, (error) => {
-    //     console.log ('ERROR', error);
-    // }, (percentage) => {
-    //     console.log ('%', percentage);
-    // });
+    //  let sound:p5.SoundFile = loadSound('../assets/sounds/key.wav', (sound) => {
+    //  console.log('SUCCESS', sound);
+    //  }, (error) => {
+    //      console.log ('ERROR', error);
+    //  }, (percentage) => {
+    //      console.log ('%', percentage);
+    //  });
     
     // console.log('OUTSIDE', sound);
      }
