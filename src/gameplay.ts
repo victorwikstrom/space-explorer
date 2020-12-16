@@ -2,16 +2,19 @@ class GamePlay {
   private gameGUI: IGameState;
   private isActive: boolean;
   private button: p5.Element;
+  private stars: Array<Star>;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
     this.isActive = false;
     this.button = createButton("Go to GameOver GUI");
+    this.stars = [];
   }
 
   public draw() {
     if (!this.isActive) {
       this.createElements();
+      this.createStars();
       this.isActive = true;
     }
     this.button.mousePressed(() => {
@@ -33,5 +36,15 @@ class GamePlay {
     this.button.show();
     this.button.size(150, 30);
     this.button.position(100, height / 2);
+  }
+
+  createStars() {
+    for (let i = 0; i < 1000; i++) {
+      this.stars[i] = new Star();
+      this.stars[i].draw();
+    }
+    for (let star of this.stars) {
+      star.update();
+    }
   }
 }

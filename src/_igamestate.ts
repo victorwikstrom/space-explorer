@@ -1,3 +1,3 @@
 interface IGameState {
-  updateGUI: (gui: "play" | "intro" | "over") => void;
+      updateGUI: (gui: "play"| "intro"| "over") => void;
 }
