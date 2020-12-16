@@ -1,6 +1,5 @@
 //---- GLOBAL VARIABLES ----//
- let gameGUI: GameGUI;
-
+let game: GameGUI;
 
 /**
  * Built in preload function in P5
@@ -8,18 +7,16 @@
  * sound files, images etc...
  */
 function preload() {
-   //Finns typings för loadSound!!
-    //  let sound:p5.SoundFile = loadSound('../assets/sounds/key.wav', (sound) => {
-    //  console.log('SUCCESS', sound);
-    //  }, (error) => {
-    //      console.log ('ERROR', error);
-    //  }, (percentage) => {
-    //      console.log ('%', percentage);
-    //  });
-    
-    // console.log('OUTSIDE', sound);
-     }
-  
+  //Finns typings för loadSound!!
+  //  let sound:p5.SoundFile = loadSound('../assets/sounds/key.wav', (sound) => {
+  //  console.log('SUCCESS', sound);
+  //  }, (error) => {
+  //      console.log ('ERROR', error);
+  //  }, (percentage) => {
+  //      console.log ('%', percentage);
+  //  });
+  // console.log('OUTSIDE', sound);
+}
 
 /**
  * Built in setup function in P5
@@ -28,14 +25,9 @@ function preload() {
  * in the draw function below
  */
 function setup() {
-    createCanvas(windowWidth, windowHeight);
-    frameRate(60);
-    gameGUI = new GameGUI();
-
-    
-    // noCursor();
-    
-    // game = new Game();
+  createCanvas(windowWidth, windowHeight);
+  frameRate(60);
+  game = new GameGUI();
 }
 
 /**
@@ -44,17 +36,12 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-    gameGUI.draw();
-    
-   
-    // game.update();
-    // game.draw();
+  game.draw();
 }
-
 
 /**
  *  Built in windowResize listener function in P5
  */
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowHeight);
 }
