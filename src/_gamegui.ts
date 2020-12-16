@@ -5,7 +5,7 @@ class GameGUI implements IGameState {
       private gameOver: GameOver;
 
       constructor() {
-            this.currentGUI = "intro";
+            this.currentGUI = "play";
             this.gameIntro = new GameIntro(this);
             this.gamePlay = new GamePlay(gameGUI);
             this.gameOver = new GameOver(gameGUI); 

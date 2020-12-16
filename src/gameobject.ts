@@ -11,7 +11,7 @@ abstract class GameObject {
         this.acceleration = createVector(0,0);
     }
     
-    protected draw(){   
+    protected draw(){ 
     }
 
     protected update(){
