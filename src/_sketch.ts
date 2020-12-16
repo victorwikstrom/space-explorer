@@ -34,8 +34,6 @@ function setup() {
 
     
     // noCursor();
-    
-    // game = new Game();
 }
 
 /**
