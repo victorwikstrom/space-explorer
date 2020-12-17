@@ -45,13 +45,8 @@ function setup() {
  */
 function draw() {
     background(0);
+    gameGUI.update();
     gameGUI.draw();
-    
-   
-    
-   
-    // game.update();
-    // game.draw();
 }
 
 
