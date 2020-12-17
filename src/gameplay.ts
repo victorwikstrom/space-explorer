@@ -1,37 +1,50 @@
-
 class GamePlay {
-    private stars: Array<Star>
-    private isVisible: boolean;
-    private gameGUI: IGameState;
+  private gameGUI: IGameState;
+  private isActive: boolean;
+  private button: p5.Element;
+  private stars: Array<Star>;
 
-    constructor(gameGUI: IGameState) {
-        this.gameGUI = gameGUI;
-        this.isVisible = false;
-        this.stars = [];
+  constructor(gameGUI: IGameState) {
+    this.gameGUI = gameGUI;
+    this.isActive = false;
+    this.button = createButton("Go to GameOver GUI");
+    this.stars = [];
+  }
+
+  public draw() {
+    if (!this.isActive) {
+      this.createElements();
+      this.createStars();
+      this.isActive = true;
     }
+    this.button.mousePressed(() => {
+      this.isActive = false;
+      this.button.hide();
+      this.gameGUI.updateGUI("over");
+    });
+  }
 
-    public draw(){
-        //this.gameOver()
+  createElements() {
+    // CREATE CANVAS
+    createCanvas(windowWidth, windowHeight);
+    background(random(30));
+    // CREATE TEXT
+    fill("white");
+    textSize(30);
+    text("This is the GamePlay GUI", 100, 100);
+    // CREATE BUTTON
+    this.button.show();
+    this.button.size(150, 30);
+    this.button.position(100, height / 2);
+  }
 
-        if(!this.isVisible) {
-            for(let i = 0; i < 1000; i++) {
-                this.stars[i] = new Star();
-                this.stars[i].draw();
-            }
-            let button = createButton("Dont click this");
-            button.position(10, 10);
-            button.mousePressed(this.gameOver);
-        this.isVisible = true;    
-        }
-
-        for(let star of this.stars) {
-            star.update();
-        }
+  createStars() {
+    for (let i = 0; i < 1000; i++) {
+      this.stars[i] = new Star();
+      this.stars[i].draw();
     }
-
-    private gameOver() {
-        this.gameGUI.updateGUI("over");
+    for (let star of this.stars) {
+      star.update();
     }
-
+  }
 }
-
