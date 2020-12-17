@@ -1,9 +1,10 @@
 class GamePlay {
-  private player: Player;
   private gameGUI: IGameState;
+  private player: Player;
   private isActive: boolean;
   public button: p5.Element;
   private stars: Array<Star>;
+  private spacediamonds: Array<Spacediamond> // THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD. FELICIA WILL CHANGE.
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -11,13 +12,15 @@ class GamePlay {
     this.button = createButton("Go to GameOver GUI");
     this.stars = [];
     this.player = new Player();
+    this.spacediamonds = [];
+
   }
 
   public draw() {
     // GUI SETUP
     if (this.isActive === false) {
       this.createStars();
-      //this.player = new Player();
+      this.createSpaceDiamonds();
       this.isActive = true;
     }
     for (let star of this.stars) {
@@ -45,13 +48,30 @@ class GamePlay {
     this.button.position(10, 50);
   }
 
-  createStars() {
+  public update() {
+    for (let star of this.stars) {
+      star.update();
+      star.draw();
+    }
+    for (let spacediamond of this.spacediamonds) {
+         spacediamond.update();
+         spacediamond.draw();
+     }
+  }
+
+  private changeGui = () => {
+    this.gameGUI.updateGUI("over");
+  };
+
+  private createStars() {
     for (let i = 0; i < 1000; i++) {
       this.stars[i] = new Star();
     }
   }
-
-  changeGui = () => {
-    this.gameGUI.updateGUI("over");
-  };
+      
+  private createSpaceDiamonds(){
+    for (let i = 0; i <5; i++){
+         this.spacediamonds[i] = new Spacediamond();  
+    }
+  }
 }

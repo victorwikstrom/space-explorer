@@ -1,22 +1,26 @@
 //---- GLOBAL VARIABLES ----//
 let gameGUI: GameGUI;
 
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
  * sound files, images etc...
  */
 function preload() {
-  //Finns typings för loadSound!!
-  //  let sound:p5.SoundFile = loadSound('../assets/sounds/key.wav', (sound) => {
-  //  console.log('SUCCESS', sound);
-  //  }, (error) => {
-  //      console.log ('ERROR', error);
-  //  }, (percentage) => {
-  //      console.log ('%', percentage);
-  //  });
-  // console.log('OUTSIDE', sound);
-}
+   //Finns typings för loadSound!!
+    //  let sound:p5.SoundFile = loadSound('../assets/sounds/key.wav', (sound) => {
+    //  console.log('SUCCESS', sound);
+    //  }, (error) => {
+    //      console.log ('ERROR', error);
+    //  }, (percentage) => {
+    //      console.log ('%', percentage);
+    //  });
+
+
+    // console.log('OUTSIDE', sound);
+     }
+ 
 
 /**
  * Built in setup function in P5
@@ -38,9 +42,10 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-  background(0);
-  gameGUI.update();
-  gameGUI.draw();
+    background(0);
+    gameGUI.update();
+    gameGUI.draw();
+}
 
   // game.update();
   // game.draw();
