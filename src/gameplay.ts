@@ -15,6 +15,18 @@ class GamePlay {
     this.spacediamonds = [];
   }
 
+  public update() {
+    this.player.update();
+    this.button.mousePressed(this.changeGui);
+
+    for (let star of this.stars) {
+      star.update();
+    }
+    for (let spacediamond of this.spacediamonds) {
+      spacediamond.update();
+    }
+  }
+
   public draw() {
     // GUI SETUP
     if (this.isActive === false) {
@@ -22,15 +34,20 @@ class GamePlay {
       this.createSpaceDiamonds();
       this.isActive = true;
     }
+
     for (let star of this.stars) {
       star.draw();
-      star.update();
     }
+
+    for (let spacediamond of this.spacediamonds) {
+      spacediamond.draw();
+    }
+
     this.createElements();
     this.player.draw();
   }
 
-  createElements() {
+  private createElements() {
     // CREATE TEXT
     fill("white");
     textSize(30);
@@ -40,20 +57,6 @@ class GamePlay {
     this.button.show();
     this.button.size(150, 30);
     this.button.position(10, 50);
-  }
-
-  public update() {
-    this.player.update();
-    this.button.mousePressed(this.changeGui);
-
-    for (let star of this.stars) {
-      star.update();
-      star.draw();
-    }
-    for (let spacediamond of this.spacediamonds) {
-      spacediamond.update();
-      spacediamond.draw();
-    }
   }
 
   private changeGui = () => {
