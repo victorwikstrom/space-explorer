@@ -15,6 +15,7 @@ class GameGUI implements IGameState {
     this.currentGUI = gui;
   }
 
+
   public draw() {
     if (this.currentGUI === "intro") {
       this.gameIntro.draw();
@@ -39,3 +40,4 @@ class GameGUI implements IGameState {
     }
   }
 }
+

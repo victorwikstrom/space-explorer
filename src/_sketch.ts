@@ -2,6 +2,7 @@
  let gameGUI: GameGUI;
 
 
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -16,7 +17,8 @@ function preload() {
     //  }, (percentage) => {
     //      console.log ('%', percentage);
     //  });
-    
+
+
     // console.log('OUTSIDE', sound);
      }
   
@@ -45,7 +47,6 @@ function draw() {
     background(0);
     gameGUI.update();
     gameGUI.draw();
-    
 }
 
 
