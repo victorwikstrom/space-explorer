@@ -35,7 +35,7 @@ class Player {
 
   update() {
     this.isMoving = false;
-    this.velocity.setMag(8);
+    this.velocity.limit(8);
 
     if (!this.isMoving) {
       this.acceleration.set(0, 0);
