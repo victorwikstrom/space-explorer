@@ -43,8 +43,13 @@ class GamePlay {
       this.stars[i] = new Star();
       this.stars[i].draw();
     }
+    
+  }
+
+  public update() {
     for (let star of this.stars) {
       star.update();
+      star.draw();
     }
   }
 }
