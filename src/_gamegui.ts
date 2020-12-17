@@ -21,10 +21,21 @@ class GameGUI implements IGameState {
     }
     if (this.currentGUI === "play") {
       this.gamePlay.draw();
-      this.gamePlay.update();
     }
     if (this.currentGUI === "over") {
       this.gameOver.draw();
+    }
+  }
+
+  public update() {
+    if (this.currentGUI === "intro") {
+      /* this.gameIntro.update(); */
+    }
+    if (this.currentGUI === "play") {
+      this.gamePlay.update();
+    }
+    if (this.currentGUI === "over") {
+      /* this.gameOver.update(); */
     }
   }
 }
