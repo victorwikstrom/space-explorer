@@ -4,7 +4,7 @@ class GamePlay {
   private isActive: boolean;
   public button: p5.Element;
   private stars: Array<Star>;
-  private spacediamonds: Array<Spacediamond> // THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD. FELICIA WILL CHANGE.
+  private spacediamonds: Array<Spacediamond>; // THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD. FELICIA WILL CHANGE.
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -13,7 +13,6 @@ class GamePlay {
     this.stars = [];
     this.player = new Player();
     this.spacediamonds = [];
-
   }
 
   public draw() {
@@ -31,11 +30,6 @@ class GamePlay {
     this.player.draw();
   }
 
-  public update() {
-    this.player.update();
-    this.button.mousePressed(this.changeGui);
-  }
-
   createElements() {
     // CREATE TEXT
     fill("white");
@@ -49,14 +43,17 @@ class GamePlay {
   }
 
   public update() {
+    this.player.update();
+    this.button.mousePressed(this.changeGui);
+
     for (let star of this.stars) {
       star.update();
       star.draw();
     }
     for (let spacediamond of this.spacediamonds) {
-         spacediamond.update();
-         spacediamond.draw();
-     }
+      spacediamond.update();
+      spacediamond.draw();
+    }
   }
 
   private changeGui = () => {
@@ -68,10 +65,10 @@ class GamePlay {
       this.stars[i] = new Star();
     }
   }
-      
-  private createSpaceDiamonds(){
-    for (let i = 0; i <5; i++){
-         this.spacediamonds[i] = new Spacediamond();  
+
+  private createSpaceDiamonds() {
+    for (let i = 0; i < 5; i++) {
+      this.spacediamonds[i] = new Spacediamond();
     }
   }
 }
