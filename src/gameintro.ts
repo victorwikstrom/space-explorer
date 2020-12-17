@@ -1,7 +1,7 @@
 class GameIntro {
   private gameGUI: IGameState;
   private isActive: boolean;
-  private button: p5.Element;
+  public button: p5.Element;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -11,9 +11,12 @@ class GameIntro {
 
   public draw() {
     if (!this.isActive) {
-      this.createElements();
       this.isActive = true;
     }
+
+    this.createElements();
+
+    // GO TO NEXT GUI
     this.button.mousePressed(() => {
       this.isActive = false;
       this.button.hide();
@@ -22,16 +25,14 @@ class GameIntro {
   }
 
   createElements() {
-    // CREATE CANVAS
-    createCanvas(windowWidth, windowHeight);
-    background(random(30));
     // CREATE TEXT
-    fill("white");
+    fill("blue");
+    noStroke();
     textSize(30);
-    text("This is the Intro GUI", 100, 100);
+    text("This is the Intro GUI", 10, 40);
     // CREATE BUTTON
     this.button.show();
-    this.button.position(100, height / 2);
+    this.button.position(10, 50);
     this.button.size(150, 30);
   }
 }
