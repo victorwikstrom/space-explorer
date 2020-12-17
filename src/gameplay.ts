@@ -1,9 +1,8 @@
 class GamePlay {
-
-
   private gameGUI: IGameState;
+  private player: Player;
   private isActive: boolean;
-  private button: p5.Element;
+  public button: p5.Element;
   private stars: Array<Star>;
   private spacediamonds: Array<Spacediamond> // THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD. FELICIA WILL CHANGE.
 
@@ -12,52 +11,43 @@ class GamePlay {
     this.isActive = false;
     this.button = createButton("Go to GameOver GUI");
     this.stars = [];
+    this.player = new Player();
     this.spacediamonds = [];
+
   }
 
   public draw() {
-    if (!this.isActive) {
-      this.createElements();
+    // GUI SETUP
+    if (this.isActive === false) {
       this.createStars();
       this.createSpaceDiamonds();
       this.isActive = true;
     }
-    this.button.mousePressed(() => {
-      this.isActive = false;
-      this.button.hide();
-      this.gameGUI.updateGUI("over");
-    });
+    for (let star of this.stars) {
+      star.draw();
+      star.update();
+    }
+    this.createElements();
+    this.player.draw();
+  }
+
+  public update() {
+    this.player.update();
+    this.button.mousePressed(this.changeGui);
   }
 
   createElements() {
-    // CREATE CANVAS
-    createCanvas(windowWidth, windowHeight);
-    background(random(30));
     // CREATE TEXT
     fill("white");
     textSize(30);
-    text("This is the GamePlay GUI", 100, 100);
+    noStroke();
+    text("This is the GamePlay GUI", 10, 40);
     // CREATE BUTTON
     this.button.show();
     this.button.size(150, 30);
-    this.button.position(100, height / 2);
+    this.button.position(10, 50);
   }
 
-  createStars() {
-    for (let i = 0; i < 1000; i++) {
-      this.stars[i] = new Star();
-      this.stars[i].draw();
-    }
-    
-  }
-      
-  createSpaceDiamonds(){
-    for (let i = 0; i <5; i++){
-         this.spacediamonds[i] = new Spacediamond();  
-    }
-  }
-
-      
   public update() {
     for (let star of this.stars) {
       star.update();
@@ -67,5 +57,21 @@ class GamePlay {
          spacediamond.update();
          spacediamond.draw();
      }
+  }
+
+  private changeGui = () => {
+    this.gameGUI.updateGUI("over");
+  };
+
+  private createStars() {
+    for (let i = 0; i < 1000; i++) {
+      this.stars[i] = new Star();
+    }
+  }
+      
+  private createSpaceDiamonds(){
+    for (let i = 0; i <5; i++){
+         this.spacediamonds[i] = new Spacediamond();  
+    }
   }
 }

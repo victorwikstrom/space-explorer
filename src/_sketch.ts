@@ -1,6 +1,5 @@
 //---- GLOBAL VARIABLES ----//
- let gameGUI: GameGUI;
-
+let gameGUI: GameGUI;
 
 
 /**
@@ -21,7 +20,7 @@ function preload() {
 
     // console.log('OUTSIDE', sound);
      }
-  
+ 
 
 /**
  * Built in setup function in P5
@@ -30,12 +29,11 @@ function preload() {
  * in the draw function below
  */
 function setup() {
-    createCanvas(windowWidth, windowHeight);
-    frameRate(60);
-    gameGUI = new GameGUI();
+  createCanvas(windowWidth, windowHeight);
+  frameRate(60);
+  gameGUI = new GameGUI();
 
-    
-    // noCursor();
+  // noCursor();
 }
 
 /**
@@ -49,10 +47,13 @@ function draw() {
     gameGUI.draw();
 }
 
+  // game.update();
+  // game.draw();
+}
 
 /**
  *  Built in windowResize listener function in P5
  */
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowHeight);
 }

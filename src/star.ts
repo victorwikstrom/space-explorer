@@ -1,5 +1,5 @@
 class Star extends GameObject {
-    private opacity: number;
+  private opacity: number;
 
     constructor() {
         super();
@@ -20,3 +20,4 @@ class Star extends GameObject {
         console.log(this.velocity);
     }
 }
+
