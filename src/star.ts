@@ -16,6 +16,5 @@ class Star extends GameObject {
 
   public update() {
     this.position.sub(this.velocity);
-    console.log(this.velocity);
   }
 }
