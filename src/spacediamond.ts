@@ -21,7 +21,7 @@ class Spacediamond extends GameObject {
     public draw(){
         push();
         fill(color("yellow"));
-        ellipse(this.position.x, this.position.y, 30, 30)
+        ellipse(this.position.x, this.position.y, 10, 10)
         pop();
     }
 }
