@@ -1,13 +1,16 @@
 //---- GLOBAL VARIABLES ----//
 let gameGUI: GameGUI;
 
+let shipImg: p5.Image;
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
  * sound files, images etc...
  */
 function preload() {
-  //Finns typings för loadSound!!
+  shipImg = loadImage("assets/images/spaceship.png");
+
   //  let sound:p5.SoundFile = loadSound('../assets/sounds/key.wav', (sound) => {
   //  console.log('SUCCESS', sound);
   //  }, (error) => {
