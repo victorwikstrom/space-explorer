@@ -15,7 +15,6 @@ class GameGUI implements IGameState {
     this.currentGUI = gui;
   }
 
-
   public draw() {
     this.gameIntro.button.hide();
     this.gameOver.button.hide();
@@ -44,4 +43,3 @@ class GameGUI implements IGameState {
     }
   }
 }
-
