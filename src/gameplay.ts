@@ -5,6 +5,7 @@ class GamePlay {
   public button: p5.Element;
   private stars: Array<Star>;
   private spacediamonds: Array<Spacediamond>; // THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD. FELICIA WILL CHANGE.
+  private meteorites: Array<Meteorite>;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -13,6 +14,7 @@ class GamePlay {
     this.stars = [];
     this.player = new Player();
     this.spacediamonds = [];
+    this.meteorites = [];
   }
 
   public update() {
@@ -25,6 +27,10 @@ class GamePlay {
     for (let spacediamond of this.spacediamonds) {
       spacediamond.update();
     }
+    for (let meteorite of this.meteorites) {
+      meteorite.update();
+    }
+
   }
 
   public draw() {
@@ -32,6 +38,7 @@ class GamePlay {
     if (this.isActive === false) {
       this.createStars();
       this.createSpaceDiamonds();
+      this.createMeteorite();
       this.isActive = true;
     }
 
@@ -41,6 +48,10 @@ class GamePlay {
 
     for (let spacediamond of this.spacediamonds) {
       spacediamond.draw();
+    }
+
+    for (let meteorite of this.meteorites) {
+      meteorite.draw();
     }
 
     this.createElements();
@@ -72,6 +83,12 @@ class GamePlay {
   private createSpaceDiamonds() {
     for (let i = 0; i < 5; i++) {
       this.spacediamonds[i] = new Spacediamond();
+    }
+  }
+
+  private createMeteorite() {
+    for (let i = 0; i < 3; i++) {
+      this.meteorites[i] = new Meteorite();
     }
   }
 }
