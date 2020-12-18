@@ -1,20 +1,18 @@
 class Planet extends GameObject {
   damage: number;
-//   collisionSound: p5.SoundFile;
+  //   collisionSound: p5.SoundFile;
 
   constructor() {
     super();
     this.size = 0;
     this.position = createVector(0, 0);
     this.velocity = createVector(0, 0);
-//     this.acceleration = createVector(0, 0);
+    //     this.acceleration = createVector(0, 0);
     this.damage = 0;
-//     this.collisionSound = p5.SoundFile; 
+    //     this.collisionSound = p5.SoundFile;
   }
 
-   draw() {}
-  
-   update() {}
-}
+  update() {}
 
-// File added 
+  draw() {}
+}
