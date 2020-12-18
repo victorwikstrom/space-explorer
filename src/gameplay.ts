@@ -3,10 +3,6 @@ class GamePlay {
   private player: Player;
   private isActive: boolean;
   public button: p5.Element;
-  private stars: Array<Star>;
-  private spacediamonds: Array<Spacediamond>; // THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD.
-  private meteorites: Array<Meteorite>; // THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD.
-  private blackholes: Array<BlackHole>;
   private gameObjects: Array<GameObject>;
 
   constructor(gameGUI: IGameState) {
@@ -17,18 +13,31 @@ class GamePlay {
     this.player = new Player();
   }
 
-  private createElements() {
-    /** Creates button and text for changing gui */
+  public update() {
+    this.player.update();
+    this.updateGameObjects();
+    this.button.mousePressed(this.changeGui);
   }
 
+  public draw() {
+    // GUI SETUP
+    if (this.isActive === false) {
+      this.createGameObjects();
+      this.isActive = true;
+    }
+
+    this.createGuiButtonAndText(); // NEEDS TO BE DRAWN ALL THE TIME
+    this.player.draw();
+    this.drawGameObjects();
+  }
+
+  /** Creates button and text for changing gui */
   private createGuiButtonAndText() {
     // CREATE TEXT
-    push();
     fill("white");
     textSize(30);
     noStroke();
     text("This is the GamePlay GUI", 10, 40);
-    pop();
     // CREATE BUTTON
     this.button.show();
     this.button.size(150, 30);
@@ -51,9 +60,6 @@ class GamePlay {
     for (let i = 0; i < 3; i++) {
       this.gameObjects.push(new Meteorite());
     }
-  }
-
-  private createBlackHoles() {
     for (let i = 0; i < 4; i++) {
       this.gameObjects.push(new BlackHole());
     }
@@ -99,59 +105,5 @@ class GamePlay {
         gameObject.update();
       }
     }
-  }
-
-  public update() {
-    this.player.update();
-    this.updateGameObjects();
-    this.button.mousePressed(this.changeGui);
-
-    for (let star of this.stars) {
-      star.update();
-    }
-    for (let spacediamond of this.spacediamonds) {
-      spacediamond.update();
-    }
-    for (let meteorite of this.meteorites) {
-      meteorite.update();
-    }
-
-    for (let blackhole of this.blackholes) {
-      blackhole.update();
-    }
-  }
-
-  public draw() {
-    // GUI SETUP
-    this.createGuiButtonAndText(); // NEEDS TO BE DRAWN ALL THE TIME
-    this.player.draw();
-    this.drawGameObjects();
-    if (this.isActive === false) {
-      this.createGameObjects();
-      this.createStars();
-      this.createSpaceDiamonds();
-      this.createMeteorite();
-      this.createBlackHoles();
-      this.isActive = true;
-    }
-
-    for (let star of this.stars) {
-      star.draw();
-    }
-
-    for (let spacediamond of this.spacediamonds) {
-      spacediamond.draw();
-    }
-
-    for (let meteorite of this.meteorites) {
-      meteorite.draw();
-    }
-
-    for (let blackhole of this.blackholes) {
-      blackhole.draw();
-    }
-
-    this.createElements();
-    this.player.draw();
   }
 }
