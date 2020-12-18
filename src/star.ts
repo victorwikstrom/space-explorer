@@ -17,7 +17,6 @@ class Star extends GameObject {
 
   public update() {
     this.position.sub(this.velocity);
-  
     if(this.position.x < 0) {
       this.position.x = width + 1;
     }
