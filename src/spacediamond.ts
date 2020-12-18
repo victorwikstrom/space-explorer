@@ -10,22 +10,20 @@ class Spacediamond extends GameObject {
         this.acceleration = createVector(0,0)
     }
 
-    public draw(){
-       fill(color("yellow"));
-       ellipse(this.position.x, this.position.y, 30, 30)
-    }
-
     public update(){
         this.position.sub(this.velocity)
         if (this.position.x < 0){
             this.position.x = width
-            this.position.y = random(height)
-            
-        }
-        
+            this.position.y = random(height) 
+        }   
     }
-        
 
+    public draw(){
+        push();
+        fill(color("yellow"));
+        ellipse(this.position.x, this.position.y, 30, 30)
+        pop();
     }
+}
 
 
