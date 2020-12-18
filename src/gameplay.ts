@@ -54,7 +54,9 @@ class GamePlay {
     for (let i = 0; i < 1000; i++) {
       this.gameObjects.push(new Star());
     }
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 8; i++) {
+      this.gameObjects.push(new Planet());
+    }for (let i = 0; i < 5; i++) {
       this.gameObjects.push(new Spacediamond());
     }
     for (let i = 0; i < 3; i++) {
