@@ -2,12 +2,10 @@ class Player {
   position: p5.Vector;
   velocity: p5.Vector;
   acceleration: p5.Vector;
-
   name: string;
   score: number;
   isAlive: boolean;
   isMoving: boolean;
-
   currentHealth: number;
   image: p5.Image;
 
@@ -25,18 +23,19 @@ class Player {
     this.image = this.setPlayerImage(shipImg);
   }
 
+  update() {
+    this.isMoving = false;
+    this.checkEdges();
+    this.move();
+  }
+
   draw() {
+    push();
     fill(255);
     textSize(12);
     text(this.name, this.position.x, this.position.y - 20);
     image(this.image, this.position.x, this.position.y);
-  }
-
-  update() {
-    this.isMoving = false;
-
-    this.checkEdges();
-    this.move();
+    pop();
   }
 
   move() {

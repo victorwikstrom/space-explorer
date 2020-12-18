@@ -14,7 +14,14 @@ class Star extends GameObject {
     (this.color = random(229, 255)), 255, 255;
   }
 
+  public update() {
+    this.position.sub(this.velocity);
+    if (this.position.x < 0) {
+      this.position.x = width + 1;
+    }
+  }
   public draw() {
+    push();
     strokeWeight(1);
 
     if (this.xspeed < 0.7) {
@@ -25,12 +32,6 @@ class Star extends GameObject {
     }
     line(this.x, this.y, this.x, this.y);
     stroke(this.color, this.opacity);
-  }
-
-  public update() {
-    this.x -= this.xspeed;
-    if (this.x < 0) {
-      this.x = width + 1;
-    }
+    pop();
   }
 }
