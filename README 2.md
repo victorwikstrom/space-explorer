@@ -42,7 +42,7 @@ Typings för de globala variablerna relaterat till p5.sound fungerar tyvärr int
 
 ## TODO
 
-Det här spelet heter Space Explorer
+Det här spelet heter Space Explorer.
 
 Skapat av Victor Wikström, Linda Söder, Camilla Johansson och Felicia Segerholm
 
