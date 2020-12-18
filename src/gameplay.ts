@@ -4,8 +4,9 @@ class GamePlay {
   private isActive: boolean;
   public button: p5.Element;
   private stars: Array<Star>;
-  private spacediamonds: Array<Spacediamond>; // THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD. FELICIA WILL CHANGE.
-  private meteorites: Array<Meteorite>;
+  private spacediamonds: Array<Spacediamond>; // THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD. 
+  private meteorites: Array<Meteorite>;// THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD. 
+  private blackholes: Array<BlackHole>
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -15,6 +16,7 @@ class GamePlay {
     this.player = new Player();
     this.spacediamonds = [];
     this.meteorites = [];
+    this.blackholes = [];
   }
 
   public update() {
@@ -31,6 +33,10 @@ class GamePlay {
       meteorite.update();
     }
 
+    for (let blackhole of this.blackholes){
+      blackhole.update();
+    }
+
   }
 
   public draw() {
@@ -39,6 +45,7 @@ class GamePlay {
       this.createStars();
       this.createSpaceDiamonds();
       this.createMeteorite();
+      this.createBlackHoles();
       this.isActive = true;
     }
 
@@ -52,6 +59,10 @@ class GamePlay {
 
     for (let meteorite of this.meteorites) {
       meteorite.draw();
+    }
+
+    for (let blackhole of this.blackholes) {
+      blackhole.draw();
     }
 
     this.createElements();
@@ -91,4 +102,11 @@ class GamePlay {
       this.meteorites[i] = new Meteorite();
     }
   }
+  
+  private createBlackHoles() {
+    for (let i = 0; i < 4; i++) {
+      this.blackholes[i] = new BlackHole();
+    }
+  }
+
 }
