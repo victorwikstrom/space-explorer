@@ -26,7 +26,7 @@ class BlackHole extends GameObject {
     fill(color("black"));
     stroke(color("white"));
     strokeWeight(3);
-    ellipse(this.position.x, this.position.y, 80, 45);
+    ellipse(this.position.x, this.position.y, 60, 60);
     pop();
   }
 
