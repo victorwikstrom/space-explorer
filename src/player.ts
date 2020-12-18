@@ -9,7 +9,7 @@ class Player {
   isMoving: boolean;
 
   currentHealth: number;
-  image: string;
+  image: p5.Image;
 
   constructor() {
     this.position = createVector(100, height * 0.5);
@@ -22,21 +22,25 @@ class Player {
     this.isMoving = false;
 
     this.currentHealth = 10;
-    this.image = "image";
+    this.image = this.setPlayerImage(shipImg);
   }
 
   draw() {
     fill(255);
-    ellipse(this.position.x, this.position.y, 50);
-    noStroke();
     textSize(12);
-    text(this.name, this.position.x - 20, this.position.y - 35);
+    text(this.name, this.position.x, this.position.y - 20);
+    image(this.image, this.position.x, this.position.y);
   }
 
   update() {
     this.isMoving = false;
-    this.velocity.limit(8);
 
+    this.checkEdges();
+    this.move();
+  }
+
+  move() {
+    this.velocity.limit(8);
     if (!this.isMoving) {
       this.acceleration.set(0, 0);
     }
@@ -67,7 +71,25 @@ class Player {
     }
   }
 
-  setPlayerImage() {}
+  checkEdges() {
+    if (this.position.x >= width - 20) {
+      this.position.x = width - 20;
+    }
+    if (this.position.x <= 20) {
+      this.position.x = 20;
+    }
+    if (this.position.y <= 20) {
+      this.position.y = 20;
+    }
+    if (this.position.y >= height - 20) {
+      this.position.y = height - 20;
+    }
+  }
+
+  setPlayerImage(img: p5.Image) {
+    img.resize(100, 0);
+    return img;
+  }
 
   updateScore() {}
 
