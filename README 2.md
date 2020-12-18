@@ -33,6 +33,5 @@ Versionen av p5.js är 1.1.9 medan senaste version av typescript endast är uppd
 Typings för de globala variablerna relaterat till p5.sound fungerar tyvärr inte - exempel finns för hur ni kan kringå detta.
 
 ## TODO
-Lägg till ytterliggare information som är specifikt för ert projekt!
-
+Blablalba
 **LYCKA TILL!**
