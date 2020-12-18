@@ -11,8 +11,16 @@ class GameGUI implements IGameState {
     this.gameOver = new GameOver(this);
   }
 
-  public updateGUI(gui: "play" | "intro" | "over") {
-    this.currentGUI = gui;
+  public update() {
+    if (this.currentGUI === "intro") {
+      // this.gameIntro.update();
+    }
+    if (this.currentGUI === "play") {
+      this.gamePlay.update();
+    }
+    if (this.currentGUI === "over") {
+      //  this.gameOver.update();
+    }
   }
 
   public draw() {
@@ -31,15 +39,7 @@ class GameGUI implements IGameState {
     }
   }
 
-  public update() {
-    if (this.currentGUI === "intro") {
-      // this.gameIntro.update();
-    }
-    if (this.currentGUI === "play") {
-      this.gamePlay.update();
-    }
-    if (this.currentGUI === "over") {
-      //  this.gameOver.update();
-    }
+  public updateGUI(gui: "play" | "intro" | "over") {
+    this.currentGUI = gui;
   }
 }

@@ -23,6 +23,21 @@ class Player {
     this.image = this.setPlayerImage(shipImg);
   }
 
+  update() {
+    this.isMoving = false;
+    this.checkEdges();
+    this.move();
+  }
+
+  draw() {
+    push();
+    fill(255);
+    textSize(12);
+    text(this.name, this.position.x, this.position.y - 20);
+    image(this.image, this.position.x, this.position.y);
+    pop();
+  }
+
   move() {
     this.velocity.limit(8);
     if (!this.isMoving) {
@@ -82,19 +97,4 @@ class Player {
   die() {}
 
   shoot() {}
-
-  update() {
-    this.isMoving = false;
-    this.checkEdges();
-    this.move();
-  }
-
-  draw() {
-    push();
-    fill(255);
-    textSize(12);
-    text(this.name, this.position.x, this.position.y - 20);
-    image(this.image, this.position.x, this.position.y);
-    pop();
-  }
 }

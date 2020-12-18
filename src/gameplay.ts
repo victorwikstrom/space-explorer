@@ -19,25 +19,6 @@ class GamePlay {
     this.blackholes = [];
   }
 
-  public update() {
-    this.player.update();
-    this.button.mousePressed(this.changeGui);
-
-    for (let star of this.stars) {
-      star.update();
-    }
-    for (let spacediamond of this.spacediamonds) {
-      spacediamond.update();
-    }
-    for (let meteorite of this.meteorites) {
-      meteorite.update();
-    }
-
-    for (let blackhole of this.blackholes) {
-      blackhole.update();
-    }
-  }
-
   private createElements() {
     // CREATE TEXT
     push();
@@ -77,6 +58,25 @@ class GamePlay {
   private createBlackHoles() {
     for (let i = 0; i < 4; i++) {
       this.blackholes[i] = new BlackHole();
+    }
+  }
+
+  public update() {
+    this.player.update();
+    this.button.mousePressed(this.changeGui);
+
+    for (let star of this.stars) {
+      star.update();
+    }
+    for (let spacediamond of this.spacediamonds) {
+      spacediamond.update();
+    }
+    for (let meteorite of this.meteorites) {
+      meteorite.update();
+    }
+
+    for (let blackhole of this.blackholes) {
+      blackhole.update();
     }
   }
 
