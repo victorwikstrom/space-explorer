@@ -13,6 +13,10 @@ class BlackHole extends GameObject {
         this.acceleration = createVector(0,0)
     }
 
+    public handleShot(){
+        
+    }
+    
     public update(){
         this.position.sub(this.velocity)
         if (this.position.x < 0){
@@ -30,7 +34,4 @@ class BlackHole extends GameObject {
         pop();
     }
 
-    public handleShot(){
-        
-    }
 }

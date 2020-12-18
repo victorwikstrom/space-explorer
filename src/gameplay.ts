@@ -4,9 +4,9 @@ class GamePlay {
   private isActive: boolean;
   public button: p5.Element;
   private stars: Array<Star>;
-  private spacediamonds: Array<Spacediamond>; // THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD. 
-  private meteorites: Array<Meteorite>;// THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD. 
-  private blackholes: Array<BlackHole>
+  private spacediamonds: Array<Spacediamond>; // THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD.
+  private meteorites: Array<Meteorite>; // THIS ARRAY IS GOING TO BE A GAME OBJECTS ARRAY INSTEAD.
+  private blackholes: Array<BlackHole>;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -33,10 +33,51 @@ class GamePlay {
       meteorite.update();
     }
 
-    for (let blackhole of this.blackholes){
+    for (let blackhole of this.blackholes) {
       blackhole.update();
     }
+  }
 
+  private createElements() {
+    // CREATE TEXT
+    push();
+    fill("white");
+    textSize(30);
+    noStroke();
+    text("This is the GamePlay GUI", 10, 40);
+    pop();
+    // CREATE BUTTON
+    this.button.show();
+    this.button.size(150, 30);
+    this.button.position(10, 50);
+  }
+
+  private changeGui = () => {
+    this.gameGUI.updateGUI("over");
+  };
+
+  private createStars() {
+    for (let i = 0; i < 1000; i++) {
+      this.stars[i] = new Star();
+    }
+  }
+
+  private createSpaceDiamonds() {
+    for (let i = 0; i < 5; i++) {
+      this.spacediamonds[i] = new Spacediamond();
+    }
+  }
+
+  private createMeteorite() {
+    for (let i = 0; i < 3; i++) {
+      this.meteorites[i] = new Meteorite();
+    }
+  }
+
+  private createBlackHoles() {
+    for (let i = 0; i < 4; i++) {
+      this.blackholes[i] = new BlackHole();
+    }
   }
 
   public draw() {
@@ -68,45 +109,4 @@ class GamePlay {
     this.createElements();
     this.player.draw();
   }
-
-  private createElements() {
-    // CREATE TEXT
-    fill("white");
-    textSize(30);
-    noStroke();
-    text("This is the GamePlay GUI", 10, 40);
-    // CREATE BUTTON
-    this.button.show();
-    this.button.size(150, 30);
-    this.button.position(10, 50);
-  }
-
-  private changeGui = () => {
-    this.gameGUI.updateGUI("over");
-  };
-
-  private createStars() {
-    for (let i = 0; i < 1000; i++) {
-      this.stars[i] = new Star();
-    }
-  }
-
-  private createSpaceDiamonds() {
-    for (let i = 0; i < 5; i++) {
-      this.spacediamonds[i] = new Spacediamond();
-    }
-  }
-
-  private createMeteorite() {
-    for (let i = 0; i < 3; i++) {
-      this.meteorites[i] = new Meteorite();
-    }
-  }
-  
-  private createBlackHoles() {
-    for (let i = 0; i < 4; i++) {
-      this.blackholes[i] = new BlackHole();
-    }
-  }
-
 }

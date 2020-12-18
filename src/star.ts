@@ -9,16 +9,18 @@ class Star extends GameObject {
     this.acceleration = createVector(50, 50);
   }
 
+  public update() {
+    this.position.sub(this.velocity);
+    if (this.position.x < 0) {
+      this.position.x = width + 1;
+    }
+  }
+
   public draw() {
+    push();
     strokeWeight(1);
     stroke(color(230, 255, 255, this.opacity));
     ellipse(this.position.x, this.position.y, random(0.1, width / 900));
-  }
-
-  public update() {
-    this.position.sub(this.velocity);
-    if(this.position.x < 0) {
-      this.position.x = width + 1;
-    }
+    pop();
   }
 }

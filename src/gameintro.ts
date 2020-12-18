@@ -9,6 +9,20 @@ class GameIntro {
     this.button = createButton("Go to Game Play GUI");
   }
 
+  createElements() {
+    // CREATE TEXT
+    push();
+    fill("blue");
+    noStroke();
+    textSize(30);
+    text("This is the Intro GUI", 10, 40);
+    pop();
+    // CREATE BUTTON
+    this.button.show();
+    this.button.position(10, 50);
+    this.button.size(150, 30);
+  }
+
   public draw() {
     if (!this.isActive) {
       this.isActive = true;
@@ -22,17 +36,5 @@ class GameIntro {
       this.button.hide();
       this.gameGUI.updateGUI("play");
     });
-  }
-
-  createElements() {
-    // CREATE TEXT
-    fill("blue");
-    noStroke();
-    textSize(30);
-    text("This is the Intro GUI", 10, 40);
-    // CREATE BUTTON
-    this.button.show();
-    this.button.position(10, 50);
-    this.button.size(150, 30);
   }
 }

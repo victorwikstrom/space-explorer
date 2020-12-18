@@ -9,6 +9,20 @@ class GameOver {
     this.button = createButton("Go to Intro GUI");
   }
 
+  createElements() {
+    // CREATE TEXT
+    push();
+    fill("red");
+    noStroke();
+    textSize(30);
+    text("This is the GameOver GUI", 10, 40);
+    pop();
+    //CREATE BUTTON
+    this.button.show();
+    this.button.size(150, 30);
+    this.button.position(10, 50);
+  }
+
   public draw() {
     if (!this.isActive) {
       this.isActive = true;
@@ -22,17 +36,5 @@ class GameOver {
       this.button.hide();
       this.gameGUI.updateGUI("intro");
     });
-  }
-
-  createElements() {
-    // CREATE TEXT
-    fill("red");
-    noStroke();
-    textSize(30);
-    text("This is the GameOver GUI", 10, 40);
-    //CREATE BUTTON
-    this.button.show();
-    this.button.size(150, 30);
-    this.button.position(10, 50);
   }
 }
