@@ -21,6 +21,8 @@ class Player {
 
     this.currentHealth = 10;
     this.image = this.setPlayerImage(shipImg);
+
+   
   }
 
   update() {
