@@ -8,6 +8,7 @@ class Player {
   isMoving: boolean;
   currentHealth: number;
   image: p5.Image;
+  textColor: p5.Color;
 
   constructor() {
     this.position = createVector(100, height * 0.5);
@@ -21,8 +22,7 @@ class Player {
 
     this.currentHealth = 10;
     this.image = this.setPlayerImage(shipImg);
-
-   
+    this.textColor = color("white");
   }
 
   update() {
@@ -33,7 +33,7 @@ class Player {
 
   draw() {
     push();
-    fill(255);
+    fill(this.textColor);
     textSize(12);
     text(this.name, this.position.x, this.position.y - 20);
     image(this.image, this.position.x, this.position.y);
@@ -41,7 +41,7 @@ class Player {
   }
 
   move() {
-    this.velocity.limit(8);
+    this.velocity.limit(4);
     if (!this.isMoving) {
       this.acceleration.set(0, 0);
     }

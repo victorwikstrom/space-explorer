@@ -1,5 +1,7 @@
 class Meteorite extends GameObject {
   damage: number;
+  color: p5.Color;
+
   // private collisionSound: string - To be added later
 
   constructor() {
@@ -10,6 +12,7 @@ class Meteorite extends GameObject {
     // this.acceleration = createVector(0, 0);
     this.damage = 0;
     this.radius = 5;
+    this.color = color("red");
     // this.collisionSound = p5.SoundFile;
   }
 
@@ -24,8 +27,8 @@ class Meteorite extends GameObject {
   draw() {
     push();
     noStroke();
-    fill(color("red"));
-    ellipse(this.position.x, this.position.y, this.radius*2, this.radius*2);
+    fill(this.color);
+    ellipse(this.position.x, this.position.y,this.radius*2, this.radius*2);
     pop();
   }
 }

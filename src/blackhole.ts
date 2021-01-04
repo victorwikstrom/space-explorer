@@ -2,6 +2,8 @@ class BlackHole extends GameObject {
   //private image: string; //- TO BE ADDED LATER
   // private damage: number; // - TO BE ADDED LATER
   // private collisionSound: string; // TO BE ADDED LATER
+  private fill: p5.Color;
+  private stroke: p5.Color;
 
   constructor() {
     super();
@@ -10,8 +12,13 @@ class BlackHole extends GameObject {
     //this.collisionSound: "" //TO BE ADDED LATER
     this.position = createVector(width, random(height));
     this.velocity = createVector(random(4, 6), 0);
-    this.acceleration = createVector(0, 0);
+
     this.radius = 30;
+
+    //this.acceleration = createVector(0, 0);
+    this.fill = color("black");
+    this.stroke = color("white");
+
   }
 
   public update() {
@@ -24,8 +31,8 @@ class BlackHole extends GameObject {
 
   public draw() {
     push();
-    fill(color("black"));
-    stroke(color("white"));
+    fill(this.fill);
+    stroke(this.stroke);
     strokeWeight(3);
     ellipse(this.position.x, this.position.y, this.radius*3, this.radius*2);
     pop();
