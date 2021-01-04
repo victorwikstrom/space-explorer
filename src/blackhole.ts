@@ -12,9 +12,13 @@ class BlackHole extends GameObject {
     //this.collisionSound: "" //TO BE ADDED LATER
     this.position = createVector(width, random(height));
     this.velocity = createVector(random(4, 6), 0);
+
+    this.radius = 30;
+
     //this.acceleration = createVector(0, 0);
     this.fill = color("black");
     this.stroke = color("white");
+
   }
 
   public update() {
@@ -30,7 +34,7 @@ class BlackHole extends GameObject {
     fill(this.fill);
     stroke(this.stroke);
     strokeWeight(3);
-    ellipse(this.position.x, this.position.y, 60, 60);
+    ellipse(this.position.x, this.position.y, this.radius*3, this.radius*2);
     pop();
   }
 

@@ -2,6 +2,7 @@ class Spacediamond extends GameObject {
   // private collisionSound: string - To be added later
   color: p5.Color;
 
+
   constructor() {
     super();
     // this.collisionSound = "" To be added later
@@ -9,7 +10,9 @@ class Spacediamond extends GameObject {
     this.velocity = createVector(3, 0);
     // this.acceleration = createVector(0, 0);
     this.color = color("yellow");
+    this.radius = 5;
   }
+
 
   public update() {
     this.position.sub(this.velocity);
@@ -19,10 +22,11 @@ class Spacediamond extends GameObject {
     }
   }
 
+
   public draw() {
     push();
     fill(this.color);
-    ellipse(this.position.x, this.position.y, 10, 10);
+    ellipse(this.position.x, this.position.y, this.radius*2, this.radius*2);
     pop();
   }
 }

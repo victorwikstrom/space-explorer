@@ -4,6 +4,7 @@ class GamePlay {
   private isActive: boolean;
   public button: p5.Element;
   private gameObjects: Array<GameObject>;
+  private collisionCount: number;
   private shots: Array<Shot>;
 
   constructor(gameGUI: IGameState) {
@@ -12,15 +13,17 @@ class GamePlay {
     this.button = createButton("Go to GameOver GUI");
     this.gameObjects = [];
     this.player = new Player();
+    this.collisionCount = 0;
     this.shots = [];
+
   }
 
   public update() {
     this.player.update();
     this.updateGameObjects();
     this.button.mousePressed(this.changeGui);
-
     this.shoot();
+
   }
 
   public draw() {
@@ -34,6 +37,9 @@ class GamePlay {
     this.player.draw();
     this.drawGameObjects();
 
+    this.updateCollisionCount();
+
+
       if (this.shots) {
         for (let i = 0; i < this.shots.length; i++) {
         this.shots[i].draw();
@@ -43,6 +49,7 @@ class GamePlay {
         }
       }
     }
+
   }
 
   /** Creates button and text for changing gui */
@@ -57,6 +64,14 @@ class GamePlay {
     this.button.size(150, 30);
     this.button.position(10, 50);
   };
+
+   private updateCollisionCount(){
+    push();
+    textSize(50)
+    fill("white");
+    text(JSON.stringify(this.collisionCount), width-100, 90)
+    pop();
+  }
 
   /** Change gui to Game Over */
   private changeGui = () => {
@@ -108,21 +123,35 @@ class GamePlay {
     for (let gameObject of this.gameObjects) {
       if (gameObject instanceof Star) {
         gameObject.update();
+        this.checkCollision(this.player, gameObject);
       }
       if (gameObject instanceof Planet) {
         gameObject.update();
+        this.checkCollision(this.player, gameObject);
       }
       if (gameObject instanceof Meteorite) {
         gameObject.update();
+        this.checkCollision(this.player, gameObject);
       }
       if (gameObject instanceof Spacediamond) {
         gameObject.update();
+        this.checkCollision(this.player, gameObject);
       }
       if (gameObject instanceof BlackHole) {
         gameObject.update();
+        this.checkCollision(this.player, gameObject);
       }
     }
   }
+
+ 
+  public checkCollision(player: Player, gameObject: GameObject) {
+        let d = dist(player.position.x, player.position.y, gameObject.position.x, gameObject.position.y)
+        if (d < gameObject.radius + 40) {
+          this.collisionCount++;
+        }
+      }   
+
 
   private shoot() {
     if (keyIsPressed) {
@@ -132,4 +161,5 @@ class GamePlay {
       }
     }
   }
+
 }
