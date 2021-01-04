@@ -4,6 +4,7 @@ class GamePlay {
   private isActive: boolean;
   public button: p5.Element;
   private gameObjects: Array<GameObject>;
+  private shots: Array<Shot>;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -11,12 +12,15 @@ class GamePlay {
     this.button = createButton("Go to GameOver GUI");
     this.gameObjects = [];
     this.player = new Player();
+    this.shots = [];
   }
 
   public update() {
     this.player.update();
     this.updateGameObjects();
     this.button.mousePressed(this.changeGui);
+
+    this.shoot();
   }
 
   public draw() {
@@ -29,6 +33,16 @@ class GamePlay {
     this.createGuiButtonAndText(); // NEEDS TO BE DRAWN ALL THE TIME
     this.player.draw();
     this.drawGameObjects();
+
+      if (this.shots) {
+        for (let i = 0; i < this.shots.length; i++) {
+        this.shots[i].draw();
+        this.shots[i].update();
+        if (this.shots[i].position.x > width) {
+          this.shots.splice(i, 1);
+        }
+      }
+    }
   }
 
   /** Creates button and text for changing gui */
@@ -42,7 +56,7 @@ class GamePlay {
     this.button.show();
     this.button.size(150, 30);
     this.button.position(10, 50);
-  }
+  };
 
   /** Change gui to Game Over */
   private changeGui = () => {
@@ -85,6 +99,7 @@ class GamePlay {
       if (gameObject instanceof BlackHole) {
         gameObject.draw();
       }
+
     }
   }
 
@@ -105,6 +120,15 @@ class GamePlay {
       }
       if (gameObject instanceof BlackHole) {
         gameObject.update();
+      }
+    }
+  }
+
+  private shoot() {
+    if (keyIsPressed) {
+      if (keyCode === 32) {
+        let shot = new Shot(this.player.position.x +90, this.player.position.y+36);
+        this.shots.push(shot); 
       }
     }
   }
