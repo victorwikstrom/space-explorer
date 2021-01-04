@@ -12,7 +12,7 @@ class BlackHole extends GameObject {
     //this.collisionSound: "" //TO BE ADDED LATER
     this.position = createVector(width, random(height));
     this.velocity = createVector(random(4, 6), 0);
-    this.acceleration = createVector(0, 0);
+    //this.acceleration = createVector(0, 0);
     this.fill = color("black");
     this.stroke = color("white");
   }
