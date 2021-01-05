@@ -1,8 +1,8 @@
 class BlackHole extends GameObject {
   //private image: string; //- TO BE ADDED LATER
-  // private damage: number; // - TO BE ADDED LATER
+  public damage: number; // - TO BE ADDED LATER
   // private collisionSound: string; // TO BE ADDED LATER
-  private fill: p5.Color;
+  public fill: p5.Color;
   private stroke: p5.Color;
 
   constructor() {
@@ -14,6 +14,7 @@ class BlackHole extends GameObject {
     this.velocity = createVector(random(4, 6), 0);
 
     this.radius = 30;
+    this.damage = 12; //Högre värde än 10 pga man ska kunna dö
 
     //this.acceleration = createVector(0, 0);
     this.fill = color("black");
@@ -36,6 +37,7 @@ class BlackHole extends GameObject {
     strokeWeight(3);
     ellipse(this.position.x, this.position.y, this.radius*3, this.radius*2);
     pop();
+
   }
 
   public handleShot() {}

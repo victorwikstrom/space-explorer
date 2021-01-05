@@ -1,6 +1,7 @@
 class Spacediamond extends GameObject {
   // private collisionSound: string - To be added later
   color: p5.Color;
+  health: number;
 
 
   constructor() {
@@ -11,6 +12,7 @@ class Spacediamond extends GameObject {
     // this.acceleration = createVector(0, 0);
     this.color = color("yellow");
     this.radius = 5;
+    this.health = 1;
   }
 
 
