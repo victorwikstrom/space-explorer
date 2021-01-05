@@ -1,11 +1,12 @@
 class GamePlay {
+  // Skapa interface så att player får tillgång till shots<>
   private gameGUI: IGameState;
   private player: Player;
   private isActive: boolean;
   public button: p5.Element;
   private gameObjects: Array<GameObject>;
   private collisionCount: number;
-  private shots: Array<Shot>;
+  public shots: Array<Shot>;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -14,16 +15,13 @@ class GamePlay {
     this.gameObjects = [];
     this.player = new Player();
     this.collisionCount = 0;
-    this.shots = [];
-
+    this.shots = this.player.shots;
   }
 
   public update() {
     this.player.update();
     this.updateGameObjects();
     this.button.mousePressed(this.changeGui);
-    this.shoot();
-
   }
 
   public draw() {
@@ -38,18 +36,6 @@ class GamePlay {
     this.drawGameObjects();
 
     this.updateCollisionCount();
-
-
-      if (this.shots) {
-        for (let i = 0; i < this.shots.length; i++) {
-        this.shots[i].draw();
-        this.shots[i].update();
-        if (this.shots[i].position.x > width) {
-          this.shots.splice(i, 1);
-        }
-      }
-    }
-
   }
 
   /** Creates button and text for changing gui */
@@ -63,13 +49,13 @@ class GamePlay {
     this.button.show();
     this.button.size(150, 30);
     this.button.position(10, 50);
-  };
+  }
 
-   private updateCollisionCount(){
+  private updateCollisionCount() {
     push();
-    textSize(50)
+    textSize(50);
     fill("white");
-    text(JSON.stringify(this.collisionCount), width-100, 90)
+    text(JSON.stringify(this.collisionCount), width - 100, 90);
     pop();
   }
 
@@ -85,7 +71,8 @@ class GamePlay {
     }
     for (let i = 0; i < 8; i++) {
       this.gameObjects.push(new Planet());
-    }for (let i = 0; i < 5; i++) {
+    }
+    for (let i = 0; i < 5; i++) {
       this.gameObjects.push(new Spacediamond());
     }
     for (let i = 0; i < 3; i++) {
@@ -114,7 +101,6 @@ class GamePlay {
       if (gameObject instanceof BlackHole) {
         gameObject.draw();
       }
-
     }
   }
 
@@ -144,22 +130,15 @@ class GamePlay {
     }
   }
 
- 
   public checkCollision(player: Player, gameObject: GameObject) {
-        let d = dist(player.position.x, player.position.y, gameObject.position.x, gameObject.position.y)
-        if (d < gameObject.radius + 40) {
-          this.collisionCount++;
-        }
-      }   
-
-
-  private shoot() {
-    if (keyIsPressed) {
-      if (keyCode === 32) {
-        let shot = new Shot(this.player.position.x +90, this.player.position.y+36);
-        this.shots.push(shot); 
-      }
+    let d = dist(
+      player.position.x,
+      player.position.y,
+      gameObject.position.x,
+      gameObject.position.y
+    );
+    if (d < gameObject.radius + 40) {
+      this.collisionCount++;
     }
   }
-
 }

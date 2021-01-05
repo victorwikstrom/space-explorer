@@ -12,12 +12,17 @@ class Shot extends GameObject {
   }
 
   update() {
-    this.position.x = this.position.x +5;
+    this.position.x = this.position.x + 15;
   }
 
   draw() {
     stroke(this.stroke);
-    strokeWeight(3);
-    line(this.position.x, this.position.y, this.position.x, this.position.y);
+    strokeWeight(7);
+    line(
+      this.position.x,
+      this.position.y,
+      this.position.x + 5,
+      this.position.y
+    );
   }
 }
