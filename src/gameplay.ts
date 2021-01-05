@@ -1,12 +1,13 @@
 
 class GamePlay {
+  // Skapa interface så att player får tillgång till shots<>
   private gameGUI: IGameState;
   private player: Player;
   private isActive: boolean;
   public button: p5.Element;
   private gameObjects: Array<GameObject>;
   private collisionCount: number;
-  private shots: Array<Shot>;
+  public shots: Array<Shot>;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -15,8 +16,7 @@ class GamePlay {
     this.gameObjects = [];
     this.player = new Player();
     this.collisionCount = 0;
-    this.shots = [];
-
+    this.shots = this.player.shots;
   }
 
   public update() {
@@ -36,7 +36,7 @@ class GamePlay {
     this.createGuiButtonAndText(); // NEEDS TO BE DRAWN ALL THE TIME
     this.player.draw();
     this.drawGameObjects();
-    this.drawCollisionCount();
+    this.updateCollisionCount();
 
       if (this.shots) {
         for (let i = 0; i < this.shots.length; i++) {
@@ -47,7 +47,7 @@ class GamePlay {
         }
       }
     }
-  }
+}
 
   /** Creates button and text for changing gui */
   private createGuiButtonAndText() {
@@ -60,13 +60,13 @@ class GamePlay {
     this.button.show();
     this.button.size(150, 30);
     this.button.position(10, 50);
-  };
+  }
 
-   private drawCollisionCount(){
+  private updateCollisionCount() {
     push();
-    textSize(50)
+    textSize(50);
     fill("white");
-    text(JSON.stringify(this.collisionCount), width-100, 90)
+    text(JSON.stringify(this.collisionCount), width - 100, 90);
     pop();
   }
 
@@ -82,8 +82,9 @@ class GamePlay {
     }
     for (let i = 0; i < 2; i++) { //8 st
       this.gameObjects.push(new Planet());
-    }for (let i = 0; i < 2; i++) { //5 st
-      this.gameObjects.push(new Spacediamond());
+    }
+    for (let i = 0; i < 2; i++) {
+      this.gameObjects.push(new SpaceDiamond());
     }
     for (let i = 0; i < 2; i++) { //3 st
       this.gameObjects.push(new Meteorite());
@@ -105,7 +106,7 @@ class GamePlay {
       if (gameObject instanceof Meteorite) {
         gameObject.draw();
       }
-      if (gameObject instanceof Spacediamond) {
+      if (gameObject instanceof SpaceDiamond) {
         gameObject.draw();
       }
       if (gameObject instanceof BlackHole) {
@@ -129,7 +130,7 @@ class GamePlay {
         gameObject.update();
         this.checkCollision(this.player, gameObject);
       }
-      if (gameObject instanceof Spacediamond) {
+      if (gameObject instanceof SpaceDiamond) {
         gameObject.update();
         this.checkCollision(this.player, gameObject);
       }
@@ -141,7 +142,12 @@ class GamePlay {
   }
 
   public checkCollision(player: Player, gameObject: GameObject) {
-    let d = dist(player.position.x, player.position.y, gameObject.position.x, gameObject.position.y)
+  let d = dist(
+    player.position.x,
+    player.position.y,
+    gameObject.position.x,
+    gameObject.position.y
+    );
       if (d < gameObject.radius + 40) {
         this.collisionCount++;
             
@@ -160,7 +166,7 @@ class GamePlay {
             gameObject.isHit = true;
           }
 
-          if (gameObject instanceof Spacediamond){
+          if (gameObject instanceof SpaceDiamond){
             this.player.currentHealth = this.updateHealth(player.currentHealth, gameObject);
             gameObject.isHit = true;
           }
@@ -193,7 +199,7 @@ class GamePlay {
           currentHealth = this.player.currentHealth - gameObject.damage;     
         }
 
-        if (gameObject instanceof Spacediamond){
+        if (gameObject instanceof SpaceDiamond){
           currentHealth = this.player.currentHealth + gameObject.health
         }
 
@@ -203,5 +209,4 @@ class GamePlay {
       } 
     return currentHealth;
   }
-
 }
