@@ -73,7 +73,7 @@ class GamePlay {
       this.gameObjects.push(new Planet());
     }
     for (let i = 0; i < 5; i++) {
-      this.gameObjects.push(new Spacediamond());
+      this.gameObjects.push(new SpaceDiamond());
     }
     for (let i = 0; i < 3; i++) {
       this.gameObjects.push(new Meteorite());
@@ -95,7 +95,7 @@ class GamePlay {
       if (gameObject instanceof Meteorite) {
         gameObject.draw();
       }
-      if (gameObject instanceof Spacediamond) {
+      if (gameObject instanceof SpaceDiamond) {
         gameObject.draw();
       }
       if (gameObject instanceof BlackHole) {
@@ -119,7 +119,7 @@ class GamePlay {
         gameObject.update();
         this.checkCollision(this.player, gameObject);
       }
-      if (gameObject instanceof Spacediamond) {
+      if (gameObject instanceof SpaceDiamond) {
         gameObject.update();
         this.checkCollision(this.player, gameObject);
       }
