@@ -175,7 +175,6 @@ class GamePlay {
     if (gameObject.isHit = true) {
       if (gameObject instanceof Planet){
         currentHealth = this.player.currentHealth - gameObject.damage;
-        stop();
        } 
 
        if (gameObject instanceof BlackHole){
