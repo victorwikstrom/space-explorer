@@ -23,7 +23,6 @@ class GamePlay {
     this.player.update();
     this.updateGameObjects();
     this.button.mousePressed(this.changeGui);
-    this.shoot();
   }
 
   public draw() {
@@ -173,17 +172,6 @@ class GamePlay {
       } 
         return gameObject.isHit = false;
   }   
-
-
-  private shoot() {
-    if (keyIsPressed) {
-      if (keyCode === 32) {
-        let shot = new Shot(this.player.position.x +90, this.player.position.y+36);
-        this.shots.push(shot); 
-      }
-    }
-  }
-
 
   public updateHealth(currentHealth:number, gameObject:GameObject) {
     if (gameObject.isHit = true) {
