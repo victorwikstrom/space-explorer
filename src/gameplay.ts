@@ -8,6 +8,8 @@ class GamePlay {
   private gameObjects: Array<GameObject>;
   private collisionCount: number;
   public shots: Array<Shot>;
+  private statusBar: StatusBar;
+
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -17,9 +19,11 @@ class GamePlay {
     this.player = new Player();
     this.collisionCount = 0;
     this.shots = this.player.shots;
+    this.statusBar = new StatusBar();
   }
 
   public update() {
+    this.statusBar.update();
     this.player.update();
     this.updateGameObjects();
     this.button.mousePressed(this.changeGui);
@@ -36,7 +40,11 @@ class GamePlay {
     this.player.draw();
     this.drawGameObjects();
     this.updateCollisionCount();
-}
+
+    // DRAW STATUSBAR
+    this.statusBar.draw();
+  }
+
 
   /** Creates button and text for changing gui */
   private createGuiButtonAndText() {
