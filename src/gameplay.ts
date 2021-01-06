@@ -36,16 +36,6 @@ class GamePlay {
     this.player.draw();
     this.drawGameObjects();
     this.updateCollisionCount();
-
-      if (this.shots) {
-        for (let i = 0; i < this.shots.length; i++) {
-        this.shots[i].draw();
-        this.shots[i].update();
-        if (this.shots[i].position.x > width) {
-          this.shots.splice(i, 1);
-        }
-      }
-    }
 }
 
   /** Creates button and text for changing gui */
@@ -149,7 +139,7 @@ class GamePlay {
     );
       if (d < gameObject.radius + 40) {
         this.collisionCount++;
-            
+          
           if (gameObject instanceof BlackHole){
             this.player.currentHealth = this.updateHealth(player.currentHealth, gameObject);
             gameObject.isHit = true;       
@@ -170,13 +160,14 @@ class GamePlay {
             gameObject.isHit = true;
           }
       } 
-        return gameObject.isHit = false;
+        return gameObject.isHit = false;  
   }   
 
   public updateHealth(currentHealth:number, gameObject:GameObject) {
     if (gameObject.isHit = true) {
       if (gameObject instanceof Planet){
         currentHealth = this.player.currentHealth - gameObject.damage;
+        stop();
        } 
 
        if (gameObject instanceof BlackHole){
@@ -191,7 +182,7 @@ class GamePlay {
           currentHealth = this.player.currentHealth + gameObject.health
         }
 
-        if(currentHealth <= 10){
+        if(currentHealth <= 0){
           this.player.die();
         }
       } 
