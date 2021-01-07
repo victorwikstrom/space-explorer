@@ -13,12 +13,10 @@ class Player {
     this.position = createVector(100, height * 0.5);
     this.velocity = createVector(0, 0);
     this.acceleration = createVector(0.0, 0.0);
-
     this.name = "Player";
     this.score = 0;
     this.isAlive = true;
     this.isMoving = false;
-
     this.currentHealth = 10;
     this.image = this.setPlayerImage(shipImg);
   }
