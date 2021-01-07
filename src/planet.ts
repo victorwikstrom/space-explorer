@@ -9,7 +9,7 @@ class Planet extends GameObject {
     this.position = createVector(random(width), random(height));
     this.velocity = createVector(random(3, 5), 0);
     // this.acceleration = createVector(0, 0);
-    this.damage = 0;
+    this.damage = 3;
     this.radius = 17;
     this.color = color(95, 45, 139);
 

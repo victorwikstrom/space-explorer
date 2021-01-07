@@ -133,5 +133,8 @@ class Player {
 
   updateHealth() {}
 
-  die() {}
+  die() {
+    //gameGUI.updateGUI("over");
+  }
+
 }

@@ -10,8 +10,8 @@ class Meteorite extends GameObject {
     this.position = createVector(random(width), random(height));
     this.velocity = createVector(10, 0);
     // this.acceleration = createVector(0, 0);
-    this.damage = 0;
-    this.radius = 5;
+    this.damage = 5;
+    this.radius = 30;
     this.color = color("red");
     // this.collisionSound = p5.SoundFile;
   }
