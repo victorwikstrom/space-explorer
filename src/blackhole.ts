@@ -10,7 +10,7 @@ class BlackHole extends GameObject {
     //this.image = "" //TO BE ADDED LATER
     //this.damage = 10; // TO BE ADDED LATER
     //this.collisionSound: "" //TO BE ADDED LATER
-    this.position = createVector(width, random(height));
+    this.position = this.position;
     this.velocity = createVector(random(4, 6), 0);
 
     this.radius = 30;
@@ -21,13 +21,9 @@ class BlackHole extends GameObject {
     this.stroke = color("white");
 
   }
-
   public update() {
-    this.position.sub(this.velocity);
-    if (this.position.x < 0) {
-      this.position.x = width;
-      this.position.y = random(height);
-    }
+    super.update();
+  
   }
 
   public draw() {

@@ -8,14 +8,20 @@ abstract class GameObject {
 
   constructor() {
     this.size = 0;
-    this.position = createVector(0, 0);
+    this.position = createVector(random(width), random(height));
     this.velocity = createVector(0, 0);
     this.acceleration = createVector(0, 0);
     this.radius = 0;
     this.isHit = false;
   }
 
-  protected update() {}
+  protected update() {
+    this.position.sub(this.velocity);
+    if (this.position.x < 0) {
+      this.position.x = width;
+      this.position.y = random(height);
+    }
+  }
 
   protected draw() {}
 
