@@ -8,6 +8,9 @@ class Player {
   isMoving: boolean;
   currentHealth: number;
   image: p5.Image;
+  textColor: p5.Color;
+  rechargeGun: number;
+  shots: Array<Shot>;
 
   constructor() {
     this.position = createVector(100, height * 0.5);
@@ -19,25 +22,35 @@ class Player {
     this.isMoving = false;
     this.currentHealth = 10;
     this.image = this.setPlayerImage(shipImg);
+    this.textColor = color("white");
+
+    this.shots = [];
+
+    this.rechargeGun = 500;
   }
 
   update() {
     this.isMoving = false;
+
     this.checkEdges();
     this.move();
+    this.handleSpacebarEvent();
+    this.deleteFiredShots();
+
+    this.rechargeGun -= deltaTime;
   }
 
-  draw() {
+  public draw() {
     push();
-    fill(255);
+    fill(this.textColor);
     textSize(12);
     text(this.name, this.position.x, this.position.y - 20);
     image(this.image, this.position.x, this.position.y);
     pop();
   }
 
-  move() {
-    this.velocity.limit(8);
+  private move() {
+    this.velocity.limit(4);
     if (!this.isMoving) {
       this.acceleration.set(0, 0);
     }
@@ -68,7 +81,7 @@ class Player {
     }
   }
 
-  checkEdges() {
+  private checkEdges() {
     if (this.position.x >= width - 20) {
       this.position.x = width - 20;
     }
@@ -83,16 +96,42 @@ class Player {
     }
   }
 
-  setPlayerImage(img: p5.Image) {
+  private setPlayerImage(img: p5.Image) {
     img.resize(100, 0);
     return img;
+  }
+
+  private handleSpacebarEvent() {
+    if (keyIsDown(32)) {
+      if (this.rechargeGun < 0) {
+        this.shoot();
+        this.rechargeGun = 500;
+      }
+    }
+  }
+
+  private shoot() {
+    let shot = new Shot(this.position.x + 100, this.position.y + 36);
+    this.shots.push(shot);
+  }
+
+  private deleteFiredShots() {
+    if (this.shots) {
+      for (let i = 0; i < this.shots.length; i++) {
+        this.shots[i].draw();
+        this.shots[i].update();
+        if (this.shots[i].position.x > width) {
+          this.shots.splice(i, 1);
+        }
+      }
+    }
   }
 
   updateScore() {}
 
   updateHealth() {}
 
-  die() {}
-
-  shoot() {}
+  die() {
+    //gameGUI.updateGUI("over");
+  }
 }
