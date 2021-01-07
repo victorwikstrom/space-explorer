@@ -24,7 +24,7 @@ class Planet extends GameObject {
     push();
     noStroke();
     fill(this.color);
-    ellipse(this.position.x, this.position.y, this.radius*2 , this.radius*2);
+    ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2);
     pop();
   }
 }

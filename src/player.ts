@@ -136,5 +136,4 @@ class Player {
   die() {
     //gameGUI.updateGUI("over");
   }
-
 }
