@@ -49,6 +49,8 @@ class GameIntro {
     this.button.mousePressed(() => {
       this.isActive = false;
       this.button.hide();
+      this.input.hide();
+      this.introBox.hide();
       this.gameGUI.updateGUI('play');
     });
   }
