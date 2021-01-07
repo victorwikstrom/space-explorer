@@ -91,57 +91,40 @@ class GamePlay {
   /** Call draw() on all gameObjects */
   private drawGameObjects() {
     for (let gameObject of this.gameObjects) {
-      if (gameObject instanceof Star) {
-        gameObject.draw();
-      } else if (gameObject instanceof Planet) {
-        gameObject.draw();
-      } else if (gameObject instanceof Meteorite) {
-        gameObject.draw();
-      } else if (gameObject instanceof SpaceDiamond) {
-        gameObject.draw();
-      } else if (gameObject instanceof BlackHole) {
-        gameObject.draw();
-      }
+      gameObject.draw();
     }
   }
 
   /** Call update() on all gameObjects */
   private updateGameObjects() {
     for (let gameObject of this.gameObjects) {
-      if (gameObject instanceof Star) {
-        gameObject.update();
-        this.checkCollision(this.player, gameObject);
-      } else if (gameObject instanceof Planet) {
-        gameObject.update();
-        this.checkCollision(this.player, gameObject);
-      } else if (gameObject instanceof Meteorite) {
-        gameObject.update();
-        this.checkCollision(this.player, gameObject);
-      } else if (gameObject instanceof SpaceDiamond) {
-        gameObject.update();
-        this.checkCollision(this.player, gameObject);
-      } else if (gameObject instanceof BlackHole) {
-        gameObject.update();
-        this.checkCollision(this.player, gameObject);
-      }
+      gameObject.update();
+      this.checkCollision(this.player, gameObject);
     }
   }
+
+  /* private getValidYPos() {
+    const yPositions = this.gameObjects.map(
+      (gameObject) => gameObject.position.y
+    );
+    // const yPos = [0, 8, 50, 200, 230];
+
+    const indexStart = floor(random(yPositions.length - 1));
+    const indexEnd = indexStart + 1;
+
+    const validYPos = random(
+      yPositions[indexStart] + 25 * 2,
+      yPositions[indexEnd] - 25 * 2
+    );
+    return validYPos;
+  } */
 
   private checkCollision(p: Player, o: GameObject) {
     let distance = dist(p.position.x, p.position.y, o.position.x, o.position.y);
 
     if (distance < o.radius + 40) {
       if (!o.isHit) {
-        // Only trigger collision when an object is not already hit
-        if (o instanceof BlackHole) {
-          this.handleCollision(p, o);
-        } else if (o instanceof Planet) {
-          this.handleCollision(p, o);
-        } else if (o instanceof Meteorite) {
-          this.handleCollision(p, o);
-        } else if (o instanceof SpaceDiamond) {
-          this.handleCollision(p, o);
-        }
+        this.handleCollision(p, o);
         o.isHit = true; // Make sure the object knows it has been hit after first intersection
       }
     } else {
@@ -155,15 +138,7 @@ class GamePlay {
   }
 
   private updateHealth(health: number, gameObject: GameObject) {
-    if (gameObject instanceof Planet) {
-      health = this.player.currentHealth - gameObject.damage;
-    } else if (gameObject instanceof BlackHole) {
-      health = this.player.currentHealth - gameObject.damage;
-    } else if (gameObject instanceof Meteorite) {
-      health = this.player.currentHealth - gameObject.damage;
-    } else if (gameObject instanceof SpaceDiamond) {
-      health = this.player.currentHealth + gameObject.health;
-    }
+    health = this.player.currentHealth - gameObject.damage;
     if (health <= 0) {
       this.player.die();
     }

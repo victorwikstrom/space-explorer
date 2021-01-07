@@ -5,6 +5,7 @@ abstract class GameObject {
   protected acceleration: p5.Vector;
   public radius: number;
   public isHit: boolean;
+  public damage: number;
 
   constructor() {
     this.size = 0;
@@ -13,9 +14,10 @@ abstract class GameObject {
     this.acceleration = createVector(0, 0);
     this.radius = 0;
     this.isHit = false;
+    this.damage = 0;
   }
 
-  protected update() {
+  public update() {
     this.position.sub(this.velocity);
     if (this.position.x < 0) {
       this.position.x = width;
@@ -23,6 +25,5 @@ abstract class GameObject {
     }
   }
 
-  protected draw() {}
-
+  public draw() {}
 }
