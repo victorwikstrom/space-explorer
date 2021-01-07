@@ -15,11 +15,7 @@ class SpaceDiamond extends GameObject {
   }
 
   public update() {
-    this.position.sub(this.velocity);
-    if (this.position.x < 0) {
-      this.position.x = width;
-      this.position.y = random(height);
-    }
+    super.update();
   }
 
   public draw() {

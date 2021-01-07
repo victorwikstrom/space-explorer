@@ -17,11 +17,7 @@ class Meteorite extends GameObject {
   }
 
   update() {
-    this.position.sub(this.velocity);
-    if (this.position.x < 0) {
-      this.position.x = width;
-      this.position.y = random(height);
-    }
+    super.update();
   }
 
   draw() {

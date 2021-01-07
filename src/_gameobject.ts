@@ -15,7 +15,13 @@ abstract class GameObject {
     this.isHit = false;
   }
 
-  protected update() {}
+  protected update() {
+    this.position.sub(this.velocity);
+    if (this.position.x < 0) {
+      this.position.x = width;
+      this.position.y = random(height);
+    }
+  }
 
   protected draw() {}
 
