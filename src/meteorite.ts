@@ -7,7 +7,7 @@ class Meteorite extends GameObject {
   constructor() {
     super();
     this.size = 0;
-    this.position = createVector(random(width), random(height));
+    this.position = this.position;
     this.velocity = createVector(10, 0);
     // this.acceleration = createVector(0, 0);
     this.damage = 5;
