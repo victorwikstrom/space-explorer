@@ -26,7 +26,7 @@ class GameGUI implements IGameState {
   public draw() {
     this.gameIntro.button.hide();
     this.gameOver.button.hide();
-    this.gamePlay.button.hide();
+    // this.gamePlay.button.hide();
 
     if (this.currentGUI === "intro") {
       this.gameIntro.draw();
