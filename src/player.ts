@@ -134,7 +134,6 @@ class Player {
   
 
   die() {
-    //KOM IHÅG ATT KOMMENTERA TILLBAKS INPUTS I GAMEINTRO
    this.drawPlayerDiedView();
    setTimeout(this.updateGUI, 2000);
   }
