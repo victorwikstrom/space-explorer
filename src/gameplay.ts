@@ -94,7 +94,7 @@ class GamePlay {
   /** Call update() on all gameObjects */
   private updateGameObjects(gameAcceleration: number) {
     for (let gameObject of this.gameObjects) {
-      gameObject.velocity.x += gameAcceleration * 0.05;
+      gameObject.velocity.x += gameAcceleration * 0.05; // UPDATE VELOCITY OF ALL OBJECTS
       gameObject.update();
       this.checkCollision(this.player, gameObject);
     }
