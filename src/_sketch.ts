@@ -1,7 +1,7 @@
 //---- GLOBAL VARIABLES ----//
 let gameGUI: GameGUI;
-
 let shipImg: p5.Image;
+let soundtrack: p5.SoundFile;
 
 /**
  * Built in preload function in P5
@@ -9,6 +9,7 @@ let shipImg: p5.Image;
  * sound files, images etc...
  */
 function preload() {
+  soundtrack = loadSound('assets/sound/Fair_Use_Trio_-_06_-_2001_A_Space_Odyssey.mp3')
   shipImg = loadImage("assets/images/spaceship.png");
 
   //  let sound:p5.SoundFile = loadSound('../assets/sounds/key.wav', (sound) => {
@@ -30,6 +31,8 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
+  soundtrack.play();
+  soundtrack.setVolume(0.3);
   gameGUI = new GameGUI();
 
   // noCursor();
