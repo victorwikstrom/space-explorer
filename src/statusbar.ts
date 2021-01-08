@@ -2,11 +2,13 @@ class StatusBar {
     position: p5.Vector;
     textColor: p5.Color;
     stroke: p5.Color;
+    ellipses: Array<any>
 
     constructor() {
         this.position = createVector(0, 0);
         this.textColor = color("white");
         this.stroke = color("blue");
+        this.ellipses = Array<any>()
     }
 
     update() {
@@ -35,13 +37,13 @@ class StatusBar {
     text("NUMBER", width/3+30, 50);
     // SPACESHIP CONDITION
     text("SPACESHIP CONDITION", width-width/3+30, 30);
-    ellipse(width-width/3+35, 50, 10, 10);
-    ellipse(width-width/3+55, 50, 10, 10);
-    ellipse(width-width/3+75, 50, 10, 10);
-    ellipse(width-width/3+95, 50, 10, 10);
-    ellipse(width-width/3+115, 50, 10, 10);
-    ellipse(width-width/3+135, 50, 10, 10);
-    ellipse(width-width/3+155, 50, 10, 10);
+    this.drawEllipses();
     pop();
+    }
+
+    drawEllipses(){
+        for (let x = 35; x <235; x = x+20){
+            this.ellipses = [ellipse(width-width/3+x, 50, 10, 10)]
+        }
     }
 }

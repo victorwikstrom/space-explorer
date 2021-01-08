@@ -46,9 +46,9 @@ class GamePlay {
   }
 
   /** Change gui to Game Over */
-  private changeGui = () => {
-    this.gameGUI.updateGUI("over");
-  };
+  // private changeGui = () => {
+  //   this.gameGUI.updateGUI("over");
+  // };
 
   /** Create all game object instances */
   private createGameObjects() {
