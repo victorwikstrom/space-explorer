@@ -4,6 +4,7 @@ class GamePlay {
   private player: Player;
   private isActive: boolean;
   private gameObjects: Array<GameObject>;
+  private stars: Array<Star>;
   public shots: Array<Shot>;
   private statusBar: StatusBar;
 
@@ -11,6 +12,7 @@ class GamePlay {
     this.gameGUI = gameGUI;
     this.isActive = false;
     this.gameObjects = [];
+    this.stars = [];
     this.player = new Player();
     this.shots = this.player.shots;
     this.statusBar = new StatusBar();
@@ -53,16 +55,16 @@ class GamePlay {
   /** Create all game object instances */
   private createGameObjects() {
     for (let i = 0; i < 1000; i++) {
-      this.gameObjects.push(new Star());
+      this.stars.push(new Star());
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 5; i++) {
       //8 st
       this.gameObjects.push(new Planet());
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 5; i++) {
       this.gameObjects.push(new SpaceDiamond());
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
       //3 st
       this.gameObjects.push(new Meteorite());
     }
@@ -76,6 +78,9 @@ class GamePlay {
     for (let gameObject of this.gameObjects) {
       gameObject.draw();
     }
+    for (let star of this.stars) {
+      star.draw();
+    }
   }
 
   /** Call update() on all gameObjects */
@@ -83,6 +88,12 @@ class GamePlay {
     for (let gameObject of this.gameObjects) {
       gameObject.update();
       this.checkCollision(this.player, gameObject);
+    }
+    for (let star of this.stars) {
+      star.update();
+    }
+    if (this.shots.length) {
+      this.checkShotHit(this.shots, this.gameObjects);
     }
   }
 
@@ -102,31 +113,53 @@ class GamePlay {
     return validYPos;
   } */
 
-  private checkCollision(p: Player, o: GameObject) {
-    let distance = dist(p.position.x, p.position.y, o.position.x, o.position.y);
+  private checkShotHit(shots: Array<Shot>, objs: Array<GameObject>) {
+    for (let j = 0; j < objs.length; j++)
+      for (let i = 0; i < shots.length; i++) {
+        if (shots[i].hits(objs[j]) && !objs[j].isHit) {
+          if (objs[j] instanceof BlackHole) {
+            objs[j].isHit = true;
+            shots.splice(i, 1);
+          } else {
+            console.log("hit");
+            objs[j].isHit = true;
+            objs.splice(j, 1);
+            shots.splice(i, 1);
+          }
+        }
+      }
+  }
 
-    if (distance < o.radius + 40) {
-      if (!o.isHit) {
-        this.handleCollision(p, o);
-        o.isHit = true; // Make sure the object knows it has been hit after first intersection
+  private checkCollision(p: Player, obj: GameObject) {
+    let distance = dist(
+      p.position.x,
+      p.position.y,
+      obj.position.x,
+      obj.position.y
+    );
+
+    if (distance < obj.radius + 40) {
+      if (!obj.isHit) {
+        this.handleCollision(p, obj);
+        obj.isHit = true; // Make sure the object knows it has been hit after first intersection
       }
     } else {
-      o.isHit = false;
+      obj.isHit = false;
     }
   }
 
-  private handleCollision(p: Player, o: GameObject) {
-    this.player.currentHealth = this.updateHealth(p.currentHealth, o);
+  private handleCollision(p: Player, obj: GameObject) {
+    this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
     // Then do something to the object that has been hit, e.g explode and play sound
   }
 
-  private updateHealth(health: number, gameObject: GameObject) {
-    if (gameObject.damage < 0) {
-      gameObject.position.x = 0;
-      gameObject.update();
+  private updateHealth(health: number, obj: GameObject) {
+    if (obj.damage < 0) {
+      obj.position.x = 0;
+      obj.update();
     }
 
-    health = this.player.currentHealth - gameObject.damage;
+    health = this.player.currentHealth - obj.damage;
     if (health <= 0) {
       this.player.die();
     }
