@@ -7,7 +7,6 @@ class GamePlay {
   public shots: Array<Shot>;
   private statusBar: StatusBar;
   private gameAcceleration: number;
-  
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
