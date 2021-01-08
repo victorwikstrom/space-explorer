@@ -131,7 +131,33 @@ class Player {
 
   updateHealth() {}
 
+  
+
   die() {
-    //gameGUI.updateGUI("over");
+   this.drawPlayerDiedView();
+   setTimeout(this.updateGUI, 2000);
+  }
+
+  drawPlayerDiedView(){
+    //DRAW RECTANGLE
+     push();
+     noStroke();
+     fill(color("#00f4"));
+     rect(width/2-500, height/2 - 200, 1000, 400, 8);
+     pop();
+     //DRAW TEXT
+     push()
+     fill(color("white"));
+     textSize(90)
+     text("YOU DIED", width/2-200, height/2); 
+     pop();
+     //STOP DRAW
+     noLoop();
+   }
+
+  updateGUI(){
+    //START DRAW
+    loop();
+    gameGUI.updateGUI("over")
   }
 }
