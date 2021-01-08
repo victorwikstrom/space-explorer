@@ -115,6 +115,7 @@ class GameOver {
         gameObject.update();
       }
     }
+  }
 
   // CHANGE GUI TO PLAY
   private changeGui = () => {

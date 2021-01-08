@@ -46,7 +46,7 @@ class GameIntro {
       this.button.hide();
       this.input.hide();
       this.introBox.hide();
-      this.gameGUI.updateGUI('play');
+      this.gameGUI.updateGUI("play");
     });
   }
 
@@ -112,7 +112,7 @@ class GameIntro {
     textSize(22);
     text("PLEASE ENTER YOUR NAME HERE:", width / 2 - 210, height / 2 - 115);
     text("HIGHSCORE:", width / 2 + 140, height / 2 - 115);
-    
+
     // CREATE BACKSTORY TEXT
     fill("white");
     textSize(17);
@@ -162,6 +162,7 @@ class GameIntro {
       windowHeight / 2 + 80
     );
     pop();
+  }
 
   // CREATE STARS
   private createGameObjects() {

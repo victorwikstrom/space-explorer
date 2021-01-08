@@ -123,9 +123,9 @@ class GamePlay {
   private updateHealth(health: number, gameObject: GameObject) {
     if (gameObject.damage < 0) {
       gameObject.position.x = 0;
-      gameObject.update(); 
+      gameObject.update();
     }
-    
+
     health = this.player.currentHealth - gameObject.damage;
     if (health <= 0) {
       this.player.die();
