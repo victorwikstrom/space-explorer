@@ -54,21 +54,27 @@ class GamePlay {
 
   /** Create all game object instances */
   private createGameObjects() {
-    for (let i = 0; i < 1000; i++) {
+    const nrOfStars = 1000;
+    const nrOfPlanets = 3;
+    const nrOfDiamonds = 5;
+    const nrOfMeteorites = 5;
+    const nrOfBlackHoles = 2;
+
+    for (let i = 0; i < nrOfStars; i++) {
       this.stars.push(new Star());
     }
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < nrOfPlanets; i++) {
       //8 st
       this.gameObjects.push(new Planet());
     }
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < nrOfDiamonds; i++) {
       this.gameObjects.push(new SpaceDiamond());
     }
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < nrOfMeteorites; i++) {
       //3 st
       this.gameObjects.push(new Meteorite());
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < nrOfBlackHoles; i++) {
       this.gameObjects.push(new BlackHole());
     }
   }
