@@ -3,7 +3,6 @@ class GamePlay {
   private gameGUI: IGameState;
   private player: Player;
   private isActive: boolean;
-  public button: p5.Element;
   private gameObjects: Array<GameObject>;
   public shots: Array<Shot>;
   private statusBar: StatusBar;
@@ -11,7 +10,6 @@ class GamePlay {
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
     this.isActive = false;
-    this.button = createButton("Go to GameOver GUI");
     this.gameObjects = [];
     this.player = new Player();
     this.shots = this.player.shots;
@@ -22,7 +20,6 @@ class GamePlay {
     this.statusBar.update();
     this.player.update();
     this.updateGameObjects();
-    this.button.mousePressed(this.changeGui);
   }
 
   public draw() {
@@ -32,26 +29,12 @@ class GamePlay {
       this.isActive = true;
     }
 
-    this.createGuiButtonAndText(); // NEEDS TO BE DRAWN ALL THE TIME
     this.player.draw();
     this.drawGameObjects();
     this.updateCollisionCount();
 
     // DRAW STATUSBAR
     this.statusBar.draw();
-  }
-
-  /** Creates button and text for changing gui */
-  private createGuiButtonAndText() {
-    // CREATE TEXT
-    fill("white");
-    textSize(30);
-    noStroke();
-    text("This is the GamePlay GUI", 10, 40);
-    // CREATE BUTTON
-    this.button.show();
-    this.button.size(150, 30);
-    this.button.position(10, 50);
   }
 
   private updateCollisionCount() {
