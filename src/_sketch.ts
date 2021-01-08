@@ -11,15 +11,6 @@ let soundtrack: p5.SoundFile;
 function preload() {
   soundtrack = loadSound('assets/sound/Fair_Use_Trio_-_06_-_2001_A_Space_Odyssey.mp3')
   shipImg = loadImage("assets/images/spaceship.png");
-
-  //  let sound:p5.SoundFile = loadSound('../assets/sounds/key.wav', (sound) => {
-  //  console.log('SUCCESS', sound);
-  //  }, (error) => {
-  //      console.log ('ERROR', error);
-  //  }, (percentage) => {
-  //      console.log ('%', percentage);
-  //  });
-  // console.log('OUTSIDE', sound);
 }
 
 /**
@@ -32,7 +23,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
   soundtrack.play();
-  soundtrack.setVolume(0.3);
+  soundtrack.setVolume(0.1);
   gameGUI = new GameGUI();
 
   // noCursor();
