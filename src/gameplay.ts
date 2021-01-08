@@ -8,7 +8,6 @@ class GamePlay {
   public shots: Array<Shot>;
   private statusBar: StatusBar;
   private gameAcceleration: number;
-  
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -23,7 +22,7 @@ class GamePlay {
 
   public update() {
     this.player.update();
-    this.updateGameObjects(/**this.gameAcceleration*/);
+    this.updateGameObjects(this.gameAcceleration);
     this.statusBar.update(this.gameAcceleration);
   }
 
@@ -93,8 +92,9 @@ class GamePlay {
   }
 
   /** Call update() on all gameObjects */
-  private updateGameObjects(/**gameAcceleration: number*/) {
+  private updateGameObjects(gameAcceleration: number) {
     for (let gameObject of this.gameObjects) {
+      gameObject.velocity.x += gameAcceleration * 0.05; // UPDATE VELOCITY OF ALL OBJECTS
       gameObject.update();
       this.checkCollision(this.player, gameObject);
     }
