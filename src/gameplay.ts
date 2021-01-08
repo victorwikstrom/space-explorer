@@ -7,6 +7,8 @@ class GamePlay {
   private stars: Array<Star>;
   public shots: Array<Shot>;
   private statusBar: StatusBar;
+  private gameAcceleration: number;
+  
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -16,12 +18,13 @@ class GamePlay {
     this.player = new Player();
     this.shots = this.player.shots;
     this.statusBar = new StatusBar();
+    this.gameAcceleration = 0.1;
   }
 
   public update() {
-    this.statusBar.update();
     this.player.update();
-    this.updateGameObjects();
+    this.updateGameObjects(/**this.gameAcceleration*/);
+    this.statusBar.update(this.gameAcceleration);
   }
 
   public draw() {
@@ -36,7 +39,7 @@ class GamePlay {
     this.updateCollisionCount();
 
     // DRAW STATUSBAR
-    this.statusBar.draw();
+    this.statusBar.draw(this.player.currentHealth);
   }
 
   private updateCollisionCount() {
@@ -48,9 +51,9 @@ class GamePlay {
   }
 
   /** Change gui to Game Over */
-  private changeGui = () => {
-    this.gameGUI.updateGUI("over");
-  };
+  // private changeGui = () => {
+  //   this.gameGUI.updateGUI("over");
+  // };
 
   /** Create all game object instances */
   private createGameObjects() {
@@ -90,7 +93,7 @@ class GamePlay {
   }
 
   /** Call update() on all gameObjects */
-  private updateGameObjects() {
+  private updateGameObjects(/**gameAcceleration: number*/) {
     for (let gameObject of this.gameObjects) {
       gameObject.update();
       this.checkCollision(this.player, gameObject);
