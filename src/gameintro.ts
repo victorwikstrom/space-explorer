@@ -46,7 +46,7 @@ class GameIntro {
       this.button.hide();
       this.input.hide();
       this.introBox.hide();
-      this.gameGUI.updateGUI("play");
+      this.gameGUI.updateGUI('play');
     });
   }
 

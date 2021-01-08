@@ -44,7 +44,7 @@ class Player {
     push();
     fill(this.textColor);
     textSize(12);
-    text(this.name, this.position.x, this.position.y - 20);
+    //text(this.name, this.position.x, this.position.y - 20);
     image(this.image, this.position.x, this.position.y);
     pop();
   }
@@ -88,11 +88,11 @@ class Player {
     if (this.position.x <= 20) {
       this.position.x = 20;
     }
-    if (this.position.y <= 20) {
-      this.position.y = 20;
+    if (this.position.y <= 95) {
+      this.position.y = 95;
     }
-    if (this.position.y >= height - 20) {
-      this.position.y = height - 20;
+    if (this.position.y >= height - 95) {
+      this.position.y = height - 95;
     }
   }
 

@@ -1,17 +1,17 @@
 class SpaceDiamond extends GameObject {
   // private collisionSound: string - To be added later
   color: p5.Color;
-  health: number;
+  damage: number;
 
   constructor() {
     super();
     // this.collisionSound = "" To be added later
-    this.position = this.position
+    this.position = this.position;
     this.velocity = createVector(3, 0);
     // this.acceleration = createVector(0, 0);
     this.color = color("yellow");
     this.radius = 5;
-    this.health = 1;
+    this.damage = -1; // Negative damage in order to apply health
   }
 
   public update() {
