@@ -149,7 +149,10 @@ class Player {
      push()
      fill(color("white"));
      textSize(90)
-     text("YOU DIED", width/2-200, height/2); 
+     textAlign(CENTER);
+     let player1 = getItem("playerName"); 
+     text(player1, width/2, height/3 +20);
+     text("YOU DIED", width/2, height/2); 
      pop();
      //STOP DRAW
      noLoop();
