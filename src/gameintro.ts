@@ -3,7 +3,7 @@ class GameIntro {
   private isActive: boolean;
   private gameObjects: Array<GameObject>;
   private introBox: p5.Element;
-  private input: p5.Element;
+  //private input: p5.Element;
   public button: p5.Element;
   private highscoreChart: HighscoreChart;
   // private muteIcon: p5.Image;
@@ -17,7 +17,7 @@ class GameIntro {
     // this.mute = false;
     this.introBox = createDiv();
     this.highscoreChart = new HighscoreChart();
-    this.input = createInput("...");
+    //this.input = createInput("...");
     this.button = createButton("CONTINUE");
   }
 
@@ -36,7 +36,7 @@ class GameIntro {
 
     this.drawGameObjects();
     this.createElements();
-    
+
     //this.createBackstoryText();
 
     //DRAW HIGHSCORE CHART
@@ -46,7 +46,7 @@ class GameIntro {
     this.button.mousePressed(() => {
       this.isActive = false;
       this.button.hide();
-      this.input.hide();
+      //this.input.hide();
       this.introBox.hide();
       //this.createBackstoryText()
       this.gameGUI.updateGUI("play");
@@ -64,7 +64,7 @@ class GameIntro {
     pop();
 
     //CREATE INPUTFIELD
-    push();
+    /* push();
     this.input.show();
     this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
     this.input.size(380, 60);
@@ -75,7 +75,7 @@ class GameIntro {
     this.input.style("font-size", "20");
     this.input.style("textAlign", "LEFT");
     this.input.style("padding", "10");
-    pop();
+    pop(); */
 
     // CREATE CONTINUE BUTTON
     push();
@@ -116,9 +116,8 @@ class GameIntro {
     text("PLEASE ENTER YOUR NAME HERE:", width / 2 - 210, height / 2 - 115);
     text("HIGHSCORE:", width / 2 + 140, height / 2 - 115);
     pop();
-
   }
-    // CREATE BACKSTORY TEXT
+  // CREATE BACKSTORY TEXT
   //   private createBackstoryText() {
   //   push();
   //   fill("white");
