@@ -35,7 +35,7 @@ class Player {
     this.checkEdges();
     this.move();
     this.handleSpacebarEvent();
-    this.deleteFiredShots();
+    this.updateFiredShots();
 
     this.rechargeGun -= deltaTime;
   }
@@ -115,8 +115,8 @@ class Player {
     this.shots.push(shot);
   }
 
-  private deleteFiredShots() {
-    if (this.shots) {
+  private updateFiredShots() {
+    if (this.shots.length) {
       for (let i = 0; i < this.shots.length; i++) {
         this.shots[i].draw();
         this.shots[i].update();
