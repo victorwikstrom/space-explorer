@@ -2,7 +2,7 @@ class GamePlay {
   // Skapa interface så att player får tillgång till shots<>
   private gameGUI: IGameState;
   private player: Player;
-  public isActive: boolean;
+  private isActive: boolean;
   private gameObjects: Array<GameObject>;
   private stars: Array<Star>;
   public shots: Array<Shot>;
