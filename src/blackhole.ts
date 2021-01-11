@@ -1,24 +1,21 @@
 class BlackHole extends GameObject {
-  //private image: string; //- TO BE ADDED LATER
-  public damage: number; // - TO BE ADDED LATER
+  public damage: number;
   // private collisionSound: string; // TO BE ADDED LATER
-  public fill: p5.Color;
-  private stroke: p5.Color;
+  public image: p5.Image;
+
+  //VARIABLES NOT USED ANYMORE:
+  //public fill: p5.Color;
+  //private stroke: p5.Color;
 
   constructor() {
     super();
-    //this.image = "" //TO BE ADDED LATER
-    //this.damage = 10; // TO BE ADDED LATER
     //this.collisionSound: "" //TO BE ADDED LATER
     this.position = this.position;
     this.velocity = createVector(random(2, 3), 0);
 
-    this.radius = 30;
-    this.damage = 12; //Högre värde än 10 pga man ska kunna dö
-
-    //this.acceleration = createVector(0, 0);
-    this.fill = color("black");
-    this.stroke = color("white");
+    this.radius = 40;
+    this.damage = 12; //HIGHER THAN 10 TO DIE
+    this.image = this.setPlayerImage(blackHoleImg);
   }
   public update() {
     super.update();
@@ -26,12 +23,20 @@ class BlackHole extends GameObject {
 
   public draw() {
     push();
-    fill(this.fill);
-    stroke(this.stroke);
-    strokeWeight(3);
-    ellipse(this.position.x, this.position.y, this.radius * 3, this.radius * 2);
+    image(this.image, this.position.x, this.position.y, this.radius * 2, this.radius * 2);
     pop();
+
+    //OLD DESIGN
+    // fill(this.fill);
+    // stroke(this.stroke);
+    // strokeWeight(3);
+    // ellipse(this.position.x, this.position.y, this.radius * 3, this.radius * 2);
   }
 
   public handleShot() {}
+
+  private setPlayerImage(img: p5.Image) {
+    img.resize(100, 0);
+    return img;
+  }
 }
