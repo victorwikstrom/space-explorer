@@ -140,10 +140,17 @@ class GamePlay {
       if (p.collides(objs[i])) {
         if (objs[i] instanceof BlackHole) {
           objs[i].isHit = true;
-          this.handleCollision(p, objs[i]);
+          this.player.currentHealth = this.updateHealth(
+            p.currentHealth,
+            objs[i]
+          );
         } else {
           objs[i].isHit = true;
-          this.handleCollision(p, objs[i]);
+          this.player.currentHealth = this.updateHealth(
+            p.currentHealth,
+            objs[i]
+          );
+          this.explode(objs[i]);
           objs.splice(i, 1);
         }
       }
@@ -152,11 +159,11 @@ class GamePlay {
           if (shots[j].hits(objs[i])) {
             if (objs[i] instanceof BlackHole) {
               objs[i].isHit = true;
-              this.handleShot(objs[i]);
+              this.explode(objs[i]);
               shots.splice(j, 1);
             } else {
               objs[i].isHit = true;
-              this.handleShot(objs[i]);
+              this.explode(objs[i]);
               objs.splice(i, 1);
               shots.splice(j, 1);
             }
@@ -166,19 +173,7 @@ class GamePlay {
     }
   }
 
-  private handleCollision(p: Player, obj: GameObject) {
-    this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
-
-    if (obj instanceof Meteorite) {
-      this.createDebris(obj.position.x, obj.position.y, color("red"));
-    } else if (obj instanceof SpaceDiamond) {
-      this.createDebris(obj.position.x, obj.position.y, color("yellow"));
-    } else {
-      return;
-    }
-  }
-
-  private handleShot(obj: GameObject) {
+  private explode(obj: GameObject) {
     if (obj instanceof Meteorite) {
       this.createDebris(obj.position.x, obj.position.y, color("red"));
     } else if (obj instanceof SpaceDiamond) {
