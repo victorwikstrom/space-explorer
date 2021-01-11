@@ -4,7 +4,7 @@ class StatusBar {
   stroke: p5.Color;
   ellipses: Array<any>;
   distanceFromEarth: number;
-  currentSpeed: number;
+  gameVelocity: number;
 
   constructor() {
     this.position = createVector(0, 0);
@@ -12,12 +12,12 @@ class StatusBar {
     this.stroke = color("blue");
     this.ellipses = Array<any>();
     this.distanceFromEarth = 0;
-    this.currentSpeed = 1;
+    this.gameVelocity = 1;
   }
 
   update(gameAcceleration: number) {
-    this.currentSpeed += gameAcceleration;
-    this.distanceFromEarth += (deltaTime / 800) * this.currentSpeed;
+    this.gameVelocity += gameAcceleration;
+    this.distanceFromEarth += (deltaTime / 800) * this.gameVelocity;
   }
 
   draw(health: number) {
@@ -38,8 +38,8 @@ class StatusBar {
     text("DISTANCE FROM EARTH", 70, 30);
     text(this.distanceFromEarth.toFixed() + " 000", 70, 50);
     // CURRENT SPEED
-    text("CURRENT SPEED (KM/S)", width / 3 + 30, 30);
-    text(this.currentSpeed.toFixed() + " 000", width / 3 + 30, 50);
+    text("CURRENT SPEED", width / 3 + 30, 30);
+    text("NUMBER", width / 3 + 30, 50);
     // SPACESHIP CONDITION
     text("SPACESHIP CONDITION", width - width / 3 + 30, 30);
     this.drawEllipses(health);

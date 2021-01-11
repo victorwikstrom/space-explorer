@@ -40,7 +40,7 @@ class GameIntro {
     //this.createBackstoryText();
 
     //DRAW HIGHSCORE CHART
-    this.highscoreChart.draw();
+    this.highscoreChart.createHighscoreList();
 
     // GO TO NEXT GUI
     this.button.mousePressed(() => {
@@ -64,7 +64,7 @@ class GameIntro {
     pop();
 
     //CREATE INPUTFIELD
-    /* push();
+    push();
     this.input.show();
     this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
     this.input.size(380, 60);
@@ -75,7 +75,9 @@ class GameIntro {
     this.input.style("font-size", "20");
     this.input.style("textAlign", "LEFT");
     this.input.style("padding", "10");
-    pop(); */
+    storeItem("playerName", this.input.value());
+    pop();
+
 
 
     // CREATE CONTINUE BUTTON
@@ -115,7 +117,8 @@ class GameIntro {
     fill("white");
     textSize(22);
     text("PLEASE ENTER YOUR NAME HERE:", width / 2 - 210, height / 2 - 115);
-    text("HIGHSCORE:", width / 2 + 140, height / 2 - 115);
+    //text("HIGHSCORE:", width / 2 + 210, height / 2 - 115);
+    //text("HIGHSCORE", width / 2 + 140, height / 2 - 115);
     pop();
   }
   // CREATE BACKSTORY TEXT
