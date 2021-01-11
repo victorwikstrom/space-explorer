@@ -148,15 +148,13 @@ class GamePlay {
   }
 
   private handleCollision(p: Player, obj: GameObject) {
+    obj.isHit = true;
     if (obj instanceof BlackHole) {
-      obj.isHit = true;
       this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
     } else if (obj instanceof SpaceDiamond) {
-      obj.isHit = true;
       this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
       this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
     } else {
-      obj.isHit = true;
       this.explode(obj);
       this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
       this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
@@ -164,15 +162,11 @@ class GamePlay {
   }
 
   private handleShot(shot: Shot, obj: GameObject) {
-    if (obj instanceof BlackHole) {
-      obj.isHit = true;
-      this.explode(obj);
-      this.shots.splice(this.shots.indexOf(shot), 1);
-    } else {
-      obj.isHit = true;
-      this.explode(obj);
+    obj.isHit = true;
+    this.explode(obj);
+    this.shots.splice(this.shots.indexOf(shot), 1);
+    if (!(obj instanceof BlackHole)) {
       this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
-      this.shots.splice(this.shots.indexOf(shot), 1);
     }
   }
 
