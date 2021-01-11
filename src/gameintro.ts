@@ -63,19 +63,19 @@ class GameIntro {
     pop();
 
     //CREATE INPUTFIELD
-    /*    push();
-    this.input.show();
-    this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
-    this.input.size(380, 60);
-    this.input.style("stroke", "red");
-    this.input.style("strokeWeight", "4");
-    this.input.style("background-color", "#00f2");
-    this.input.style("color", "#FAFDEB");
-    this.input.style("font-size", "20");
-    this.input.style("textAlign", "LEFT");
-    this.input.style("padding", "10");
-    storeItem("playerName", this.input.value());
-    pop(); */
+    //    push();
+    // this.input.show();
+    // this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
+    // this.input.size(380, 60);
+    // this.input.style("stroke", "red");
+    // this.input.style("strokeWeight", "4");
+    // this.input.style("background-color", "#00f2");
+    // this.input.style("color", "#FAFDEB");
+    // this.input.style("font-size", "20");
+    // this.input.style("textAlign", "LEFT");
+    // this.input.style("padding", "10");
+    // storeItem("playerName", this.input.value());
+    // pop(); 
 
     // CREATE CONTINUE BUTTON
     push();
