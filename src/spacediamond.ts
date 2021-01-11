@@ -11,7 +11,7 @@ class SpaceDiamond extends GameObject {
     this.velocity = createVector(3, 0);
     // this.acceleration = createVector(0, 0);
     this.color = color("yellow");
-    this.radius = 20;
+    this.radius = 15;
     this.damage = -1; // Negative damage in order to apply health
     this.image =  this.image = this.setPlayerImage(spaceDiamondImg);
   }
