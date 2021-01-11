@@ -1,14 +1,14 @@
 class Debris extends GameObject {
-  public color: p5.Color;
+  private color: String;
   public x: number;
   public y: number;
   private xspeed: number;
   private yspeed: number;
-  private opacity;
+  public opacity;
 
   // private collisionSound: string - To be added later
 
-  constructor(x: number, y: number, color: p5.Color) {
+  constructor(x: number, y: number, color: String) {
     super();
     this.size = 0;
     this.x = x;
@@ -16,7 +16,7 @@ class Debris extends GameObject {
     this.xspeed = random(-5, 5);
     this.yspeed = random(-5, 5);
     this.radius = random(2, 10);
-    this.opacity = 1;
+    this.opacity = 255;
     this.color = color;
 
     // this.collisionSound = p5.SoundFile;
@@ -25,13 +25,28 @@ class Debris extends GameObject {
   update() {
     this.x = this.x - this.xspeed;
     this.y = this.y + this.yspeed;
+    if (this.opacity > 0) {
+      this.opacity -= deltaTime * 0.1;
+    }
   }
 
   draw() {
     push();
-    noStroke();
-    fill(this.color);
-    ellipse(this.x, this.y, this.radius * 2, this.radius * 2);
+    strokeWeight(this.radius);
+    stroke(this.getColor(this.color));
+    line(this.x, this.y, this.x, this.y);
     pop();
+  }
+
+  private getColor(c: String) {
+    if (c === "blue") {
+      return color(102, 255, 255, this.opacity);
+    } else if (c === "red") {
+      return color(255, 51, 51, this.opacity);
+    } else if (c === "yellow") {
+      return color(255, 255, 102, this.opacity);
+    } else {
+      return color(255, this.opacity);
+    }
   }
 }

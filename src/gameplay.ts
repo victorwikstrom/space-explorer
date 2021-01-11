@@ -110,6 +110,9 @@ class GamePlay {
     if (this.debris.length) {
       for (let debris of this.debris) {
         debris.update();
+        if (debris.opacity <= 0) {
+          this.debris.splice(this.debris.indexOf(debris));
+        }
       }
     }
     this.checkCollision(this.player, this.gameObjects, this.shots);
@@ -175,15 +178,15 @@ class GamePlay {
 
   private explode(obj: GameObject) {
     if (obj instanceof Meteorite) {
-      this.createDebris(obj.position.x, obj.position.y, color("red"));
+      this.createDebris(obj.position.x, obj.position.y, "red");
     } else if (obj instanceof SpaceDiamond) {
-      this.createDebris(obj.position.x, obj.position.y, color("yellow"));
+      this.createDebris(obj.position.x, obj.position.y, "red");
     } else {
       return;
     }
   }
 
-  private createDebris(x: number, y: number, color: p5.Color) {
+  private createDebris(x: number, y: number, color: String) {
     for (let i = 0; i < random(15, 25); i++) {
       this.debris.push(new Debris(x, y, color));
     }
