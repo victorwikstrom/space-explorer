@@ -100,22 +100,22 @@ class GamePlay {
 
   /** Call update() on all gameObjects */
   private updateGameObjects(gameAcceleration: number) {
-    for (let i = 0; i < this.gameObjects.length; i++) {
-      this.gameObjects[i].velocity.x += gameAcceleration * 0.05; // UPDATE VELOCITY OF ALL OBJECTS
-      this.gameObjects[i].update();
+    for (let obj of this.gameObjects) {
+      obj.velocity.x += gameAcceleration * 0.05; // UPDATE VELOCITY OF ALL OBJECTS
+      obj.update();
+      this.checkCollision(obj, this.player, this.shots);
     }
     for (let star of this.stars) {
       star.update();
     }
     if (this.debris.length) {
       for (let debris of this.debris) {
-        debris.update();
         if (debris.opacity <= 0) {
           this.debris.splice(this.debris.indexOf(debris));
         }
+        debris.update();
       }
     }
-    this.checkCollision(this.player, this.gameObjects, this.shots);
   }
 
   /* private getValidYPos() {
@@ -134,52 +134,52 @@ class GamePlay {
     return validYPos;
   } */
 
-  private checkCollision(
-    p: Player,
-    objs: Array<GameObject>,
-    shots: Array<Shot>
-  ) {
-    for (let i = 0; i < objs.length; i++) {
-      if (p.collides(objs[i])) {
-        if (objs[i] instanceof BlackHole) {
-          objs[i].isHit = true;
-          this.player.currentHealth = this.updateHealth(
-            p.currentHealth,
-            objs[i]
-          );
-        } else {
-          objs[i].isHit = true;
-          this.player.currentHealth = this.updateHealth(
-            p.currentHealth,
-            objs[i]
-          );
-          this.explode(objs[i]);
-          objs.splice(i, 1);
-        }
-      }
-      if (this.shots.length) {
-        for (let j = 0; j < shots.length; j++) {
-          if (shots[j].hits(objs[i])) {
-            if (objs[i] instanceof BlackHole) {
-              objs[i].isHit = true;
-              this.explode(objs[i]);
-              shots.splice(j, 1);
-            } else {
-              objs[i].isHit = true;
-              this.explode(objs[i]);
-              objs.splice(i, 1);
-              shots.splice(j, 1);
-            }
-          }
+  private checkCollision(obj: GameObject, p: Player, shots: Array<Shot>) {
+    if (p.collides(obj)) {
+      this.handleCollision(p, obj);
+    }
+    if (shots.length) {
+      for (let shot of shots) {
+        if (shot.hits(obj)) {
+          this.handleShot(shot, obj);
         }
       }
     }
   }
 
+  private handleCollision(p: Player, obj: GameObject) {
+    if (obj instanceof BlackHole) {
+      obj.isHit = true;
+      this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
+    } else if (obj instanceof SpaceDiamond) {
+      obj.isHit = true;
+      this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
+      this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
+    } else {
+      obj.isHit = true;
+      this.explode(obj);
+      this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
+      this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
+    }
+  }
+
+  private handleShot(shot: Shot, obj: GameObject) {
+    if (obj instanceof BlackHole) {
+      obj.isHit = true;
+      this.explode(obj);
+      this.shots.splice(this.shots.indexOf(shot), 1);
+    } else {
+      obj.isHit = true;
+      this.explode(obj);
+      this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
+      this.shots.splice(this.shots.indexOf(shot), 1);
+    }
+  }
+
   private explode(obj: GameObject) {
     if (obj instanceof Meteorite) {
-      this.createDebris(obj.position.x, obj.position.y, "red");
-    } else if (obj instanceof SpaceDiamond) {
+      this.createDebris(obj.position.x, obj.position.y, "blue");
+    } else if (obj instanceof Planet) {
       this.createDebris(obj.position.x, obj.position.y, "red");
     } else {
       return;
@@ -193,11 +193,6 @@ class GamePlay {
   }
 
   private updateHealth(health: number, obj: GameObject) {
-    if (obj.damage < 0) {
-      obj.position.x = 0;
-      obj.update();
-    }
-
     health = this.player.currentHealth - obj.damage;
     /* if (health <= 0) {
       storeItem("highscore", this.statusBar.distanceFromEarth);
