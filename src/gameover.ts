@@ -5,15 +5,11 @@ class GameOver {
   private gameObjects: Array<GameObject>;
   // private highscoreChart: HighscoreChart;
   private gameoverBox: p5.Element;
-  // private muteIcon: p5.Image;
-  // private mute: boolean;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
     this.isActive = false;
     this.gameObjects = [];
-    // this.muteIcon = setMuteImage(muteImg);
-    // this.mute = false;
     this.gameoverBox = createDiv();
     // this.highscoreChart = new HighscoreChart();
     this.button = createButton("PLAY AGAIN");
@@ -31,7 +27,6 @@ class GameOver {
       this.createGameObjects();
       this.isActive = true;
     }
-
     this.drawGameObjects();
     this.createElements();
 
@@ -70,12 +65,6 @@ class GameOver {
     this.button.style("border-radius", "8px");
     this.button.style("box-shadow", "0 3px #f009");
     pop();
-
-    // CREATE MUTE ICON
-    // setMuteImage(img: p5.Image) {
-    //   img.resize(50, 0);
-    //   return img;
-    // }
 
     // CREATE TEXT
     push();
@@ -120,5 +109,6 @@ class GameOver {
   // CHANGE GUI TO PLAY
   private changeGui = () => {
     this.gameGUI.updateGUI("play");
+    this.button.hide();
   };
 }

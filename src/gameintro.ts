@@ -4,27 +4,26 @@ class GameIntro {
   private gameObjects: Array<GameObject>;
   private introBox: p5.Element;
   private input: p5.Element;
-  public button: p5.Element;
   private highscoreChart: HighscoreChart;
-  // private muteIcon: p5.Image;
-  // private mute: boolean;
+  public continueButton: p5.Element;
+  private playButton: p5.Element;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
     this.isActive = false;
     this.gameObjects = [];
-    // this.muteIcon = setMuteImage(muteImg);
-    // this.mute = false;
     this.introBox = createDiv();
     this.highscoreChart = new HighscoreChart();
     this.input = createInput("...");
-    this.button = createButton("CONTINUE");
+    this.continueButton = createButton("CONTINUE");
+    this.playButton = createButton("START GAME");
   }
 
   public update() {
     this.updateGameObjects();
     this.highscoreChart.update();
-    this.button.mousePressed(this.changeGui);
+    // this.continueButton.mousePressed(this.toggleBackstory);
+    this.playButton.mousePressed(this.changeGui);
   }
 
   public draw() {
@@ -41,9 +40,9 @@ class GameIntro {
     this.highscoreChart.draw();
 
     // GO TO NEXT GUI
-    this.button.mousePressed(() => {
+    this.playButton.mousePressed(() => {
       this.isActive = false;
-      this.button.hide();
+      this.playButton.hide();
       this.input.hide();
       this.introBox.hide();
       this.gameGUI.updateGUI("play");
@@ -73,22 +72,35 @@ class GameIntro {
     this.input.style("textAlign", "LEFT");
     this.input.style("padding", "10");
     pop();
-
+    
     // CREATE CONTINUE BUTTON
     push();
-    this.button.show();
-    this.button.position(windowWidth / 2 - 400, windowHeight / 2 + 10);
-    this.button.size(380, 120);
-    this.button.style("background-color", "#3BF7F7");
-    this.button.style("color", "white");
-    this.button.style("font-size", "45");
-    this.button.style("border", "1px solid red");
-    this.button.style("border-radius", "8px");
-    this.button.style("box-shadow", "0 3px #f009");
+    this.continueButton.show();
+    this.continueButton.position(windowWidth / 2 - 400, windowHeight / 2 + 10);
+    this.continueButton.size(380, 120);
+    this.continueButton.style("background-color", "#3BF7F7");
+    this.continueButton.style("color", "white");
+    this.continueButton.style("font-size", "45");
+    this.continueButton.style("border", "1px solid red");
+    this.continueButton.style("border-radius", "8px");
+    this.continueButton.style("box-shadow", "0 3px #f009");
+    pop();
+
+    // CREATE PLAY BUTTON
+    push();
+    this.playButton.show();
+    this.playButton.position(windowWidth / 2 - 400, windowHeight / 2 + 10);
+    this.playButton.size(380, 120);
+    this.playButton.style("background-color", "#3BF7F7");
+    this.playButton.style("color", "white");
+    this.playButton.style("font-size", "45");
+    this.playButton.style("border", "1px solid red");
+    this.playButton.style("border-radius", "8px");
+    this.playButton.style("box-shadow", "0 3px #f009");
     pop();
 
     // CREATE MUTE ICON
-    // setMuteImage(img: p5.Image) {
+    // setSoundButton(img: p5.Image) {
     //   img.resize(50, 0);
     //   return img;
     // }
