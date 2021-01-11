@@ -161,6 +161,6 @@ class Player {
   updateGUI(){
     //START DRAW
     loop();
-    gameGUI.updateGUI("over")
+    gameGUI.updateGUI("over");
   }
 }
