@@ -21,13 +21,13 @@ class SpaceDiamond extends GameObject {
   }
 
   public draw() {
-    push();
     image(this.image, this.position.x, this.position.y, this.radius*2, this.radius*2);
-    pop();
-    
+
     //OLD DESIGN:
-     // fill(this.color);
+    //push
+    // fill(this.color);
     // ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2);
+    //pop
   }
 
   private setPlayerImage(img: p5.Image) {

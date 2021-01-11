@@ -22,15 +22,15 @@ class BlackHole extends GameObject {
   }
 
   public draw() {
-    push();
     image(this.image, this.position.x, this.position.y, this.radius * 2, this.radius * 2);
-    pop();
-
+    
     //OLD DESIGN
+    //push();
     // fill(this.fill);
     // stroke(this.stroke);
     // strokeWeight(3);
     // ellipse(this.position.x, this.position.y, this.radius * 3, this.radius * 2);
+    //pop();
   }
 
   public handleShot() {}
