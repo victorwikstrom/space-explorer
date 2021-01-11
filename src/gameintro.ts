@@ -36,7 +36,7 @@ class GameIntro {
 
     this.drawGameObjects();
     this.createElements();
-    
+
     //this.createBackstoryText();
 
     //DRAW HIGHSCORE CHART
@@ -64,18 +64,19 @@ class GameIntro {
     pop();
 
     //CREATE INPUTFIELD
-    push();
-    // this.input.show();
-    // this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
-    // this.input.size(380, 60);
-    // this.input.style("stroke", "red");
-    // this.input.style("strokeWeight", "4");
-    // this.input.style("background-color", "#00f2");
-    // this.input.style("color", "#FAFDEB");
-    // this.input.style("font-size", "20");
-    // this.input.style("textAlign", "LEFT");
-    // this.input.style("padding", "10");
-    pop();
+    /* push();
+    this.input.show();
+    this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
+    this.input.size(380, 60);
+    this.input.style("stroke", "red");
+    this.input.style("strokeWeight", "4");
+    this.input.style("background-color", "#00f2");
+    this.input.style("color", "#FAFDEB");
+    this.input.style("font-size", "20");
+    this.input.style("textAlign", "LEFT");
+    this.input.style("padding", "10");
+    pop(); */
+
 
     // CREATE CONTINUE BUTTON
     push();
@@ -116,9 +117,8 @@ class GameIntro {
     text("PLEASE ENTER YOUR NAME HERE:", width / 2 - 210, height / 2 - 115);
     text("HIGHSCORE:", width / 2 + 140, height / 2 - 115);
     pop();
-
   }
-    // CREATE BACKSTORY TEXT
+  // CREATE BACKSTORY TEXT
   //   private createBackstoryText() {
   //   push();
   //   fill("white");

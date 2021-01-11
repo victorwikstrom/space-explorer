@@ -17,7 +17,7 @@ class GamePlay {
     this.player = new Player();
     this.shots = this.player.shots;
     this.statusBar = new StatusBar();
-    this.gameAcceleration = 0.1;
+    this.gameAcceleration = 0.05;
   }
 
   public update() {
