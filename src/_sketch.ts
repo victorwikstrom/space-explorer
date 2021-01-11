@@ -1,6 +1,10 @@
 //---- GLOBAL VARIABLES ----//
 let gameGUI: GameGUI;
 let shipImg: p5.Image;
+let spaceDiamondImg: p5.Image;
+let blackHoleImg: p5.Image;
+let meteoriteImg: p5.Image;
+
 //let soundtrack: p5.SoundFile;
 
 /**
@@ -11,6 +15,9 @@ let shipImg: p5.Image;
 function preload() {
   //soundtrack = loadSound('assets/sound/Fair_Use_Trio_-_06_-_2001_A_Space_Odyssey.mp3')
   shipImg = loadImage("assets/images/spaceship.png");
+  spaceDiamondImg = loadImage("assets/images/spacediamond.png");
+  blackHoleImg = loadImage("assets/images/blackhole.png");
+  meteoriteImg = loadImage("assets/images/meteorite.png");
 }
 
 /**
