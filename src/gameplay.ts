@@ -4,22 +4,28 @@ class GamePlay {
   private player: Player;
   private isActive: boolean;
   private gameObjects: Array<GameObject>;
+  private stars: Array<Star>;
   public shots: Array<Shot>;
+  public debris: Array<Debris>;
   private statusBar: StatusBar;
+  private gameAcceleration: number;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
     this.isActive = false;
     this.gameObjects = [];
+    this.stars = [];
+    this.debris = [];
     this.player = new Player();
     this.shots = this.player.shots;
     this.statusBar = new StatusBar();
+    this.gameAcceleration = 0.05;
   }
 
   public update() {
-    this.statusBar.update();
     this.player.update();
-    this.updateGameObjects();
+    this.updateGameObjects(this.gameAcceleration);
+    this.statusBar.update(this.gameAcceleration);
   }
 
   public draw() {
@@ -34,7 +40,7 @@ class GamePlay {
     this.updateCollisionCount();
 
     // DRAW STATUSBAR
-    this.statusBar.draw();
+    this.statusBar.draw(this.player.currentHealth);
   }
 
   private updateCollisionCount() {
@@ -46,27 +52,33 @@ class GamePlay {
   }
 
   /** Change gui to Game Over */
-  private changeGui = () => {
-    this.gameGUI.updateGUI("over");
-  };
+  // private changeGui = () => {
+  //   this.gameGUI.updateGUI("over");
+  // };
 
   /** Create all game object instances */
   private createGameObjects() {
-    for (let i = 0; i < 1000; i++) {
-      this.gameObjects.push(new Star());
+    const nrOfStars = 1000;
+    const nrOfPlanets = 3;
+    const nrOfDiamonds = 5;
+    const nrOfMeteorites = 5;
+    const nrOfBlackHoles = 2;
+
+    for (let i = 0; i < nrOfStars; i++) {
+      this.stars.push(new Star());
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < nrOfPlanets; i++) {
       //8 st
       this.gameObjects.push(new Planet());
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < nrOfDiamonds; i++) {
       this.gameObjects.push(new SpaceDiamond());
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < nrOfMeteorites; i++) {
       //3 st
       this.gameObjects.push(new Meteorite());
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < nrOfBlackHoles; i++) {
       this.gameObjects.push(new BlackHole());
     }
   }
@@ -76,13 +88,33 @@ class GamePlay {
     for (let gameObject of this.gameObjects) {
       gameObject.draw();
     }
+    for (let star of this.stars) {
+      star.draw();
+    }
+    if (this.debris.length) {
+      for (let debris of this.debris) {
+        debris.draw();
+      }
+    }
   }
 
   /** Call update() on all gameObjects */
-  private updateGameObjects() {
-    for (let gameObject of this.gameObjects) {
-      gameObject.update();
-      this.checkCollision(this.player, gameObject);
+  private updateGameObjects(gameAcceleration: number) {
+    for (let obj of this.gameObjects) {
+      obj.velocity.x += gameAcceleration * 0.05; // UPDATE VELOCITY OF ALL OBJECTS
+      obj.update();
+      this.checkCollision(obj, this.player, this.shots);
+    }
+    for (let star of this.stars) {
+      star.update();
+    }
+    if (this.debris.length) {
+      for (let debris of this.debris) {
+        if (debris.opacity <= 0) {
+          this.debris.splice(this.debris.indexOf(debris));
+        }
+        debris.update();
+      }
     }
   }
 
@@ -102,34 +134,64 @@ class GamePlay {
     return validYPos;
   } */
 
-  private checkCollision(p: Player, o: GameObject) {
-    let distance = dist(p.position.x, p.position.y, o.position.x, o.position.y);
-
-    if (distance < o.radius + 40) {
-      if (!o.isHit) {
-        this.handleCollision(p, o);
-        o.isHit = true; // Make sure the object knows it has been hit after first intersection
+  private checkCollision(obj: GameObject, p: Player, shots: Array<Shot>) {
+    if (p.collides(obj)) {
+      this.handleCollision(p, obj);
+    }
+    if (shots.length) {
+      for (let shot of shots) {
+        if (shot.hits(obj)) {
+          this.handleShot(shot, obj);
+        }
       }
+    }
+  }
+
+  private handleCollision(p: Player, obj: GameObject) {
+    obj.isHit = true;
+    if (obj instanceof BlackHole) {
+      this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
+    } else if (obj instanceof SpaceDiamond) {
+      this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
+      this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
     } else {
-      o.isHit = false;
+      this.explode(obj);
+      this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
+      this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
     }
   }
 
-  private handleCollision(p: Player, o: GameObject) {
-    this.player.currentHealth = this.updateHealth(p.currentHealth, o);
-    // Then do something to the object that has been hit, e.g explode and play sound
+  private handleShot(shot: Shot, obj: GameObject) {
+    obj.isHit = true;
+    this.explode(obj);
+    this.shots.splice(this.shots.indexOf(shot), 1);
+    if (!(obj instanceof BlackHole)) {
+      this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
+    }
   }
 
-  private updateHealth(health: number, gameObject: GameObject) {
-    if (gameObject.damage < 0) {
-      gameObject.position.x = 0;
-      gameObject.update();
+  private explode(obj: GameObject) {
+    if (obj instanceof Meteorite) {
+      this.createDebris(obj.position.x, obj.position.y, "blue");
+    } else if (obj instanceof Planet) {
+      this.createDebris(obj.position.x, obj.position.y, "red");
+    } else {
+      return;
     }
+  }
 
-    health = this.player.currentHealth - gameObject.damage;
-    if (health <= 0) {
+  private createDebris(x: number, y: number, color: String) {
+    for (let i = 0; i < random(15, 25); i++) {
+      this.debris.push(new Debris(x, y, color));
+    }
+  }
+
+  private updateHealth(health: number, obj: GameObject) {
+    health = this.player.currentHealth - obj.damage;
+    /* if (health <= 0) {
+      storeItem("highscore", this.statusBar.distanceFromEarth);
       this.player.die();
-    }
+    } */
     return health;
   }
 }

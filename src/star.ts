@@ -1,5 +1,4 @@
 class Star extends GameObject {
- 
   private opacity: number;
   private color: number;
 

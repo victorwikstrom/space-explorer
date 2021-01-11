@@ -5,6 +5,9 @@ let muteIcon: p5.Image;
 let soundIcon: p5.Image;
 let soundtrack: p5.SoundFile;
 let button: p5.Element;
+let spaceDiamondImg: p5.Image;
+let blackHoleImg: p5.Image;
+let meteoriteImg: p5.Image;
 
 /**
  * Built in preload function in P5
@@ -16,6 +19,9 @@ function preload() {
   soundtrack = loadSound('assets/sound/Fair_Use_Trio_-_06_-_2001_A_Space_Odyssey.mp3')
   muteIcon = loadImage("assets/images/sound-off.svg")
   soundIcon = loadImage("assets/images/sound-on.svg")
+  spaceDiamondImg = loadImage("assets/images/spacediamond.png");
+  blackHoleImg = loadImage("assets/images/blackhole.png");
+  meteoriteImg = loadImage("assets/images/meteorite.png");
 }
 
 /**
@@ -33,7 +39,7 @@ function setup() {
   button.style("background-color", "blue");
   button.style("border-radius", "50%");
   button.position(windowWidth - 80, 12);
-  soundtrack.setVolume(0.2);
+  soundtrack.setVolume(0.3);
 }
 
 /**

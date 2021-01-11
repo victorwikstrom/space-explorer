@@ -36,8 +36,10 @@ class GameIntro {
     this.drawGameObjects();
     this.createElements();
 
+    //this.createBackstoryText();
+
     //DRAW HIGHSCORE CHART
-    this.highscoreChart.draw();
+    this.highscoreChart.createHighscoreList();
 
     // GO TO NEXT GUI
     this.playButton.mousePressed(() => {
@@ -45,6 +47,7 @@ class GameIntro {
       this.playButton.hide();
       this.input.hide();
       this.introBox.hide();
+      //this.createBackstoryText()
       this.gameGUI.updateGUI("play");
     });
   }
@@ -60,7 +63,7 @@ class GameIntro {
     pop();
 
     //CREATE INPUTFIELD
-    push();
+    /*    push();
     this.input.show();
     this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
     this.input.size(380, 60);
@@ -71,8 +74,9 @@ class GameIntro {
     this.input.style("font-size", "20");
     this.input.style("textAlign", "LEFT");
     this.input.style("padding", "10");
-    pop();
-    
+    storeItem("playerName", this.input.value());
+    pop(); */
+
     // CREATE CONTINUE BUTTON
     push();
     this.continueButton.show();
@@ -99,12 +103,6 @@ class GameIntro {
     this.playButton.style("box-shadow", "0 3px #f009");
     pop();
 
-    // CREATE MUTE ICON
-    // setSoundButton(img: p5.Image) {
-    //   img.resize(50, 0);
-    //   return img;
-    // }
-
     // CREATE GREETING
     // private greet() {
     //   greeting.html('Hello ' + playerName + '!');
@@ -123,58 +121,62 @@ class GameIntro {
     fill("white");
     textSize(22);
     text("PLEASE ENTER YOUR NAME HERE:", width / 2 - 210, height / 2 - 115);
-    text("HIGHSCORE:", width / 2 + 140, height / 2 - 115);
-
-    // CREATE BACKSTORY TEXT
-    fill("white");
-    textSize(17);
-    text(
-      "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE",
-      windowWidth / 2,
-      windowHeight / 2 - 80
-    );
-    text(
-      "YOUR GOAL IS TO TRAVEL AS FAR FROM THE EARTH AS POSSIBLE.",
-      windowWidth / 2,
-      windowHeight / 2 - 60
-    );
-    text(
-      "YOU ARE SENT AWAY FROM EARTH IN A SPACESHIP WITH AN ENERGY-GENERATING SPEED SYSTEM ",
-      windowWidth / 2,
-      windowHeight / 2 - 40
-    );
-    text(
-      "THAT MAKES THE SPACESHIPS SPEED INCREASE CONSTANTLY THE FURTHER AWAY FROM EARTH YOU GET.",
-      windowWidth / 2,
-      windowHeight / 2 - 20
-    );
-    text(
-      "DURING THE MISSION, YOU SHOULD AVOID OR ELIMINATE THE DANGERS THAT EXIST IN SPACE,",
-      windowWidth / 2,
-      windowHeight / 2
-    );
-    text(
-      "SUCH AS OTHER PLANETS, METEORITES AND ESPECIALLY BLACK HOLES.",
-      windowWidth / 2,
-      windowHeight / 2 + 20
-    );
-    text(
-      "FORTUNATELY, YOU HAVE BEEN ASSIGNED A SPACESHIP OF THE VERY LATEST MODEL.",
-      windowWidth / 2,
-      windowHeight / 2 + 40
-    );
-    text(
-      "IT CAN WITHSTAND SOME DAMAGE AND CAN EVEN REPAIR ITSELF,",
-      windowWidth / 2,
-      windowHeight / 2 + 60
-    );
-    text(
-      "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",
-      windowWidth / 2,
-      windowHeight / 2 + 80
-    );
+    //text("HIGHSCORE:", width / 2 + 210, height / 2 - 115);
+    //text("HIGHSCORE", width / 2 + 140, height / 2 - 115);
     pop();
   }
+  // CREATE BACKSTORY TEXT
+  //   private createBackstoryText() {
+  //   push();
+  //   fill("white");
+  //   textSize(17);
+  //   text(
+  //     "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE",
+  //     windowWidth / 2,
+  //     windowHeight / 2 - 80
+  //   );
+  //   text(
+  //     "YOUR GOAL IS TO TRAVEL AS FAR FROM THE EARTH AS POSSIBLE.",
+  //     windowWidth / 2,
+  //     windowHeight / 2 - 60
+  //   );
+  //   text(
+  //     "YOU ARE SENT AWAY FROM EARTH IN A SPACESHIP WITH AN ENERGY-GENERATING SPEED SYSTEM ",
+  //     windowWidth / 2,
+  //     windowHeight / 2 - 40
+  //   );
+  //   text(
+  //     "THAT MAKES THE SPACESHIPS SPEED INCREASE CONSTANTLY THE FURTHER AWAY FROM EARTH YOU GET.",
+  //     windowWidth / 2,
+  //     windowHeight / 2 - 20
+  //   );
+  //   text(
+  //     "DURING THE MISSION, YOU SHOULD AVOID OR ELIMINATE THE DANGERS THAT EXIST IN SPACE,",
+  //     windowWidth / 2,
+  //     windowHeight / 2
+  //   );
+  //   text(
+  //     "SUCH AS OTHER PLANETS, METEORITES AND ESPECIALLY BLACK HOLES.",
+  //     windowWidth / 2,
+  //     windowHeight / 2 + 20
+  //   );
+  //   text(
+  //     "FORTUNATELY, YOU HAVE BEEN ASSIGNED A SPACESHIP OF THE VERY LATEST MODEL.",
+  //     windowWidth / 2,
+  //     windowHeight / 2 + 40
+  //   );
+  //   text(
+  //     "IT CAN WITHSTAND SOME DAMAGE AND CAN EVEN REPAIR ITSELF,",
+  //     windowWidth / 2,
+  //     windowHeight / 2 + 60
+  //   );
+  //   text(
+  //     "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",
+  //     windowWidth / 2,
+  //     windowHeight / 2 + 80
+  //   );
+  //   pop();
+  // }
 
   // CREATE STARS
   private createGameObjects() {
@@ -202,5 +204,6 @@ class GameIntro {
   // CHANGE GUI TO PLAY
   private changeGui = () => {
     this.gameGUI.updateGUI("play");
+    this.continueButton.hide();
   };
 }

@@ -3,7 +3,7 @@ class GameOver {
   private isActive: boolean;
   public button: p5.Element;
   private gameObjects: Array<GameObject>;
-  // private highscoreChart: HighscoreChart;
+  private highscoreChart: HighscoreChart;
   private gameoverBox: p5.Element;
 
   constructor(gameGUI: IGameState) {
@@ -11,13 +11,13 @@ class GameOver {
     this.isActive = false;
     this.gameObjects = [];
     this.gameoverBox = createDiv();
-    // this.highscoreChart = new HighscoreChart();
+    this.highscoreChart = new HighscoreChart();
     this.button = createButton("PLAY AGAIN");
   }
 
   public update() {
     this.updateGameObjects();
-    // this.highscoreChart.update();
+    this.highscoreChart.update();
     this.button.mousePressed(this.changeGui);
   }
 
@@ -31,19 +31,20 @@ class GameOver {
     this.createElements();
 
     //DRAW HIGHSCORE CHART
-    // this.highscoreChart.draw();
+    this.highscoreChart.draw();
 
     //GO TO NEXT GUI
     this.button.mousePressed(() => {
       this.isActive = false;
       this.button.hide();
-      // this.highscoreChart.hide();
+      //this.highscoreChart.hide();
       this.gameoverBox.hide();
       this.gameGUI.updateGUI("play");
     });
   }
 
   private createElements() {
+    this.highscoreChart.draw()
     // CREATE GAMEOVERBOX
     push();
     this.gameoverBox.show();
@@ -79,7 +80,7 @@ class GameOver {
     fill("white");
     textSize(22);
     text("YOU REACHED:", width / 2 - 398, height / 2 - 115);
-    text("HIGHSCORE:", width / 2 + 140, height / 2 - 115);
+    //text("HIGHSCORE:", width / 2 + 140, height / 2 - 115);
     pop();
   }
 
