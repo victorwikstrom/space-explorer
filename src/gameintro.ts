@@ -64,7 +64,7 @@ class GameIntro {
     pop();
 
     //CREATE INPUTFIELD
-    push();
+    /*     push();
     this.input.show();
     this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
     this.input.size(380, 60);
@@ -76,9 +76,7 @@ class GameIntro {
     this.input.style("textAlign", "LEFT");
     this.input.style("padding", "10");
     storeItem("playerName", this.input.value());
-    pop();
-
-
+    pop(); */
 
     // CREATE CONTINUE BUTTON
     push();
