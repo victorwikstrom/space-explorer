@@ -77,6 +77,7 @@ class GameIntro {
     this.input.style("padding", "10");
     pop(); */
 
+
     // CREATE CONTINUE BUTTON
     push();
     this.button.show();
