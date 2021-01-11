@@ -2,6 +2,7 @@ class SpaceDiamond extends GameObject {
   // private collisionSound: string - To be added later
   color: p5.Color;
   damage: number;
+  image: p5.Image
 
   constructor() {
     super();
@@ -10,8 +11,9 @@ class SpaceDiamond extends GameObject {
     this.velocity = createVector(3, 0);
     // this.acceleration = createVector(0, 0);
     this.color = color("yellow");
-    this.radius = 5;
+    this.radius = 20;
     this.damage = -1; // Negative damage in order to apply health
+    this.image =  this.image = this.setPlayerImage(spaceDiamondImg);
   }
 
   public update() {
@@ -20,8 +22,13 @@ class SpaceDiamond extends GameObject {
 
   public draw() {
     push();
-    fill(this.color);
-    ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2);
+    image(this.image, this.position.x, this.position.y, this.radius*2, this.radius*2 )
+    // fill(this.color);
+    // ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2);
     pop();
+  }
+  private setPlayerImage(img: p5.Image) {
+    img.resize(100, 0);
+    return img;
   }
 }
