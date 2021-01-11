@@ -41,5 +41,21 @@ class GameGUI implements IGameState {
 
   public updateGUI(gui: "play" | "intro" | "over") {
     this.currentGUI = gui;
+    this.createNewGameplay();
+   
+   //Om GUI är play och isactive är false, skapa ny gameplay instans... behöver vi ta bort gamla instansen?
+    //
   }
+
+   createNewGameplay(){
+     if (this.gamePlay.isActive = false && this.currentGUI === "play") {
+       
+       
+     }
+   }
 }
+
+/// I gameplay klassen kolla om gameplay nått gameover 
+// Om gameOver skett, skapa nytt gui
+// this.isActive - kolla i gameover 
+
