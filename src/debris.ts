@@ -1,30 +1,37 @@
 class Debris extends GameObject {
   public color: p5.Color;
-  public startPos;
+  public x: number;
+  public y: number;
+  private xspeed: number;
+  private yspeed: number;
+  private opacity;
 
   // private collisionSound: string - To be added later
 
-  constructor(startPos: number, color: p5.Color) {
+  constructor(x: number, y: number, color: p5.Color) {
     super();
     this.size = 0;
-    this.startPos = startPos;
-    this.velocity = createVector(random(8, 10), random(1, 2));
-    this.damage = 5;
-    this.radius = 30;
+    this.x = x;
+    this.y = y;
+    this.xspeed = random(-5, 5);
+    this.yspeed = random(-5, 5);
+    this.radius = random(2, 10);
+    this.opacity = 1;
     this.color = color;
 
     // this.collisionSound = p5.SoundFile;
   }
 
   update() {
-    super.update();
+    this.x = this.x - this.xspeed;
+    this.y = this.y + this.yspeed;
   }
 
   draw() {
     push();
     noStroke();
     fill(this.color);
-    ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2);
+    ellipse(this.x, this.y, this.radius * 2, this.radius * 2);
     pop();
   }
 }

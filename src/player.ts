@@ -138,7 +138,7 @@ class Player {
       obj.position.x,
       obj.position.y
     );
-    if (d < obj.radius + 40) {
+    if (d < obj.radius + 40 && !obj.isHit) {
       return true;
     } else {
       return false;
