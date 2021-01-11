@@ -13,13 +13,13 @@ class GameGUI implements IGameState {
 
   public update() {
     if (this.currentGUI === "intro") {
-      // this.gameIntro.update();
+      //this.gameIntro.update();
     }
     if (this.currentGUI === "play") {
       this.gamePlay.update();
     }
     if (this.currentGUI === "over") {
-      //  this.gameOver.update();
+      //this.gameOver.update();
     }
   }
 
@@ -41,21 +41,14 @@ class GameGUI implements IGameState {
 
   public updateGUI(gui: "play" | "intro" | "over") {
     this.currentGUI = gui;
-    this.createNewGameplay();
-   
-   //Om GUI är play och isactive är false, skapa ny gameplay instans... behöver vi ta bort gamla instansen?
-    //
+
+    if (this.currentGUI === "play") {
+      removeElements();
+      this.gamePlay = new GamePlay(this);
+      this.gameOver = new GameOver(this);
+      this.gameIntro = new GameIntro(this);
+    } else {
+      return;
+    }
   }
-
-   createNewGameplay(){
-     if (this.gamePlay.isActive = false && this.currentGUI === "play") {
-       
-       
-     }
-   }
 }
-
-/// I gameplay klassen kolla om gameplay nått gameover 
-// Om gameOver skett, skapa nytt gui
-// this.isActive - kolla i gameover 
-
