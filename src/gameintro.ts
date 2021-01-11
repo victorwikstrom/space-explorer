@@ -52,7 +52,7 @@ class GameIntro {
     });
   }
 
-  private createElements() {
+  public createElements() {
     // CREATE INTROBOX
     push();
     this.introBox.show();
@@ -63,28 +63,31 @@ class GameIntro {
     pop();
 
     //CREATE INPUTFIELD
-    //    push();
-    // this.input.show();
-    // this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
-    // this.input.size(380, 60);
-    // this.input.style("stroke", "red");
-    // this.input.style("strokeWeight", "4");
-    // this.input.style("background-color", "#00f2");
-    // this.input.style("color", "#FAFDEB");
-    // this.input.style("font-size", "20");
-    // this.input.style("textAlign", "LEFT");
-    // this.input.style("padding", "10");
-    // storeItem("playerName", this.input.value());
-    // pop(); 
+    push();
+    this.input.show();
+    this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
+    this.input.size(380, 60);
+    this.input.style("stroke", "red");
+    this.input.style("strokeWeight", "4");
+    this.input.style("background-color", "#00f2");
+    this.input.style("color", "#FAFDEB");
+    this.input.style("border", "4px solid red");
+    this.input.style("border-radius", "8px");
+    this.input.style("font-size", "20");
+    this.input.style("textAlign", "LEFT");
+    this.input.style("padding", "10");
+    storeItem("playerName", this.input.value());
+    pop(); 
 
     // CREATE CONTINUE BUTTON
     push();
     this.continueButton.show();
     this.continueButton.position(windowWidth / 2 - 400, windowHeight / 2 + 10);
-    this.continueButton.size(380, 120);
-    this.continueButton.style("background-color", "#3BF7F7");
+    this.continueButton.size(280, 70);
+    this.continueButton.style("background-color", "#01c2cb");
     this.continueButton.style("color", "white");
-    this.continueButton.style("font-size", "45");
+    //this.continueButton.style("font", "statusbarAndOther");
+    this.continueButton.style("font-size", "25");
     this.continueButton.style("border", "1px solid red");
     this.continueButton.style("border-radius", "8px");
     this.continueButton.style("box-shadow", "0 3px #f009");
@@ -94,10 +97,11 @@ class GameIntro {
     push();
     this.playButton.show();
     this.playButton.position(windowWidth / 2 - 400, windowHeight / 2 + 10);
-    this.playButton.size(380, 120);
-    this.playButton.style("background-color", "#3BF7F7");
+    this.playButton.size(280, 70);
+    this.playButton.style("background-color", "#01c2cb");
     this.playButton.style("color", "white");
-    this.playButton.style("font-size", "45");
+    //this.playButton.style("font", "statusbarAndOther");
+    this.playButton.style("font-size", "25");
     this.playButton.style("border", "1px solid red");
     this.playButton.style("border-radius", "8px");
     this.playButton.style("box-shadow", "0 3px #f009");
@@ -113,14 +117,20 @@ class GameIntro {
     push();
     fill("red");
     noStroke();
-    textSize(80);
+    textSize(100);
     textAlign(CENTER);
-    text("SPACE EXPLORER", width / 2 - 40, 120);
+    textFont(spaceExplorerHeading);
+    text("SPACE EXPLORER", width / 2 - 40, 140);
     fill("blue");
-    text("SPACE EXPLORER", width / 2 - 40, 123);
-    fill("white");
-    textSize(22);
-    text("PLEASE ENTER YOUR NAME HERE:", width / 2 - 210, height / 2 - 115);
+    text("SPACE EXPLORER", width / 2 - 37, 140);
+    
+    // PLEASE ENTER YOUR NAME
+    fill("#01c2cb");
+    textSize(15);
+    textAlign(LEFT);
+    textFont(spaceExplorerBold);
+    text("PLEASE ENTER ", width / 2 - 400, height / 2 - 145);
+    text("YOUR NAME HERE:", width / 2 - 400, height / 2 - 120);
     //text("HIGHSCORE:", width / 2 + 210, height / 2 - 115);
     //text("HIGHSCORE", width / 2 + 140, height / 2 - 115);
     pop();

@@ -8,6 +8,8 @@ let button: p5.Element;
 let spaceDiamondImg: p5.Image;
 let blackHoleImg: p5.Image;
 let meteoriteImg: p5.Image;
+let spaceExplorerHeading: p5.Font;
+let spaceExplorerBold: p5.Font;
 
 /**
  * Built in preload function in P5
@@ -22,6 +24,8 @@ function preload() {
   spaceDiamondImg = loadImage("assets/images/spacediamond.png");
   blackHoleImg = loadImage("assets/images/blackhole.png");
   meteoriteImg = loadImage("assets/images/meteorite.png");
+  spaceExplorerHeading = loadFont("assets/fonts/barlow-condensed-blackitalic.woff");
+  spaceExplorerBold = loadFont("assets/fonts/phatt.woff");
 }
 
 /**
