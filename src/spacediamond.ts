@@ -8,7 +8,7 @@ class SpaceDiamond extends GameObject {
     super();
     // this.collisionSound = "" To be added later
     this.position = this.position;
-    this.velocity = createVector(3, 0);
+    this.velocity = createVector(random(4, 8), 0);
     // this.acceleration = createVector(0, 0);
     this.color = color("yellow");
     this.radius = 15;

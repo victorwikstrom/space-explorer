@@ -35,7 +35,7 @@ class Player {
     this.checkEdges();
     this.move();
     this.handleSpacebarEvent();
-    this.deleteFiredShots();
+    this.updateFiredShots();
 
     this.rechargeGun -= deltaTime;
   }
@@ -115,8 +115,8 @@ class Player {
     this.shots.push(shot);
   }
 
-  private deleteFiredShots() {
-    if (this.shots) {
+  private updateFiredShots() {
+    if (this.shots.length) {
       for (let i = 0; i < this.shots.length; i++) {
         this.shots[i].draw();
         this.shots[i].update();
@@ -131,29 +131,34 @@ class Player {
 
   updateHealth() {}
 
+  
+
   die() {
-    this.drawPlayerDiedView();
-    setTimeout(this.updateGUI, 2000);
+   this.drawPlayerDiedView();
+   setTimeout(this.updateGUI, 2000);
   }
 
-  drawPlayerDiedView() {
+  drawPlayerDiedView(){
     //DRAW RECTANGLE
-    push();
-    noStroke();
-    fill(color("#00f4"));
-    rect(width / 2 - 500, height / 2 - 200, 1000, 400, 8);
-    pop();
-    //DRAW TEXT
-    push();
-    fill(color("white"));
-    textSize(90);
-    text("YOU DIED", width / 2 - 200, height / 2);
-    pop();
-    //STOP DRAW
-    noLoop();
-  }
+     push();
+     noStroke();
+     fill(color("#00f4"));
+     rect(width/2-500, height/2 - 200, 1000, 400, 8);
+     pop();
+     //DRAW TEXT
+     push()
+     fill(color("white"));
+     textSize(90)
+     textAlign(CENTER);
+     let player1 = getItem("playerName"); 
+     text(player1, width/2, height/3 +20);
+     text("YOU DIED", width/2, height/2); 
+     pop();
+     //STOP DRAW
+     noLoop();
+   }
 
-  updateGUI() {
+  updateGUI(){
     //START DRAW
     loop();
     gameGUI.updateGUI("over");

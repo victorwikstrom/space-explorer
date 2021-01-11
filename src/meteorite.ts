@@ -8,7 +8,7 @@ class Meteorite extends GameObject {
     super();
     this.size = 0;
     this.position = this.position;
-    this.velocity = createVector(10, 0);
+    this.velocity = createVector(random(8, 10), 0);
     // this.acceleration = createVector(0, 0);
     this.damage = 5;
     this.radius = 30;
@@ -24,7 +24,7 @@ class Meteorite extends GameObject {
     push();
     noStroke();
     fill(this.color);
-    ellipse(this.position.x, this.position.y,this.radius*2, this.radius*2);
+    ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2);
     pop();
   }
 }
