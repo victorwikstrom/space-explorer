@@ -93,17 +93,14 @@ class GamePlay {
 
   /** Call update() on all gameObjects */
   private updateGameObjects(gameAcceleration: number) {
-    for (let gameObject of this.gameObjects) {
-      gameObject.velocity.x += gameAcceleration * 0.05; // UPDATE VELOCITY OF ALL OBJECTS
-      gameObject.update();
-      this.checkCollision(this.player, gameObject);
+    for (let i = 0; i < this.gameObjects.length; i++) {
+      this.gameObjects[i].velocity.x += gameAcceleration * 0.05; // UPDATE VELOCITY OF ALL OBJECTS
+      this.gameObjects[i].update();
     }
     for (let star of this.stars) {
       star.update();
     }
-    if (this.shots.length) {
-      this.checkShotHit(this.shots, this.gameObjects);
-    }
+    this.checkCollision(this.player, this.gameObjects, this.shots);
   }
 
   /* private getValidYPos() {
@@ -122,43 +119,40 @@ class GamePlay {
     return validYPos;
   } */
 
-  private checkShotHit(shots: Array<Shot>, objs: Array<GameObject>) {
-    for (let j = 0; j < objs.length; j++)
-      for (let i = 0; i < shots.length; i++) {
-        if (shots[i].hits(objs[j]) && !objs[j].isHit) {
-          if (objs[j] instanceof BlackHole) {
-            objs[j].isHit = true;
-            shots.splice(i, 1);
-          } else {
-            console.log("hit");
-            objs[j].isHit = true;
-            objs.splice(j, 1);
-            shots.splice(i, 1);
+  private checkCollision(
+    p: Player,
+    objs: Array<GameObject>,
+    shots: Array<Shot>
+  ) {
+    for (let i = 0; i < objs.length; i++) {
+      if (p.collides(objs[i]) && !objs[i].isHit) {
+        if (objs[i] instanceof BlackHole) {
+          this.handleCollision(p, objs[i]);
+        } else {
+          this.handleCollision(p, objs[i]);
+          objs.splice(i, 1);
+        }
+      }
+      if (this.shots.length) {
+        for (let j = 0; j < shots.length; j++) {
+          if (shots[j].hits(objs[i]) && !objs[i].isHit) {
+            if (objs[i] instanceof BlackHole) {
+              objs[i].isHit = true;
+              shots.splice(j, 1);
+            } else {
+              objs[i].isHit = true;
+              objs.splice(i, 1);
+              shots.splice(j, 1);
+            }
           }
         }
       }
-  }
-
-  private checkCollision(p: Player, obj: GameObject) {
-    let distance = dist(
-      p.position.x,
-      p.position.y,
-      obj.position.x,
-      obj.position.y
-    );
-
-    if (distance < obj.radius + 40) {
-      if (!obj.isHit) {
-        this.handleCollision(p, obj);
-        obj.isHit = true; // Make sure the object knows it has been hit after first intersection
-      }
-    } else {
-      obj.isHit = false;
     }
   }
 
   private handleCollision(p: Player, obj: GameObject) {
     this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
+    obj.isHit = true;
     // Then do something to the object that has been hit, e.g explode and play sound
   }
 
@@ -169,10 +163,10 @@ class GamePlay {
     }
 
     health = this.player.currentHealth - obj.damage;
-    if (health <= 0) {
+    /* if (health <= 0) {
       storeItem("highscore", this.statusBar.distanceFromEarth);
       this.player.die();
-    }
+    } */
     return health;
   }
 }
