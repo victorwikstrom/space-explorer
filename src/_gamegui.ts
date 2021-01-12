@@ -44,6 +44,10 @@ class GameGUI implements IGameState {
       this.gameOver = new GameOver(this);
       this.gameIntro = new GameIntro(this);
       // this.sketch.button = new createImg(this);
+      // this.button.hide();
+      // this.playButton.hide();
+      // this.continueButton.hide();
+      // this.input.hide();
       } else {
       return;
     }
