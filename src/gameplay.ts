@@ -49,13 +49,12 @@ class GamePlay {
 
   /** Create all game object instances */
   private createGameObjects() {
-    const nrOfStars = 1000;
     const nrOfPlanets = 3;
     const nrOfDiamonds = 4;
     const nrOfMeteorites = 5;
     const nrOfBlackHoles = 3;
 
-    for (let i = 0; i < nrOfStars; i++) {
+    for (let i = 0; i < 1000; i++) {
       this.stars.push(new Star());
     }
     for (let i = 0; i < nrOfPlanets; i++) {
@@ -179,10 +178,10 @@ class GamePlay {
 
   private updateHealth(health: number, obj: GameObject) {
     health = this.player.currentHealth - obj.damage;
-     if (health <= 0) {
+    if (health <= 0) {
       storeItem("highscore", this.statusBar.distanceFromEarth);
       this.player.die();
-    } 
+    }
     return health;
   }
 }
