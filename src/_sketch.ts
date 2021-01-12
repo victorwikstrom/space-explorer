@@ -10,6 +10,7 @@ let blackHoleImg: p5.Image;
 let meteoriteImg: p5.Image;
 let spaceExplorerHeading: p5.Font;
 let spaceExplorerBold: p5.Font;
+let explosionImg: p5.Image;
 //PLANET IMAGES
 let planet1: p5.Image;
 let planet2: p5.Image;
@@ -39,6 +40,7 @@ function preload() {
   meteoriteImg = loadImage("assets/images/meteorite.png");
   spaceExplorerHeading = loadFont("assets/fonts/barlow-condensed-blackitalic.woff");
   spaceExplorerBold = loadFont("assets/fonts/phatt.woff");
+  explosionImg = loadImage("assets/images/explosion.png");
 
   // PLANET IMAGES
   planet1 = loadImage("assets/images/planets/1.png");

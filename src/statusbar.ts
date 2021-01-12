@@ -49,7 +49,7 @@ class StatusBar {
     fill("red");
     text("SPACESHIP CONDITION", width - width / 3 + 200, 30);
     fill("blue");
-    (CENTER);
+    textAlign(CENTER);
     this.drawEllipses(health);
     pop();
   }
