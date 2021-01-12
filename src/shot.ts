@@ -35,7 +35,7 @@ class Shot extends GameObject {
       this.position.x,
       this.position.y,
       obj.position.x,
-      obj.position.y
+      obj.position.y + 50
     );
     if (d < obj.radius && !obj.isHit) {
       obj.isHit = true;

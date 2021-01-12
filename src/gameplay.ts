@@ -26,16 +26,18 @@ class GamePlay {
     this.player.update();
     this.updateGameObjects(this.gameAcceleration);
     this.statusBar.update(this.gameAcceleration);
+    this.spawnGameObjects();
   }
 
   public draw() {
     // GUI SETUP
     if (this.isActive === false) {
-      this.createGameObjects();
+      this.createStars();
       this.isActive = true;
     }
 
     this.player.draw();
+
     this.drawGameObjects();
 
     // DRAW STATUSBAR
@@ -47,28 +49,28 @@ class GamePlay {
   //   this.gameGUI.updateGUI("over");
   // };
 
-  /** Create all game object instances */
-  private createGameObjects() {
-    const nrOfPlanets = 3;
-    const nrOfDiamonds = 4;
-    const nrOfMeteorites = 5;
-    const nrOfBlackHoles = 3;
-
+  private createStars() {
     for (let i = 0; i < 1000; i++) {
       this.stars.push(new Star());
     }
-    for (let i = 0; i < nrOfPlanets; i++) {
+  }
+
+  /** Create all game object instances */
+  private spawnGameObjects() {
+    const spawnRate: number = random(1);
+
+    if (spawnRate < 0.005) {
       //8 st
       this.gameObjects.push(new Planet());
     }
-    for (let i = 0; i < nrOfDiamonds; i++) {
+    if (spawnRate < 0.005) {
       this.gameObjects.push(new SpaceDiamond());
     }
-    for (let i = 0; i < nrOfMeteorites; i++) {
+    if (spawnRate < 0.01) {
       //3 st
       this.gameObjects.push(new Meteorite());
     }
-    for (let i = 0; i < nrOfBlackHoles; i++) {
+    if (spawnRate < 0.001) {
       this.gameObjects.push(new BlackHole());
     }
   }
