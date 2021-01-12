@@ -6,7 +6,7 @@ class GameIntro {
   public input: p5.Element;
   private highscoreChart: HighscoreChart;
   public continueButton: p5.Element;
-  private playButton: p5.Element;
+  public playButton: p5.Element;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
