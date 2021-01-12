@@ -3,7 +3,7 @@ class GameIntro {
   private isActive: boolean;
   private gameObjects: Array<GameObject>;
   private introBox: p5.Element;
-  private input: p5.Element;
+  public input: p5.Element;
   private highscoreChart: HighscoreChart;
   public continueButton: p5.Element;
   private playButton: p5.Element;
@@ -20,7 +20,6 @@ class GameIntro {
   }
 
   public update() {
-    this.updateGameObjects();
     this.highscoreChart.update();
     // this.continueButton.mousePressed(this.toggleBackstory);
     this.playButton.mousePressed(this.changeGui);
@@ -41,15 +40,15 @@ class GameIntro {
     //DRAW HIGHSCORE CHART
     this.highscoreChart.createHighscoreList();
 
-    // GO TO NEXT GUI
-    this.playButton.mousePressed(() => {
-      this.isActive = false;
-      this.playButton.hide();
-      this.input.hide();
-      this.introBox.hide();
-      //this.createBackstoryText()
-      this.gameGUI.updateGUI("play");
-    });
+    // GO TO NEXT GUI -  OBS FINNS EN MOUSEPRESSED FUNKTION I UPDATE()
+    // this.button.mousePressed(() => {
+    //   this.isActive = false;
+    //   //this.createBackstoryText()
+    //   this.changeGui();
+    //   //this.button.hide();
+    //   this.input.hide();
+    //   //this.introBox.hide();
+    // });
   }
 
   public createElements() {
@@ -199,14 +198,6 @@ class GameIntro {
     for (let gameObject of this.gameObjects) {
       if (gameObject instanceof Star) {
         gameObject.draw();
-      }
-    }
-  }
-
-  private updateGameObjects() {
-    for (let gameObject of this.gameObjects) {
-      if (gameObject instanceof Star) {
-        gameObject.update();
       }
     }
   }
