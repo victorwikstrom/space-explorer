@@ -39,7 +39,7 @@ function setup() {
   frameRate(60);
   gameGUI = new GameGUI();
   soundtrack.play();
-  button = createImg('assets/images/audio-8.png');
+  button = createImg("assets/images/audio-8.png");
   button.style("background-color", "blue");
   button.style("border-radius", "50%");
   button.position(windowWidth - 80, 12);
@@ -65,7 +65,7 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-function toggleSound () {
+function toggleSound() {
   if (soundtrack.isPlaying()) {
     soundtrack.pause();
     button = createImg('assets/images/sound-on.svg');

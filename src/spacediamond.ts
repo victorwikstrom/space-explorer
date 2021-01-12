@@ -11,7 +11,7 @@ class SpaceDiamond extends GameObject {
     this.velocity = createVector(random(4, 8), 0);
     // this.acceleration = createVector(0, 0);
     this.color = color("yellow");
-    this.radius = 10;
+    this.radius = width / 100;
     this.damage = -1; // Negative damage in order to apply health
     this.image = this.setPlayerImage(spaceDiamondImg);
   }
@@ -21,17 +21,17 @@ class SpaceDiamond extends GameObject {
   }
 
   public draw() {
-    image(this.image, this.position.x, this.position.y, this.radius*2, this.radius*2);
-
-    //OLD DESIGN:
-    //push
-    // fill(this.color);
-    // ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2);
-    //pop
+    image(
+      this.image,
+      this.position.x - this.radius,
+      this.position.y - this.radius,
+      this.radius * 2,
+      this.radius * 2
+    );
   }
 
   private setPlayerImage(img: p5.Image) {
-    img.resize(100, 0);
+    img.resize(this.radius, 0);
     return img;
   }
 }

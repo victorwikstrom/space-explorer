@@ -13,7 +13,7 @@ class BlackHole extends GameObject {
     this.position = this.position;
     this.velocity = createVector(random(2, 3), 0);
 
-    this.radius = 40;
+    this.radius = width / random(10, 12);
     this.damage = 12; //HIGHER THAN 10 TO DIE
     this.image = this.setPlayerImage(blackHoleImg);
   }
@@ -22,21 +22,19 @@ class BlackHole extends GameObject {
   }
 
   public draw() {
-    image(this.image, this.position.x, this.position.y, this.radius * 2, this.radius * 2);
-    
-    //OLD DESIGN
-    //push();
-    // fill(this.fill);
-    // stroke(this.stroke);
-    // strokeWeight(3);
-    // ellipse(this.position.x, this.position.y, this.radius * 3, this.radius * 2);
-    //pop();
+    image(
+      this.image,
+      this.position.x - this.radius,
+      this.position.y - this.radius,
+      this.radius * 2,
+      this.radius * 2
+    );
   }
 
   public handleShot() {}
 
   private setPlayerImage(img: p5.Image) {
-    img.resize(100, 0);
+    img.resize(this.radius, 0);
     return img;
   }
 }
