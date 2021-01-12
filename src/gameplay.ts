@@ -59,18 +59,16 @@ class GamePlay {
   private spawnGameObjects() {
     const spawnRate: number = random(1);
 
-    if (spawnRate < 0.005) {
-      //8 st
+    if (spawnRate < 0.02) {
       this.gameObjects.push(new Planet());
     }
     if (spawnRate < 0.005) {
       this.gameObjects.push(new SpaceDiamond());
     }
-    if (spawnRate < 0.01) {
-      //3 st
+    if (spawnRate < 0.005) {
       this.gameObjects.push(new Meteorite());
     }
-    if (spawnRate < 0.001) {
+    if (spawnRate < 0.005) {
       this.gameObjects.push(new BlackHole());
     }
   }
@@ -140,13 +138,15 @@ class GamePlay {
   }
 
   private handleCollision(p: Player, obj: GameObject) {
-    obj.isHit = true;
     if (obj instanceof BlackHole) {
+      obj.isHit = true;
       this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
     } else if (obj instanceof SpaceDiamond) {
+      obj.isHit = true;
       this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
       this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
     } else {
+      obj.isHit = true;
       this.explode(obj);
       this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
       this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
@@ -164,16 +164,18 @@ class GamePlay {
 
   private explode(obj: GameObject) {
     if (obj instanceof Meteorite) {
-      this.createDebris(obj.position.x, obj.position.y, "blue");
+      this.createDebris(10, obj.position.x, obj.position.y, "blue");
     } else if (obj instanceof Planet) {
-      this.createDebris(obj.position.x, obj.position.y, "red");
+      this.createDebris(20, obj.position.x, obj.position.y, "red");
+    } else if (obj instanceof SpaceDiamond) {
+      this.createDebris(30, obj.position.x, obj.position.y, "yellow");
     } else {
       return;
     }
   }
 
-  private createDebris(x: number, y: number, color: String) {
-    for (let i = 0; i < random(15, 25); i++) {
+  private createDebris(nr: number, x: number, y: number, color: String) {
+    for (let i = 0; i < random(nr, nr + 10); i++) {
       this.debris.push(new Debris(x, y, color));
     }
   }

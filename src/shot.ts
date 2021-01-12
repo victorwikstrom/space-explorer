@@ -5,7 +5,6 @@ class Shot extends GameObject {
 
   constructor(x: number, y: number) {
     super();
-    this.size = 0;
     this.position = createVector(x, y);
     this.velocity = createVector(0, 0);
     this.stroke = color("white");
@@ -24,7 +23,7 @@ class Shot extends GameObject {
     line(
       this.position.x,
       this.position.y,
-      this.position.x + 5,
+      this.position.x + 3,
       this.position.y
     );
     pop();
@@ -35,10 +34,9 @@ class Shot extends GameObject {
       this.position.x,
       this.position.y,
       obj.position.x,
-      obj.position.y + 50
+      obj.position.y
     );
     if (d < obj.radius && !obj.isHit) {
-      obj.isHit = true;
       return true;
     } else {
       obj.isHit = false;
