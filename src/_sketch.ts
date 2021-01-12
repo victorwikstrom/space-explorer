@@ -18,7 +18,9 @@ let spaceExplorerBold: p5.Font;
  */
 function preload() {
   shipImg = loadImage("assets/images/spaceship.png");
-  // soundtrack = loadSound('assets/sound/Fair_Use_Trio_-_06_-_2001_A_Space_Odyssey.mp3')
+  soundtrack = loadSound(
+    "assets/sound/Fair_Use_Trio_-_06_-_2001_A_Space_Odyssey.mp3"
+  );
   muteIcon = loadImage("assets/images/sound-off.svg");
   soundIcon = loadImage("assets/images/sound-on.svg");
   spaceDiamondImg = loadImage("assets/images/spacediamond.png");
@@ -40,12 +42,12 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
   gameGUI = new GameGUI();
-  //soundtrack.play();
+  soundtrack.play();
   button = createImg("assets/images/audio-8.png");
   button.style("background-color", "blue");
   button.style("border-radius", "50%");
   button.position(windowWidth - 80, 12);
-  //soundtrack.setVolume(0.3);
+  soundtrack.setVolume(0.3);
 }
 
 /**
@@ -57,7 +59,7 @@ function draw() {
   background(0);
   gameGUI.update();
   gameGUI.draw();
-  //  button.mousePressed(toggleSound);
+  button.mousePressed(toggleSound);
 }
 
 /**
@@ -67,7 +69,7 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-/* function toggleSound() {
+function toggleSound() {
   if (soundtrack.isPlaying()) {
     soundtrack.pause();
     button = createImg("assets/images/sound-on.svg");
@@ -75,4 +77,4 @@ function windowResized() {
     soundtrack.play();
     button = createImg("assets/images/sound-off.svg");
   }
-} */
+}
