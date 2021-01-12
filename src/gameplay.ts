@@ -42,11 +42,6 @@ class GamePlay {
     this.statusBar.draw(this.player.currentHealth);
   }
 
-  /** Change gui to Game Over */
-  // private changeGui = () => {
-  //   this.gameGUI.updateGUI("over");
-  // };
-
   /** Create all game object instances */
   private createGameObjects() {
     const nrOfStars = 1000;
@@ -185,4 +180,10 @@ class GamePlay {
     } 
     return health;
   }
+
+  /** Change gui to Game Over */
+  // private changeGui = () => {
+  //   this.gameGUI.updateGUI("over");
+  // };
+
 }

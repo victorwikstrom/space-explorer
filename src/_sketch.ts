@@ -18,7 +18,7 @@ let spaceExplorerBold: p5.Font;
  */
 function preload() {
   shipImg = loadImage("assets/images/spaceship.png");
-  soundtrack = loadSound('assets/sound/Fair_Use_Trio_-_06_-_2001_A_Space_Odyssey.mp3')
+  // soundtrack = loadSound('assets/sound/Fair_Use_Trio_-_06_-_2001_A_Space_Odyssey.mp3')
   muteIcon = loadImage("assets/images/sound-off.svg")
   soundIcon = loadImage("assets/images/sound-on.svg")
   spaceDiamondImg = loadImage("assets/images/spacediamond.png");

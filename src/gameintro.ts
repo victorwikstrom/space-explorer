@@ -5,8 +5,9 @@ class GameIntro {
   private introBox: p5.Element;
   public input: p5.Element;
   private highscoreChart: HighscoreChart;
+  private backstoryText: p5.Element;
   public continueButton: p5.Element;
-  private playButton: p5.Element;
+  private startgameButton: p5.Element;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -15,14 +16,15 @@ class GameIntro {
     this.introBox = createDiv();
     this.highscoreChart = new HighscoreChart();
     this.input = createInput("...");
+    this.backstoryText = createSpan();
     this.continueButton = createButton("CONTINUE");
-    this.playButton = createButton("START GAME");
+    this.startgameButton = createButton("START GAME");
   }
 
   public update() {
     this.highscoreChart.update();
-    // this.continueButton.mousePressed(this.toggleBackstory);
-    this.playButton.mousePressed(this.changeGui);
+    // this.continueButton.mousePressed(this.toggleBackstoryText);
+    this.startgameButton.mousePressed(this.changeGui);
   }
 
   public draw() {
@@ -31,24 +33,32 @@ class GameIntro {
       this.createGameObjects();
       this.isActive = true;
     }
-
     this.drawGameObjects();
     this.createElements();
-
-    //this.createBackstoryText();
 
     //DRAW HIGHSCORE CHART
     this.highscoreChart.createHighscoreList();
 
-    // GO TO NEXT GUI -  OBS FINNS EN MOUSEPRESSED FUNKTION I UPDATE()
-    // this.button.mousePressed(() => {
-    //   this.isActive = false;
-    //   //this.createBackstoryText()
-    //   this.changeGui();
-    //   //this.button.hide();
-    //   this.input.hide();
-    //   //this.introBox.hide();
-    // });
+    // TOGGLE FROM NAME INPUT TO BACKSTORY TEXT
+    this.continueButton.mousePressed(() => {
+      this.isActive = false;
+      this.continueButton.hide();
+      this.input.hide();
+      this.backstoryText.show();
+      // this.toggleBackstoryText();
+      this.startgameButton.show();
+    });
+
+    // GO TO NEXT GUI -
+    this.startgameButton.mousePressed(() => {
+      this.isActive = false;
+      this.continueButton.hide();
+      this.input.hide();
+      this.backstoryText.hide();
+      this.startgameButton.hide();
+      this.introBox.hide();
+      this.changeGui();
+    });
   }
 
   public createElements() {
@@ -76,7 +86,7 @@ class GameIntro {
     this.input.style("textAlign", "LEFT");
     this.input.style("padding", "10");
     storeItem("playerName", this.input.value());
-    pop(); 
+    pop();
 
     // CREATE CONTINUE BUTTON
     push();
@@ -94,16 +104,16 @@ class GameIntro {
 
     // CREATE PLAY BUTTON
     push();
-    this.playButton.show();
-    this.playButton.position(windowWidth / 2 - 400, windowHeight / 2 + 10);
-    this.playButton.size(280, 70);
-    this.playButton.style("background-color", "#01c2cb");
-    this.playButton.style("color", "white");
-    //this.playButton.style("font", "statusbarAndOther");
-    this.playButton.style("font-size", "25");
-    this.playButton.style("border", "1px solid red");
-    this.playButton.style("border-radius", "8px");
-    this.playButton.style("box-shadow", "0 3px #f009");
+    this.startgameButton.show();
+    this.startgameButton.position(windowWidth / 2 - 400, windowHeight / 2 + 10);
+    this.startgameButton.size(280, 70);
+    this.startgameButton.style("background-color", "#01c2cb");
+    this.startgameButton.style("color", "white");
+    //thstartgame.style("font", "statusbarAndOther");
+    this.startgameButton.style("font-size", "25");
+    this.startgameButton.style("border", "1px solid red");
+    this.startgameButton.style("border-radius", "8px");
+    this.startgameButton.style("box-shadow", "0 3px #f009");
     pop();
 
     // CREATE GREETING
@@ -122,70 +132,71 @@ class GameIntro {
     text("SPACE EXPLORER", width / 2 - 40, 140);
     fill("blue");
     text("SPACE EXPLORER", width / 2 - 37, 140);
-    
+
     // PLEASE ENTER YOUR NAME
     fill("#01c2cb");
     textSize(15);
     textAlign(LEFT);
     textFont(spaceExplorerBold);
-    text("PLEASE ENTER ", width / 2 - 400, height / 2 - 145);
-    text("YOUR NAME HERE:", width / 2 - 400, height / 2 - 120);
+    text("PLEASE ENTER YOUR NAME HERE:", width / 2 - 400, height / 2 - 145);
+    // text("YOUR NAME HERE:", width / 2 - 400, height / 2 - 120);
     //text("HIGHSCORE:", width / 2 + 210, height / 2 - 115);
     //text("HIGHSCORE", width / 2 + 140, height / 2 - 115);
     pop();
   }
+
   // CREATE BACKSTORY TEXT
-  //   private createBackstoryText() {
-  //   push();
-  //   fill("white");
-  //   textSize(17);
-  //   text(
-  //     "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE",
-  //     windowWidth / 2,
-  //     windowHeight / 2 - 80
-  //   );
-  //   text(
-  //     "YOUR GOAL IS TO TRAVEL AS FAR FROM THE EARTH AS POSSIBLE.",
-  //     windowWidth / 2,
-  //     windowHeight / 2 - 60
-  //   );
-  //   text(
-  //     "YOU ARE SENT AWAY FROM EARTH IN A SPACESHIP WITH AN ENERGY-GENERATING SPEED SYSTEM ",
-  //     windowWidth / 2,
-  //     windowHeight / 2 - 40
-  //   );
-  //   text(
-  //     "THAT MAKES THE SPACESHIPS SPEED INCREASE CONSTANTLY THE FURTHER AWAY FROM EARTH YOU GET.",
-  //     windowWidth / 2,
-  //     windowHeight / 2 - 20
-  //   );
-  //   text(
-  //     "DURING THE MISSION, YOU SHOULD AVOID OR ELIMINATE THE DANGERS THAT EXIST IN SPACE,",
-  //     windowWidth / 2,
-  //     windowHeight / 2
-  //   );
-  //   text(
-  //     "SUCH AS OTHER PLANETS, METEORITES AND ESPECIALLY BLACK HOLES.",
-  //     windowWidth / 2,
-  //     windowHeight / 2 + 20
-  //   );
-  //   text(
-  //     "FORTUNATELY, YOU HAVE BEEN ASSIGNED A SPACESHIP OF THE VERY LATEST MODEL.",
-  //     windowWidth / 2,
-  //     windowHeight / 2 + 40
-  //   );
-  //   text(
-  //     "IT CAN WITHSTAND SOME DAMAGE AND CAN EVEN REPAIR ITSELF,",
-  //     windowWidth / 2,
-  //     windowHeight / 2 + 60
-  //   );
-  //   text(
-  //     "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",
-  //     windowWidth / 2,
-  //     windowHeight / 2 + 80
-  //   );
-  //   pop();
-  // }
+  public createBackstoryText() {
+    push();
+    fill("white");
+    textSize(17);
+    text(
+      "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE",
+      windowWidth / 2,
+      windowHeight / 2 - 80
+    );
+    text(
+      "YOUR GOAL IS TO TRAVEL AS FAR FROM THE EARTH AS POSSIBLE.",
+      windowWidth / 2,
+      windowHeight / 2 - 60
+    );
+    text(
+      "YOU ARE SENT AWAY FROM EARTH IN A SPACESHIP WITH AN ENERGY-GENERATING SPEED SYSTEM ",
+      windowWidth / 2,
+      windowHeight / 2 - 40
+    );
+    text(
+      "THAT MAKES THE SPACESHIPS SPEED INCREASE CONSTANTLY THE FURTHER AWAY FROM EARTH YOU GET.",
+      windowWidth / 2,
+      windowHeight / 2 - 20
+    );
+    text(
+      "DURING THE MISSION, YOU SHOULD AVOID OR ELIMINATE THE DANGERS THAT EXIST IN SPACE,",
+      windowWidth / 2,
+      windowHeight / 2
+    );
+    text(
+      "SUCH AS OTHER PLANETS, METEORITES AND ESPECIALLY BLACK HOLES.",
+      windowWidth / 2,
+      windowHeight / 2 + 20
+    );
+    text(
+      "FORTUNATELY, YOU HAVE BEEN ASSIGNED A SPACESHIP OF THE VERY LATEST MODEL.",
+      windowWidth / 2,
+      windowHeight / 2 + 40
+    );
+    text(
+      "IT CAN WITHSTAND SOME DAMAGE AND CAN EVEN REPAIR ITSELF,",
+      windowWidth / 2,
+      windowHeight / 2 + 60
+    );
+    text(
+      "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",
+      windowWidth / 2,
+      windowHeight / 2 + 80
+    );
+    pop();
+  }
 
   // CREATE STARS
   private createGameObjects() {
@@ -205,6 +216,5 @@ class GameIntro {
   // CHANGE GUI TO PLAY
   private changeGui = () => {
     this.gameGUI.updateGUI("play");
-    this.continueButton.hide();
   };
 }
