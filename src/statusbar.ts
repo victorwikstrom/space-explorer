@@ -31,17 +31,25 @@ class StatusBar {
     pop();
 
     push();
-    textSize(20);
+    textSize(15);
     noStroke();
-    fill(this.textColor);
+    fill("red");
+    textAlign(CENTER);
+    textFont(spaceExplorerBold);
     // DISTANCE FROM EARTH
-    text("DISTANCE FROM EARTH", 70, 30);
-    text(this.distanceFromEarth.toFixed() + " 000", 70, 50);
+    text("DISTANCE FROM EARTH", 200, 30);
+    fill(this.textColor);
+    text(this.distanceFromEarth.toFixed() + " 000", 200, 50);
     // CURRENT SPEED
-    text("CURRENT SPEED (KM/S)", width / 3 + 30, 30);
-    text(this.currentSpeed.toFixed() + " 000", width / 3 + 30, 50);
+    fill("red");
+    text("CURRENT SPEED (KM/S)", width / 3 + 200, 30);
+    fill(this.textColor);
+    text(this.currentSpeed.toFixed() + " 000", width / 3 + 200, 50);
     // SPACESHIP CONDITION
-    text("SPACESHIP CONDITION", width - width / 3 + 30, 30);
+    fill("red");
+    text("SPACESHIP CONDITION", width - width / 3 + 200, 30);
+    fill("blue");
+    (CENTER);
     this.drawEllipses(health);
     pop();
   }
