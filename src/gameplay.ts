@@ -37,18 +37,9 @@ class GamePlay {
 
     this.player.draw();
     this.drawGameObjects();
-    this.updateCollisionCount();
 
     // DRAW STATUSBAR
     this.statusBar.draw(this.player.currentHealth);
-  }
-
-  private updateCollisionCount() {
-    push();
-    textSize(50);
-    fill("white");
-    text(String(this.player.currentHealth), width - 100, 120);
-    pop();
   }
 
   /** Change gui to Game Over */
@@ -59,10 +50,10 @@ class GamePlay {
   /** Create all game object instances */
   private createGameObjects() {
     const nrOfStars = 1000;
-    const nrOfPlanets = 2;
-    const nrOfDiamonds = 2;
-    const nrOfMeteorites = 2;
-    const nrOfBlackHoles = 2;
+    const nrOfPlanets = 3;
+    const nrOfDiamonds = 4;
+    const nrOfMeteorites = 5;
+    const nrOfBlackHoles = 3;
 
     for (let i = 0; i < nrOfStars; i++) {
       this.stars.push(new Star());

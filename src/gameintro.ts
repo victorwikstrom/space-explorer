@@ -3,7 +3,7 @@ class GameIntro {
   private isActive: boolean;
   private gameObjects: Array<GameObject>;
   private introBox: p5.Element;
-  //private input: p5.Element;
+  public input: p5.Element;
   public button: p5.Element;
   private highscoreChart: HighscoreChart;
   // private muteIcon: p5.Image;
@@ -17,12 +17,11 @@ class GameIntro {
     // this.mute = false;
     this.introBox = createDiv();
     this.highscoreChart = new HighscoreChart();
-    //this.input = createInput("...");
+    this.input = createInput("...");
     this.button = createButton("CONTINUE");
   }
 
   public update() {
-    this.updateGameObjects();
     this.highscoreChart.update();
     this.button.mousePressed(this.changeGui);
   }
@@ -42,15 +41,15 @@ class GameIntro {
     //DRAW HIGHSCORE CHART
     this.highscoreChart.createHighscoreList();
 
-    // GO TO NEXT GUI
-    this.button.mousePressed(() => {
-      this.isActive = false;
-      this.button.hide();
-      //this.input.hide();
-      this.introBox.hide();
-      //this.createBackstoryText()
-      this.gameGUI.updateGUI("play");
-    });
+    // GO TO NEXT GUI -  OBS FINNS EN MOUSEPRESSED FUNKTION I UPDATE()
+    // this.button.mousePressed(() => {
+    //   this.isActive = false;
+    //   //this.createBackstoryText()
+    //   this.changeGui();
+    //   //this.button.hide();
+    //   this.input.hide();
+    //   //this.introBox.hide();
+    // });
   }
 
   private createElements() {
@@ -64,19 +63,19 @@ class GameIntro {
     pop();
 
     //CREATE INPUTFIELD
-    //    push();
-    // this.input.show();
-    // this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
-    // this.input.size(380, 60);
-    // this.input.style("stroke", "red");
-    // this.input.style("strokeWeight", "4");
-    // this.input.style("background-color", "#00f2");
-    // this.input.style("color", "#FAFDEB");
-    // this.input.style("font-size", "20");
-    // this.input.style("textAlign", "LEFT");
-    // this.input.style("padding", "10");
-    // storeItem("playerName", this.input.value());
-    // pop(); 
+    push();
+    this.input.show();
+    this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
+    this.input.size(380, 60);
+    this.input.style("stroke", "red");
+    this.input.style("strokeWeight", "4");
+    this.input.style("background-color", "#00f2");
+    this.input.style("color", "#FAFDEB");
+    this.input.style("font-size", "20");
+    this.input.style("textAlign", "LEFT");
+    this.input.style("padding", "10");
+    storeItem("playerName", this.input.value());
+    pop();
 
     // CREATE CONTINUE BUTTON
     push();
@@ -183,14 +182,6 @@ class GameIntro {
     for (let gameObject of this.gameObjects) {
       if (gameObject instanceof Star) {
         gameObject.draw();
-      }
-    }
-  }
-
-  private updateGameObjects() {
-    for (let gameObject of this.gameObjects) {
-      if (gameObject instanceof Star) {
-        gameObject.update();
       }
     }
   }

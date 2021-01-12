@@ -20,7 +20,6 @@ class GameOver {
   }
 
   public update() {
-    this.updateGameObjects();
     this.highscoreChart.update();
     this.button.mousePressed(this.changeGui);
   }
@@ -49,7 +48,7 @@ class GameOver {
   }
 
   private createElements() {
-    this.highscoreChart.draw()
+    this.highscoreChart.draw();
     // CREATE GAMEOVERBOX
     push();
     this.gameoverBox.show();
@@ -106,14 +105,6 @@ class GameOver {
     for (let gameObject of this.gameObjects) {
       if (gameObject instanceof Star) {
         gameObject.draw();
-      }
-    }
-  }
-
-  private updateGameObjects() {
-    for (let gameObject of this.gameObjects) {
-      if (gameObject instanceof Star) {
-        gameObject.update();
       }
     }
   }
