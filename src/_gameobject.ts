@@ -9,7 +9,7 @@ abstract class GameObject {
 
   constructor() {
     this.size = 0;
-    this.position = createVector(random(width), random(95, height));
+    this.position = createVector(random(width, width * 2), random(95, height));
     this.velocity = createVector(0, 0);
     this.acceleration = createVector(0, 0);
     this.radius = 0;
