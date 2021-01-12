@@ -8,6 +8,7 @@ class GameIntro {
   private backstoryText: p5.Element;
   public continueButton: p5.Element;
   private startgameButton: p5.Element;
+  private backstory: Array<string>;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -17,13 +18,24 @@ class GameIntro {
     this.highscoreChart = new HighscoreChart();
     this.input = createInput("...");
     this.backstoryText = createSpan();
+    this.backstory = [
+      "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE", 
+      "YOUR GOAL IS TO TRAVEL AS FAR FROM THE EARTH AS POSSIBLE.",
+      "YOU ARE SENT AWAY FROM EARTH IN A SPACESHIP WITH AN ENERGY-GENERATING SPEED SYSTEM ",
+      "THAT MAKES THE SPACESHIPS SPEED INCREASE CONSTANTLY THE FURTHER AWAY FROM EARTH YOU GET.",
+      "DURING THE MISSION, YOU SHOULD AVOID OR ELIMINATE THE DANGERS THAT EXIST IN SPACE,",
+      "SUCH AS OTHER PLANETS, METEORITES AND ESPECIALLY BLACK HOLES.",
+      "FORTUNATELY, YOU HAVE BEEN ASSIGNED A SPACESHIP OF THE VERY LATEST MODEL.",
+      "IT CAN WITHSTAND SOME DAMAGE AND CAN EVEN REPAIR ITSELF,",
+      "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",      
+    ];
     this.continueButton = createButton("CONTINUE");
     this.startgameButton = createButton("START GAME");
   }
 
   public update() {
     this.highscoreChart.update();
-    // this.continueButton.mousePressed(this.toggleBackstoryText);
+    this.continueButton.mousePressed(this.toggleBackstoryText);
     this.startgameButton.mousePressed(this.changeGui);
   }
 
@@ -150,6 +162,7 @@ class GameIntro {
     push();
     fill("white");
     textSize(17);
+    frameRate(0.5)
     text(
       "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE",
       windowWidth / 2,
