@@ -13,7 +13,7 @@ class BlackHole extends GameObject {
     this.position = this.position;
     this.velocity = createVector(random(2, 3), 0);
 
-    this.radius = 40;
+    this.radius = 60;
     this.damage = 12; //HIGHER THAN 10 TO DIE
     this.image = this.setPlayerImage(blackHoleImg);
   }
