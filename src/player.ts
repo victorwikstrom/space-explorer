@@ -168,7 +168,7 @@ class Player {
     text(player1, width / 2, height / 3 + 20);
     fill("red");
     textSize(90);
-    text("YOU DIED", width / 2, height / 2);
+    text("YOU DIED!", width / 2, height / 2);
     pop();
     //STOP DRAW
     noLoop();

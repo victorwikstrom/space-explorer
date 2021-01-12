@@ -3,12 +3,12 @@ class GameIntro {
   private isActive: boolean;
   private gameObjects: Array<GameObject>;
   private introBox: p5.Element;
-  public input: p5.Element;
+  private input: p5.Element;
   private highscoreChart: HighscoreChart;
   private backstoryText: p5.Element;
-  public continueButton: p5.Element;
+  private continueButton: p5.Element;
   private startgameButton: p5.Element;
-  private backstory: Array<string>;
+  // private backstory: Array<string>;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -16,27 +16,48 @@ class GameIntro {
     this.gameObjects = [];
     this.introBox = createDiv();
     this.highscoreChart = new HighscoreChart();
-    this.input = createInput("...");
-    this.backstoryText = createSpan();
-    this.backstory = [
-      "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE", 
-      "YOUR GOAL IS TO TRAVEL AS FAR FROM THE EARTH AS POSSIBLE.",
-      "YOU ARE SENT AWAY FROM EARTH IN A SPACESHIP WITH AN ENERGY-GENERATING SPEED SYSTEM ",
-      "THAT MAKES THE SPACESHIPS SPEED INCREASE CONSTANTLY THE FURTHER AWAY FROM EARTH YOU GET.",
-      "DURING THE MISSION, YOU SHOULD AVOID OR ELIMINATE THE DANGERS THAT EXIST IN SPACE,",
-      "SUCH AS OTHER PLANETS, METEORITES AND ESPECIALLY BLACK HOLES.",
-      "FORTUNATELY, YOU HAVE BEEN ASSIGNED A SPACESHIP OF THE VERY LATEST MODEL.",
-      "IT CAN WITHSTAND SOME DAMAGE AND CAN EVEN REPAIR ITSELF,",
-      "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",      
-    ];
-    this.continueButton = createButton("CONTINUE");
+    this.input = createInput();
+    this.backstoryText = createP();
+    // this.backstory = [
+    //   "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE", 
+    //   "YOUR GOAL IS TO TRAVEL AS FAR FROM THE EARTH AS POSSIBLE.",
+    //   "YOU ARE SENT AWAY FROM EARTH IN A SPACESHIP WITH AN ENERGY-GENERATING SPEED SYSTEM ",
+    //   "THAT MAKES THE SPACESHIPS SPEED INCREASE CONSTANTLY THE FURTHER AWAY FROM EARTH YOU GET.",
+    //   "DURING THE MISSION, YOU SHOULD AVOID OR ELIMINATE THE DANGERS THAT EXIST IN SPACE,",
+    //   "SUCH AS OTHER PLANETS, METEORITES AND ESPECIALLY BLACK HOLES.",
+    //   "FORTUNATELY, YOU HAVE BEEN ASSIGNED A SPACESHIP OF THE VERY LATEST MODEL.",
+    //   "IT CAN WITHSTAND SOME DAMAGE AND CAN EVEN REPAIR ITSELF,",
+    //   "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",      
+    // ];
     this.startgameButton = createButton("START GAME");
+    this.continueButton = createButton("CONTINUE");
   }
 
   public update() {
     this.highscoreChart.update();
-    this.continueButton.mousePressed(this.toggleBackstoryText);
+    this.continueButton.mousePressed(this.createBackstoryText);
     this.startgameButton.mousePressed(this.changeGui);
+    
+    // GO TO NEXT GUI -
+    this.startgameButton.mousePressed(() => {
+      this.isActive = false;
+      this.continueButton.hide();
+      this.input.hide();
+      // this.backstoryText.hide();
+      this.startgameButton.hide();
+      this.introBox.hide();
+      this.changeGui();
+      removeElements();
+    });
+
+    // TOGGLE FROM NAME INPUT TO BACKSTORY TEXT
+    this.continueButton.mousePressed(() => {
+      this.isActive = false;
+      this.continueButton.hide();
+      this.input.hide();
+      this.backstoryText.show();
+      this.startgameButton.show();
+    });
   }
 
   public draw() {
@@ -50,27 +71,6 @@ class GameIntro {
 
     //DRAW HIGHSCORE CHART
     this.highscoreChart.createHighscoreList();
-
-    // TOGGLE FROM NAME INPUT TO BACKSTORY TEXT
-    this.continueButton.mousePressed(() => {
-      this.isActive = false;
-      this.continueButton.hide();
-      this.input.hide();
-      this.backstoryText.show();
-      // this.toggleBackstoryText();
-      this.startgameButton.show();
-    });
-
-    // GO TO NEXT GUI -
-    this.startgameButton.mousePressed(() => {
-      this.isActive = false;
-      this.continueButton.hide();
-      this.input.hide();
-      this.backstoryText.hide();
-      this.startgameButton.hide();
-      this.introBox.hide();
-      this.changeGui();
-    });
   }
 
   public createElements() {
@@ -116,12 +116,12 @@ class GameIntro {
 
     // CREATE PLAY BUTTON
     push();
-    this.startgameButton.show();
-    this.startgameButton.position(windowWidth / 2 - 400, windowHeight / 2 + 10);
+    this.startgameButton.hide();
+    this.startgameButton.position(width / 2 - 140, height / 2 + 100);
     this.startgameButton.size(280, 70);
     this.startgameButton.style("background-color", "#01c2cb");
     this.startgameButton.style("color", "white");
-    //thstartgame.style("font", "statusbarAndOther");
+    //this.startgame.style("font", "statusbarAndOther");
     this.startgameButton.style("font-size", "25");
     this.startgameButton.style("border", "1px solid red");
     this.startgameButton.style("border-radius", "8px");
@@ -147,9 +147,10 @@ class GameIntro {
 
     // PLEASE ENTER YOUR NAME
     fill("#01c2cb");
+    noStroke();
     textSize(15);
     textAlign(LEFT);
-    textFont(spaceExplorerBold);
+    // textFont(spaceExplorerBold);
     text("PLEASE ENTER YOUR NAME HERE:", width / 2 - 400, height / 2 - 145);
     // text("YOUR NAME HERE:", width / 2 - 400, height / 2 - 120);
     //text("HIGHSCORE:", width / 2 + 210, height / 2 - 115);
@@ -158,7 +159,7 @@ class GameIntro {
   }
 
   // CREATE BACKSTORY TEXT
-  public createBackstoryText() {
+  private createBackstoryText() {
     push();
     fill("white");
     textSize(17);

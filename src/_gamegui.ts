@@ -5,9 +5,9 @@ class GameGUI implements IGameState {
   private gameOver: GameOver;
 
   constructor() {
-    this.currentGUI = "over";
+    this.currentGUI = "intro";
     this.gameIntro = new GameIntro(this);
-    this.gamePlay = new GamePlay(this);
+    this.gamePlay = new GamePlay();
     this.gameOver = new GameOver(this);
   }
 
@@ -40,7 +40,7 @@ class GameGUI implements IGameState {
 
     if (this.currentGUI === "play") {
       removeElements();
-      this.gamePlay = new GamePlay(this);
+      this.gamePlay = new GamePlay();
       this.gameOver = new GameOver(this);
       this.gameIntro = new GameIntro(this);
     } else {

@@ -1,7 +1,7 @@
 class GameOver {
   private gameGUI: IGameState;
   private isActive: boolean;
-  public button: p5.Element;
+  private playAgainButton: p5.Element;
   private gameObjects: Array<GameObject>;
   private highscoreChart: HighscoreChart;
   private gameoverBox: p5.Element;
@@ -12,12 +12,12 @@ class GameOver {
     this.gameObjects = [];
     this.gameoverBox = createDiv();
     this.highscoreChart = new HighscoreChart();
-    this.button = createButton("PLAY AGAIN");
+    this.playAgainButton = createButton("PLAY AGAIN");
   }
 
   public update() {
     this.highscoreChart.update();
-    this.button.mousePressed(this.changeGui);
+    this.playAgainButton.mousePressed(this.changeGui);
   }
 
   public draw() {
@@ -33,10 +33,10 @@ class GameOver {
     this.highscoreChart.draw();
 
     //GO TO NEXT GUI
-    this.button.mousePressed(() => {
+    this.playAgainButton.mousePressed(() => {
       this.isActive = false;
-      this.button.hide();
-      //this.highscoreChart.hide();
+      this.playAgainButton.hide();
+      // this.highscoreChart.hide();
       this.gameoverBox.hide();
       this.gameGUI.updateGUI("play");
     });
@@ -44,6 +44,7 @@ class GameOver {
 
   private createElements() {
     this.highscoreChart.draw();
+    
     // CREATE GAMEOVERBOX
     push();
     this.gameoverBox.show();
@@ -55,16 +56,16 @@ class GameOver {
 
     // CREATE PLAY AGAIN BUTTON
     push();
-    this.button.show();
-    this.button.position(windowWidth / 2 - 400, windowHeight / 2 + 20);
-    this.button.size(280, 70);
-    this.button.style("background-color", "#01c2cb");
-    this.button.style("color", "white");
-    this.button.style("textFont", "statusbarAndOther");
-    this.button.style("font-size", "25");
-    this.button.style("border", "1px solid red");
-    this.button.style("border-radius", "8px");
-    this.button.style("box-shadow", "0 3px #f009");
+    this.playAgainButton.show();
+    this.playAgainButton.position(windowWidth / 2 - 400, windowHeight / 2 + 20);
+    this.playAgainButton.size(280, 70);
+    this.playAgainButton.style("background-color", "#01c2cb");
+    this.playAgainButton.style("color", "white");
+    // this.playAgainButton.style("textFont", "statusbarAndOther");
+    this.playAgainButton.style("font-size", "25");
+    this.playAgainButton.style("border", "1px solid red");
+    this.playAgainButton.style("border-radius", "8px");
+    this.playAgainButton.style("box-shadow", "0 3px #f009");
     pop();
 
     // CREATE TEXT
@@ -82,7 +83,7 @@ class GameOver {
     fill("white");
     textSize(20);
     text("YOU REACHED:", width / 2 - 398, height / 2 - 100);
-    //text("HIGHSCORE:", width / 2 + 140, height / 2 - 115);
+    text("HIGHSCORE:", width / 2 + 140, height / 2 - 115);
     pop();
   }
 
@@ -104,6 +105,6 @@ class GameOver {
   // CHANGE GUI TO PLAY
   private changeGui = () => {
     this.gameGUI.updateGUI("play");
-    this.button.hide();
+    this.playAgainButton.hide();
   };
 }

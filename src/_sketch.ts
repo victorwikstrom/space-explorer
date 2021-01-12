@@ -38,12 +38,12 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
   gameGUI = new GameGUI();
-  soundtrack.play();
-  button = createImg("assets/images/audio-8.png");
-  button.style("background-color", "blue");
-  button.style("border-radius", "50%");
-  button.position(windowWidth - 80, 12);
-  soundtrack.setVolume(0.3);
+  // soundtrack.play();
+  // button = createImg("assets/images/audio-8.png");
+  // button.style("background-color", "blue");
+  // button.style("border-radius", "50%");
+  // button.position(windowWidth - 80, 12);
+  // soundtrack.setVolume(0.3);
 }
 
 /**
@@ -55,7 +55,7 @@ function draw() {
   background(0);
   gameGUI.update();
   gameGUI.draw();
-  button.mousePressed(toggleSound);
+  // button.mousePressed(toggleSound);
 }
 
 /**
@@ -65,15 +65,16 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-function toggleSound() {
-  if (soundtrack.isPlaying()) {
-    soundtrack.pause();
-    button = createImg('assets/images/sound-on.svg');
-    // button.html('Mute Sound');
-  }
-  else {
-    soundtrack.play();
-    button = createImg('assets/images/sound-off.svg');
-    // button.html('Play Sound');
-  }
-}
+// function toggleSound() {
+//   if (soundtrack.isPlaying()) {
+//     soundtrack.pause();
+//     button = createImg('assets/images/sound-on.svg');
+//     // button.html('Mute Sound');
+//   }
+//   else {
+//     soundtrack.play();
+//     img = createImg(file.data, '');
+//     button = createImg('assets/images/sound-off.svg');
+//     // button.html('Play Sound');
+//   }
+// }

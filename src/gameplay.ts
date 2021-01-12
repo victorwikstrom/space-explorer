@@ -1,6 +1,6 @@
 class GamePlay {
   // Skapa interface så att player får tillgång till shots<>
-  private gameGUI: IGameState;
+//   private gameGUI: IGameState;
   private player: Player;
   private isActive: boolean;
   private gameObjects: Array<GameObject>;
@@ -10,8 +10,9 @@ class GamePlay {
   private statusBar: StatusBar;
   private gameAcceleration: number;
 
-  constructor(gameGUI: IGameState) {
-    this.gameGUI = gameGUI;
+  constructor() {
+//   constructor(gameGUI: IGameState) {
+    //     this.gameGUI = gameGUI;
     this.isActive = false;
     this.gameObjects = [];
     this.stars = [];
@@ -44,19 +45,10 @@ class GamePlay {
     this.statusBar.draw(this.player.currentHealth);
   }
 
-  /** Create all game object instances */
-  private createGameObjects() {
-    const nrOfStars = 1000;
-    const nrOfPlanets = 3;
-    const nrOfDiamonds = 4;
-    const nrOfMeteorites = 5;
-    const nrOfBlackHoles = 3;
-
-    for (let i = 0; i < nrOfStars; i++) {
   /** Change gui to Game Over */
-  // private changeGui = () => {
-  //   this.gameGUI.updateGUI("over");
-  // };
+//   private changeGui = () => {
+//     this.gameGUI.updateGUI("over");
+//   };
 
   private createStars() {
     for (let i = 0; i < 1000; i++) {
@@ -122,10 +114,8 @@ class GamePlay {
       (gameObject) => gameObject.position.y
     );
     // const yPos = [0, 8, 50, 200, 230];
-
     const indexStart = floor(random(yPositions.length - 1));
     const indexEnd = indexStart + 1;
-
     const validYPos = random(
       yPositions[indexStart] + 25 * 2,
       yPositions[indexEnd] - 25 * 2
@@ -197,10 +187,4 @@ class GamePlay {
     }
     return health;
   }
-
-  /** Change gui to Game Over */
-  // private changeGui = () => {
-  //   this.gameGUI.updateGUI("over");
-  // };
-
 }
