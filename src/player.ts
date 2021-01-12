@@ -159,11 +159,14 @@ class Player {
     pop();
     //DRAW TEXT
     push();
-    fill(color("white"));
-    textSize(90);
+    fill("#01c2cb");
+    textFont(spaceExplorerBold);
+    textSize(35);
     textAlign(CENTER);
     let player1 = getItem("playerName");
     text(player1, width / 2, height / 3 + 20);
+    fill("red");
+    textSize(90);
     text("YOU DIED", width / 2, height / 2);
     pop();
     //STOP DRAW

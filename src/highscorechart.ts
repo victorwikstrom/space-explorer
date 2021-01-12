@@ -22,7 +22,8 @@ class HighscoreChart {
         textSize(22);
         
         //text("YOU REACHED:", width / 2 - 398, height / 2 - 115);
-        textSize(60)
+        textSize(35)
+        textFont(spaceExplorerBold);
         fill("red")
         let num = getItem("highscore"); 
         text(num + " 000 L-Y", width / 2 - 398, height / 2 - 40);
@@ -32,18 +33,21 @@ class HighscoreChart {
       // HIGHSCORECHART
       public createHighscoreList() {
       push();
-      fill("white");
+      noStroke();
+      fill("#01c2cb");
+      textFont(spaceExplorerBold);
       textSize(22);
-      text("HIGHSCORE", width / 2 + 140, height / 2 - 115); 
+      text("HIGHSCORES", width / 2 + 140, height / 2 - 115);
+      // ADD BLUE LINE 
 
 
       // HIGHSCORE LIST
       let num1 = getItem("highscore"); 
-      
       // IF LOCAL STORAGE IS EMTY
       if (num1 === null) {
         num1 = text("Ingen har spelat än", width / 2 + 140, height / 2 - 70);
       } else {
+        fill("red");
         text(num1 + " 000 L-Y", width / 2 + 140, height / 2 - 70); 
       }
 
