@@ -2,6 +2,7 @@ class Player {
   position: p5.Vector;
   velocity: p5.Vector;
   acceleration: p5.Vector;
+  radius: number;
   name: string;
   score: number;
   isAlive: boolean;
@@ -16,6 +17,7 @@ class Player {
     this.position = createVector(100, height * 0.5);
     this.velocity = createVector(0, 0);
     this.acceleration = createVector(0.0, 0.0);
+    this.radius = width / 20;
     this.name = "Player";
     this.score = 0;
     this.isAlive = true;
@@ -41,12 +43,7 @@ class Player {
   }
 
   public draw() {
-    push();
-    fill(this.textColor);
-    textSize(12);
-    //text(this.name, this.position.x, this.position.y - 20);
     image(this.image, this.position.x, this.position.y);
-    pop();
   }
 
   private move() {
@@ -97,7 +94,7 @@ class Player {
   }
 
   private setPlayerImage(img: p5.Image) {
-    img.resize(100, 0);
+    img.resize(this.radius, 0);
     return img;
   }
 
@@ -111,7 +108,10 @@ class Player {
   }
 
   private shoot() {
-    let shot = new Shot(this.position.x + 100, this.position.y + 36);
+    let shot = new Shot(
+      this.position.x + this.radius * 0.6,
+      this.position.y + this.radius * 0.37
+    );
     this.shots.push(shot);
   }
 
@@ -133,14 +133,15 @@ class Player {
 
   public collides(obj: GameObject): boolean {
     let d = dist(
-      this.position.x + 40,
-      this.position.y + 40,
+      this.position.x + 10,
+      this.position.y + 10,
       obj.position.x,
       obj.position.y
     );
-    if (d < obj.radius + 40 && !obj.isHit) {
+    if (d < this.radius + 5 && !obj.isHit) {
       return true;
     } else {
+      obj.isHit = false;
       return false;
     }
   }

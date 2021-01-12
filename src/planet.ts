@@ -10,7 +10,7 @@ class Planet extends GameObject {
     this.velocity = createVector(random(3, 5), 0);
     // this.acceleration = createVector(0, 0);
     this.damage = 3;
-    this.radius = 17;
+    this.radius = width / random(25, 35);
     this.color = color(95, 45, 139);
 
     //     this.collisionSound = p5.SoundFile;
