@@ -1,5 +1,4 @@
 class BlackHole extends GameObject {
-  public damage: number;
   // private collisionSound: string; // TO BE ADDED LATER
   public image: p5.Image;
 

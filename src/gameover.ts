@@ -1,15 +1,15 @@
 class GameOver {
   private gameGUI: IGameState;
+  private highscoreChart: HighscoreChart;
+  private stars: Array<Star>;
   private isActive: boolean;
   public button: p5.Element;
-  private gameObjects: Array<GameObject>;
-  private highscoreChart: HighscoreChart;
   private gameoverBox: p5.Element;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
     this.isActive = false;
-    this.gameObjects = [];
+    this.stars = [];
     this.gameoverBox = createDiv();
     this.highscoreChart = new HighscoreChart();
     this.button = createButton("PLAY AGAIN");
@@ -23,10 +23,14 @@ class GameOver {
   public draw() {
     // GUI SETUP
     if (this.isActive === false) {
-      this.createGameObjects();
+      this.createStars();
       this.isActive = true;
     }
-    this.drawGameObjects();
+    
+    for (let star of this.stars){
+      star.draw();
+    }
+
     this.createElements();
 
     //DRAW HIGHSCORE CHART
@@ -87,17 +91,9 @@ class GameOver {
   }
 
   // CREATE STARS
-  private createGameObjects() {
+  private createStars() {
     for (let i = 0; i < 1000; i++) {
-      this.gameObjects.push(new Star());
-    }
-  }
-
-  private drawGameObjects() {
-    for (let gameObject of this.gameObjects) {
-      if (gameObject instanceof Star) {
-        gameObject.draw();
-      }
+      this.stars.push(new Star());
     }
   }
 

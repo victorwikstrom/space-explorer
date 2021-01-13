@@ -2,7 +2,7 @@ abstract class GameObject {
   public position: p5.Vector;
   public radius: number;
   public velocity: p5.Vector;
-  protected acceleration: p5.Vector;
+  public acceleration: p5.Vector;
   public isHit: boolean;
   public damage: number;
 

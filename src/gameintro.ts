@@ -1,10 +1,10 @@
 class GameIntro {
   private gameGUI: IGameState;
-  private isActive: boolean;
+  private highscoreChart: HighscoreChart;
   private stars: Array<Star>;
+  private isActive: boolean;
   private introBox: p5.Element;
   public input: p5.Element;
-  private highscoreChart: HighscoreChart;
   public continueButton: p5.Element;
   public playButton: p5.Element;
 
