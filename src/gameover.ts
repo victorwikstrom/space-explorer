@@ -18,6 +18,7 @@ class GameOver {
   public update() {
     this.highscoreChart.update();
     this.button.mousePressed(this.changeGui);
+    gameGUI.sound.update();
   }
 
   public draw() {
@@ -28,6 +29,7 @@ class GameOver {
     }
     this.drawGameObjects();
     this.createElements();
+    gameGUI.sound.draw();
 
     //DRAW HIGHSCORE CHART
     this.highscoreChart.draw();
