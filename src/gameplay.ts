@@ -70,7 +70,7 @@ class GamePlay {
     if (spawnRate < 0.005) {
       this.gameObjects.push(new Meteorite());
     }
-    if (spawnRate < 0.005) {
+    if (spawnRate < 0.001) {
       this.gameObjects.push(new BlackHole());
     }
   }

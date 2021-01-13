@@ -50,13 +50,13 @@ class GameOver {
     //DRAW HIGHSCORE CHART
     gameGUI.highscoreChart.draw();
 
-
     //GO TO NEXT GUI
     this.button.mousePressed(() => {
       this.isActive = false;
       this.button.hide();
       //this.highscoreChart.hide();
       this.gameoverBox.hide();
+      gameGUI.sound.stopSound(this.soundtrack);
       this.gameGUI.updateGUI("play");
     });
   }
@@ -100,7 +100,7 @@ class GameOver {
     fill("white");
     textSize(20);
     text("YOU REACHED:", width / 2 - 398, height / 2 - 100);
-    fill("red")
+    fill("red");
     textSize(35);
     let score = this.gameGUI.highscoreChart.currentScore.toFixed();
     text(score + " 000 L-Y", width / 2 - 398, height / 2 - 50);
