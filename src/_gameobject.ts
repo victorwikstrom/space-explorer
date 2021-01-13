@@ -7,7 +7,7 @@ abstract class GameObject {
   public damage: number;
 
   constructor() {
-    this.position = createVector(random(width), random(95, height));
+    this.position = createVector(random(width, width*2), random(95, height));
     this.radius = 0;
     this.velocity = createVector(0, 0);
     this.acceleration = createVector(0, 0);
