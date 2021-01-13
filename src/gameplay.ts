@@ -9,6 +9,7 @@ class GamePlay {
   public debris: Array<Debris>;
   private statusBar: StatusBar;
   private gameAcceleration: number;
+  gamePlaySound: p5.SoundFile;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -20,6 +21,7 @@ class GamePlay {
     this.shots = this.player.shots;
     this.statusBar = new StatusBar();
     this.gameAcceleration = 0.05;
+    this.gamePlaySound = gamePlaySound;
   }
 
   public update() {
@@ -33,16 +35,15 @@ class GamePlay {
   public draw() {
     // GUI SETUP
     if (this.isActive === false) {
+      gameGUI.sound.loopSound(this.gamePlaySound);
       this.createStars();
       this.isActive = true;
     }
 
     this.player.draw();
-    gameGUI.sound.draw();
     this.drawGameObjects();
-
-    // DRAW STATUSBAR
     this.statusBar.draw(this.player.currentHealth);
+    gameGUI.sound.draw();
   }
 
   /** Change gui to Game Over */
@@ -144,6 +145,7 @@ class GamePlay {
       this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
     } else if (obj instanceof SpaceDiamond) {
       obj.isHit = true;
+      gameGUI.sound.playSound(obj.hitSound);
       this.player.currentHealth = this.updateHealth(p.currentHealth, obj);
       this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
     } else {
@@ -165,11 +167,14 @@ class GamePlay {
 
   private explode(obj: GameObject) {
     if (obj instanceof Meteorite) {
-      this.createDebris(10, obj.position.x, obj.position.y, "blue");
+      this.createDebris(15, obj.position.x, obj.position.y, "blue");
+      gameGUI.sound.playSound(obj.collisionSound);
     } else if (obj instanceof Planet) {
-      this.createDebris(20, obj.position.x, obj.position.y, "red");
+      gameGUI.sound.playSound(obj.collisionSound);
+      this.createDebris(35, obj.position.x, obj.position.y, "red");
     } else if (obj instanceof SpaceDiamond) {
-      this.createDebris(30, obj.position.x, obj.position.y, "yellow");
+      gameGUI.sound.playSound(obj.shotSound);
+      this.createDebris(25, obj.position.x, obj.position.y, "yellow");
     } else {
       return;
     }
@@ -183,13 +188,14 @@ class GamePlay {
 
   private updateHealth(health: number, obj: GameObject) {
     health = this.player.currentHealth - obj.damage;
-     if (health <= 0) {
-      this.gameGUI.highscoreChart.setCurrentScore(this.statusBar.distanceFromEarth);
+    if (health <= 0) {
+      this.gameGUI.highscoreChart.setCurrentScore(
+        this.statusBar.distanceFromEarth
+      );
       this.gameGUI.highscoreChart.addNewHighscore();
+      gameGUI.sound.stopSound(this.gamePlaySound);
       this.player.die();
     }
     return health;
   }
-
 }
-

@@ -52,12 +52,22 @@ class Sound {
   public toggleSound() {
     if (soundtrack.isPlaying()) {
       soundtrack.pause();
+      gamePlaySound.pause();
     } else {
       soundtrack.play();
+      gamePlaySound.play();
     }
   }
 
-  public sound(sound: p5.SoundFile) {
+  public playSound(sound: p5.SoundFile) {
     sound.play();
+  }
+
+  public stopSound(sound: p5.SoundFile) {
+    sound.stop();
+  }
+
+  public loopSound(sound: p5.SoundFile) {
+    sound.loop();
   }
 }
