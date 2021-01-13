@@ -5,7 +5,6 @@ class Debris extends GameObject {
   private xspeed: number;
   private yspeed: number;
   public opacity;
-
   // private collisionSound: string - To be added later
 
   constructor(x: number, y: number, color: String) {

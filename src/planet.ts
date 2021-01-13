@@ -1,8 +1,7 @@
 class Planet extends GameObject {
-  damage: number;
-  images: Array<p5.Image>;
-  number: number;
-  // collisionSound: p5.SoundFile;
+  private images: Array<p5.Image>;
+  private number: number;
+  //private collisionSound: p5.SoundFile;
 
   constructor() {
     super();
