@@ -86,7 +86,7 @@ class GameIntro {
     // CREATE PLAY BUTTON
     push();
     this.playButton.show();
-    this.playButton.position(windowWidth / 2 - 400, windowHeight / 2 + 10);
+    this.playButton.position(width / 2 - 140, height / 2 + 100);
     this.playButton.size(280, 70);
     this.playButton.style("background-color", "#01c2cb");
     this.playButton.style("color", "white");
