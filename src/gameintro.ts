@@ -9,24 +9,29 @@ class GameIntro {
   private backstoryText: p5.Element;
   public continueButton: p5.Element;
   public startgameButton: p5.Element;
-  // private backstory: Array<string>;
   private stars: Array<Star>;
   public nameInput: p5.Element;
-  public playButton: p5.Element;
   private soundtrack: p5.SoundFile;
   private buttonSound: p5.SoundFile;
+  // private backstory: Array<string>;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
     this.isActive = false;
     this.gameObjects = [];
+    this.stars = [];
     this.continueBox = createDiv();
     this.startgameBox = createDiv();
-    this.highscoreChart = new HighscoreChart();
     this.input = createInput("");
-    this.backstoryText = createElement('P');
+    this.startgameButton = createButton("START GAME");
+    this.nameInput = createInput("");
+    this.continueButton = createButton("CONTINUE");
+    // this.highscoreChart = new HighscoreChart();
+    this.backstoryText = createElement("P");
+    this.soundtrack = soundtrack;
+    this.buttonSound = buttonClickSound;
     // this.backstory = [
-    //   "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE", 
+    //   "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE",
     //   "YOUR GOAL IS TO TRAVEL AS FAR FROM THE EARTH AS POSSIBLE.",
     //   "YOU ARE SENT AWAY FROM EARTH IN A SPACESHIP WITH AN ENERGY-GENERATING SPEED SYSTEM ",
     //   "THAT MAKES THE SPACESHIPS SPEED INCREASE CONSTANTLY THE FURTHER AWAY FROM EARTH YOU GET.",
@@ -34,28 +39,21 @@ class GameIntro {
     //   "SUCH AS OTHER PLANETS, METEORITES AND ESPECIALLY BLACK HOLES.",
     //   "FORTUNATELY, YOU HAVE BEEN ASSIGNED A SPACESHIP OF THE VERY LATEST MODEL.",
     //   "IT CAN WITHSTAND SOME DAMAGE AND CAN EVEN REPAIR ITSELF,",
-    //   "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",      
+    //   "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",
     // ];
-    this.startgameButton = createButton("START GAME");
-    this.stars = [];
-    this.continueBox = createDiv();
-    this.startgameBox = createDiv();
-    this.nameInput = createInput("");
-    this.continueButton = createButton("CONTINUE");
-    this.playButton = createButton("START GAME");
-    this.soundtrack = soundtrack;
-    this.buttonSound = buttonClickSound;
   }
 
   public update() {
     gameGUI.highscoreChart.setPlayerName(this.getNameInput());
+    //     this.highscoreChart.update();
+    //     this.continueButton.mousePressed(this.createBackstoryText);
+    //     this.startgameButton.mousePressed(this.changeGui);
     this.startgameButton.mousePressed(() => {
-      this.continueButton.hide();
-      this.input.hide();
-      this.backstoryText.show();
-      // this.toggleBackstoryText();
-      this.startgameButton.show();
-    });    this.startgameButton.mousePressed(this.changeGui);
+      gameGUI.sound.playSound(this.buttonSound);
+      // gameGUI.highscoreChart.setPlayerName(this.getNameInput());
+      gameGUI.sound.stopSound(this.soundtrack);
+      this.changeGui();
+    });
 
     // TOGGLE FROM NAME INPUT TO BACKSTORY TEXT
     this.continueButton.mousePressed(() => {
@@ -65,48 +63,26 @@ class GameIntro {
       // this.toggleBackstoryText();
       this.startgameButton.show();
     });
-          // this.playButton.mousePressed(() => {
-          //   gameGUI.sound.playSound(this.buttonSound);
-          //   gameGUI.highscoreChart.setPlayerName(this.getNameInput());
-          //   gameGUI.sound.stopSound(this.soundtrack);
-          //   this.changeGui();
-          //   //this.toggleBackstory();
-          // });
-          // gameGUI.sound.update();
 
     // GO TO NEXT GUI -
     this.startgameButton.mousePressed(() => {
-      this.isActive = false;
+      // this.isActive = false;
       this.continueButton.hide();
       this.input.hide();
       this.backstoryText.hide();
       this.startgameButton.hide();
       this.continueBox.hide();
       this.changeGui();
+      // removeElements();
     });
+    gameGUI.sound.update();
   }
-  //   public update() {
-//     this.highscoreChart.update();
-//     this.continueButton.mousePressed(this.createBackstoryText);
-//     this.startgameButton.mousePressed(this.changeGui);
-    
-//     // GO TO NEXT GUI -
-//     this.startgameButton.mousePressed(() => {
-//       this.isActive = false;
-//       this.continueButton.hide();
-//       this.input.hide();
-//       // this.backstoryText.hide();
-//       this.startgameButton.hide();
-//       this.introBox.hide();
-//       this.changeGui();
-//       removeElements();
-//     });
-//   }
+
   public draw() {
     // GUI SETUP
     if (this.isActive === false) {
-          // this.createGameObjects();
-          // this.isActive = true;
+      // this.createGameObjects();
+      // this.isActive = true;
       this.createStars();
       gameGUI.sound.loopSound(this.soundtrack);
       this.isActive = true;
@@ -135,7 +111,7 @@ class GameIntro {
       this.startgameButton.show();
     });
 
-    // GO TO NEXT GUI 
+    // GO TO NEXT GUI
     this.startgameButton.mousePressed(() => {
       this.isActive = false;
       this.continueButton.hide();
@@ -160,7 +136,7 @@ class GameIntro {
     // CREATE CONTINUE BOX
     push();
     this.continueBox.show();
-    this.continueBox.position(width / 2 - 500, height / 2 - 350/2);
+    this.continueBox.position(width / 2 - 500, height / 2 - 350 / 2);
     this.continueBox.size(1000, 350);
     this.continueBox.style("background-color", "#00f4");
     this.continueBox.style("border-radius", "6px");
@@ -191,19 +167,19 @@ class GameIntro {
 
     //CREATE INPUTFIELD
     push();
-        // this.input.show();
-        // this.input.position(windowWidth / 2 - 410, windowHeight / 2 - 70);
-        // this.input.size(380, 60);
-        // this.input.style("stroke", "red");
-        // this.input.style("strokeWeight", "4");
-        // this.input.style("background-color", "#00f2");
-        // this.input.style("color", "#FAFDEB");
-        // this.input.style("border", "3px solid red");
-        // this.input.style("border-radius", "8px");
-        // this.input.style("font-size", "20");
-        // this.input.style("textAlign", "LEFT");
-        // this.input.style("padding", "10");
-        // storeItem("playerName", this.input.value());
+    // this.input.show();
+    // this.input.position(windowWidth / 2 - 410, windowHeight / 2 - 70);
+    // this.input.size(380, 60);
+    // this.input.style("stroke", "red");
+    // this.input.style("strokeWeight", "4");
+    // this.input.style("background-color", "#00f2");
+    // this.input.style("color", "#FAFDEB");
+    // this.input.style("border", "3px solid red");
+    // this.input.style("border-radius", "8px");
+    // this.input.style("font-size", "20");
+    // this.input.style("textAlign", "LEFT");
+    // this.input.style("padding", "10");
+    // storeItem("playerName", this.input.value());
     this.nameInput.show();
     this.nameInput.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
     this.nameInput.size(380, 60);
@@ -220,16 +196,16 @@ class GameIntro {
 
     // CREATE PLAY BUTTON
     push();
-    this.playButton.show();
-    this.playButton.position(width / 2 - 140, height / 2 + 100);
-    this.playButton.size(280, 70);
-    this.playButton.style("background-color", "#01c2cb");
-    this.playButton.style("color", "white");
-    this.playButton.style("font", "spaceExplorerBold");
-    this.playButton.style("font-size", "25");
-    this.playButton.style("border", "1px solid red");
-    this.playButton.style("border-radius", "8px");
-    this.playButton.style("box-shadow", "0 3px #f009");
+    this.startgameButton.show();
+    this.startgameButton.position(width / 2 - 140, height / 2 + 100);
+    this.startgameButton.size(280, 70);
+    this.startgameButton.style("background-color", "#01c2cb");
+    this.startgameButton.style("color", "white");
+    this.startgameButton.style("font", "spaceExplorerBold");
+    this.startgameButton.style("font-size", "25");
+    this.startgameButton.style("border", "1px solid red");
+    this.startgameButton.style("border-radius", "8px");
+    this.startgameButton.style("box-shadow", "0 3px #f009");
     pop();
 
     // CREATE CONTINUE BUTTON
@@ -282,7 +258,7 @@ class GameIntro {
     push();
     fill("white");
     textSize(17);
-    frameRate(0.5)
+    frameRate(0.5);
     text(
       "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE",
       windowWidth / 2,
@@ -356,7 +332,7 @@ class GameIntro {
       }
     }
   }
-
+}
 
 // class GameIntro {
 //   private gameGUI: IGameState;
@@ -379,7 +355,7 @@ class GameIntro {
 //     this.input = createInput();
 //     this.backstoryText = createP();
 //     // this.backstory = [
-//     //   "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE", 
+//     //   "YOU HAVE BEEN SENT ON A MISSION TO DISCOVER THE MOST REMOTE AREAS OF SPACE",
 //     //   "YOUR GOAL IS TO TRAVEL AS FAR FROM THE EARTH AS POSSIBLE.",
 //     //   "YOU ARE SENT AWAY FROM EARTH IN A SPACESHIP WITH AN ENERGY-GENERATING SPEED SYSTEM ",
 //     //   "THAT MAKES THE SPACESHIPS SPEED INCREASE CONSTANTLY THE FURTHER AWAY FROM EARTH YOU GET.",
@@ -387,7 +363,7 @@ class GameIntro {
 //     //   "SUCH AS OTHER PLANETS, METEORITES AND ESPECIALLY BLACK HOLES.",
 //     //   "FORTUNATELY, YOU HAVE BEEN ASSIGNED A SPACESHIP OF THE VERY LATEST MODEL.",
 //     //   "IT CAN WITHSTAND SOME DAMAGE AND CAN EVEN REPAIR ITSELF,",
-//     //   "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",      
+//     //   "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",
 //     // ];
 //     this.startgameButton = createButton("START GAME");
 //     this.continueButton = createButton("CONTINUE");
@@ -397,7 +373,7 @@ class GameIntro {
 //     this.highscoreChart.update();
 //     this.continueButton.mousePressed(this.createBackstoryText);
 //     this.startgameButton.mousePressed(this.changeGui);
-    
+
 //     // GO TO NEXT GUI -
 //     this.startgameButton.mousePressed(() => {
 //       this.isActive = false;
@@ -592,3 +568,4 @@ class GameIntro {
 //     this.gameGUI.updateGUI("play");
 //   };
 // }
+//
