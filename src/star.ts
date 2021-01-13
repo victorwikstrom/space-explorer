@@ -4,7 +4,8 @@ class Star extends GameObject {
 
   constructor() {
     super();
-    this.position = createVector(random(width), random(70, height));
+    this.opacity = random(100, 200);
+    this.position = createVector(random(width), random(height));
     this.velocity = createVector(random(0.5, 1), 0);
     this.opacity = random(100, 200);
     (this.color = random(229, 255)), 255, 255;
