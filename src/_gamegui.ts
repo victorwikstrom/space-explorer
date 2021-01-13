@@ -3,12 +3,14 @@ class GameGUI implements IGameState {
   private gameIntro: GameIntro;
   private gamePlay: GamePlay;
   private gameOver: GameOver;
+  public sound: Sound;
 
   constructor() {
-    this.currentGUI = "intro";
+    this.currentGUI = "play";
     this.gameIntro = new GameIntro(this);
     this.gamePlay = new GamePlay(this);
     this.gameOver = new GameOver(this);
+    this.sound = new Sound();
   }
 
   public update() {

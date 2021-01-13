@@ -27,6 +27,7 @@ class GamePlay {
     this.updateGameObjects(this.gameAcceleration);
     this.statusBar.update(this.gameAcceleration);
     this.spawnGameObjects();
+    gameGUI.sound.update();
   }
 
   public draw() {
@@ -37,7 +38,7 @@ class GamePlay {
     }
 
     this.player.draw();
-
+    gameGUI.sound.draw();
     this.drawGameObjects();
 
     // DRAW STATUSBAR
