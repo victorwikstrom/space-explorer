@@ -148,7 +148,7 @@ class Player {
 
   die() {
     this.drawPlayerDiedView();
-    setTimeout(this.updateGUI, 5000);
+    setTimeout(this.updateGUI, 2000);
   }
 
   drawPlayerDiedView() {
