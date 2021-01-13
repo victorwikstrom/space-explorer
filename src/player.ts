@@ -152,6 +152,9 @@ class Player {
   }
 
   drawPlayerDiedView() {
+    //CHANGE IMAGE
+    this.radius = this.radius*2
+    this.image = this.setPlayerImage(explosionImg);
     //DRAW TEXT
     push();
     fill("#01c2cb");

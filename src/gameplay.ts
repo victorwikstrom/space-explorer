@@ -184,7 +184,7 @@ class GamePlay {
     health = this.player.currentHealth - obj.damage;
     if (health <= 0) {
       storeItem("highscore", this.statusBar.distanceFromEarth);
-      this.player.image = this.player.setPlayerImage(explosionImg)
+      //this.player.image = this.player.setPlayerImage(explosionImg)
       this.gameObjects = []
       this.player.die();
     }
