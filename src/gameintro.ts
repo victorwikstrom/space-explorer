@@ -104,9 +104,10 @@ class GameIntro {
       this.backstoryText.show();
       // this.toggleBackstoryText();
       this.startgameButton.show();
+      this.startgameButton.show();
     });
 
-    // GO TO NEXT GUI -
+    // GO TO NEXT GUI 
     this.startgameButton.mousePressed(() => {
       this.isActive = false;
       this.continueButton.hide();
@@ -122,8 +123,8 @@ class GameIntro {
     // CREATE CONTINUE BOX
     push();
     this.continueBox.show();
-    this.continueBox.position(width / 2 - 500, height / 2 - 200);
-    this.continueBox.size(1000, 400);
+    this.continueBox.position(width / 2 - 500, height / 2 - 350/2);
+    this.continueBox.size(1000, 350);
     this.continueBox.style("background-color", "#00f4");
     this.continueBox.style("border-radius", "6px");
     pop();
@@ -139,26 +140,28 @@ class GameIntro {
     fill("blue");
     text("SPACE EXPLORER", width / 2 - 37, 140);
     pop();
+    noLoop();
 
     // PLEASE ENTER YOUR NAME
     push();
     fill("#01c2cb");
-    textSize(15);
+    textSize(20);
     textAlign(LEFT);
     textFont(spaceExplorerBold);
-    text("PLEASE ENTER YOUR NAME HERE:", width / 2 - 400, height / 2 - 145);
+    text("ENTER YOUR NAME HERE:", width / 2 - 410, height / 2 - 115);
     pop();
+    noLoop();
 
     //CREATE INPUTFIELD
     push();
     this.input.show();
-    this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
+    this.input.position(windowWidth / 2 - 410, windowHeight / 2 - 70);
     this.input.size(380, 60);
     this.input.style("stroke", "red");
     this.input.style("strokeWeight", "4");
     this.input.style("background-color", "#00f2");
     this.input.style("color", "#FAFDEB");
-    this.input.style("border", "4px solid red");
+    this.input.style("border", "3px solid red");
     this.input.style("border-radius", "8px");
     this.input.style("font-size", "20");
     this.input.style("textAlign", "LEFT");
@@ -169,38 +172,38 @@ class GameIntro {
     // CREATE CONTINUE BUTTON
     push();
     this.continueButton.show();
-    this.continueButton.position(windowWidth / 2 - 400, windowHeight / 2 + 10);
-    this.continueButton.size(280, 70);
+    this.continueButton.position(windowWidth / 2 - 410, windowHeight / 2 + 50);
+    this.continueButton.size(300, 70);
     this.continueButton.style("background-color", "#01c2cb");
     this.continueButton.style("color", "white");
-    //this.continueButton.style("font", "statusbarAndOther");
-    this.continueButton.style("font-size", "25");
-    this.continueButton.style("border", "1px solid red");
+    this.continueButton.style("font", "bold");
+    this.continueButton.style("font-size", "35");
+    this.continueButton.style("border", "2px solid red");
     this.continueButton.style("border-radius", "8px");
     this.continueButton.style("box-shadow", "0 3px #f009");
     pop();
 
     // CREATE START GAME BOX
     push();
-    this.startgameBox.show();
-    this.startgameBox.position(width / 2 - 500, height / 2 - 200);
+    this.startgameBox.hide();
+    this.startgameBox.position(width / 2 - 500, height / 2 - 190);
     this.startgameBox.size(1000, 400);
     this.startgameBox.style("background-color", "black");
-    this.startgameBox.style("border", "8px solid red");
+    this.startgameBox.style("border", "2px solid red");
     this.startgameBox.style("border-radius", "8px");
     pop();
 
     // CREATE PLAY BUTTON
     push();
-    this.startgameButton.show();
-    this.startgameButton.position(windowWidth / 2 - 400, windowHeight / 2 + 10);
+    this.startgameButton.hide();
+    this.startgameButton.position(width / 2 - 140, height / 2 + 90);
     this.startgameButton.size(280, 70);
     this.startgameButton.style("background-color", "#01c2cb");
     this.startgameButton.style("color", "white");
-    this.startgameButton.style("font", "statusbarAndOther");
-    this.startgameButton.style("font-size", "25");
+    this.startgameButton.style("font", "bold");
+    this.startgameButton.style("font-size", "35");
     this.startgameButton.style("border", "1px solid red");
-    this.startgameButton.style("border-radius", "6px");
+    this.startgameButton.style("border-radius", "8px");
     this.startgameButton.style("box-shadow", "0 3px #f009");
     pop();
 
@@ -261,6 +264,16 @@ class GameIntro {
       "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",
       windowWidth / 2,
       windowHeight / 2 + 80
+    );
+    text(
+      "USE ARROWS TO MOVE YOUR SHIP. PRESS SPACEBAR TO SHOOT.",
+      windowWidth / 2,
+      windowHeight / 2 + 100
+    );
+    text(
+      "STAY AWAY FROM SPACE OBJECTS!",
+      windowWidth / 2,
+      windowHeight / 2 + 120
     );
     pop();
     noLoop();
@@ -372,7 +385,7 @@ class GameIntro {
 //     this.introBox.style("border-radius", "8px");
 //     pop();
 
-//     //CREATE INPUTFIELD
+//     // CREATE INPUTFIELD
 //     push();
 //     this.input.show();
 //     this.input.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
