@@ -93,7 +93,7 @@ class Player {
     }
   }
 
-  private setPlayerImage(img: p5.Image) {
+  public setPlayerImage(img: p5.Image) {
     img.resize(this.radius, 0);
     return img;
   }
@@ -152,23 +152,18 @@ class Player {
   }
 
   drawPlayerDiedView() {
-    //DRAW RECTANGLE
-    push();
-    noStroke();
-    fill(color("#00f4"));
-    rect(width / 2 - 500, height / 2 - 200, 1000, 400, 8);
-    pop();
+    //CHANGE IMAGE
+    this.radius = this.radius*2
+    this.image = this.setPlayerImage(explosionImg);
     //DRAW TEXT
     push();
     fill("#01c2cb");
     textFont(spaceExplorerBold);
     textSize(35);
     textAlign(CENTER);
-    let player1 = getItem("playerName");
-    text(player1, width / 2, height / 3 + 20);
     fill("red");
-    textSize(90);
-    text("YOU DIED", width / 2, height / 2);
+    textSize(30);
+    text("OH NO, YOUR SPACESHIP GOT DESTROYED...", width / 2, height / 2);
     pop();
     //STOP DRAW
     noLoop();
