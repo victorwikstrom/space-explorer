@@ -36,11 +36,14 @@ class GameGUI implements IGameState {
 
     if (this.currentGUI === "intro") {
       this.gameIntro.draw();
+      //soundtrack.play();
     }
     if (this.currentGUI === "play") {
+      //gamePlaySound.play();
       this.gamePlay.draw();
     }
     if (this.currentGUI === "over") {
+      //soundtrack.play();
       this.gameOver.draw();
     }
   }

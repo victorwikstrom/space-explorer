@@ -1,7 +1,6 @@
 class Meteorite extends GameObject {
-  damage: number;
   image: p5.Image;
-  // private collisionSound: string - To be added later
+  public collisionSound: p5.SoundFile;
 
   constructor() {
     super();
@@ -10,7 +9,7 @@ class Meteorite extends GameObject {
     this.velocity = createVector(random(8, 10), 0);
     this.image = this.setPlayerImage(meteoriteImg);
     this.damage = 5;
-    // this.collisionSound = p5.SoundFile;
+    this.collisionSound = explodeSound;
   }
 
   update() {

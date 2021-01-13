@@ -12,6 +12,7 @@ class Player {
   textColor: p5.Color;
   rechargeGun: number;
   shots: Array<Shot>;
+  shotSound: p5.SoundFile;
 
   constructor() {
     this.position = createVector(100, height * 0.5);
@@ -25,6 +26,7 @@ class Player {
     this.currentHealth = 10;
     this.image = this.setPlayerImage(shipImg);
     this.textColor = color("white");
+    this.shotSound = shotSound;
 
     this.shots = [];
 
@@ -108,6 +110,7 @@ class Player {
   }
 
   private shoot() {
+    gameGUI.sound.playSound(this.shotSound);
     let shot = new Shot(
       this.position.x + this.radius * 0.6,
       this.position.y + this.radius * 0.37
@@ -154,7 +157,7 @@ class Player {
 
   drawPlayerDiedView() {
     //CHANGE IMAGE
-    this.radius = this.radius*2
+    this.radius = this.radius * 2;
     this.image = this.setPlayerImage(explosionImg);
     //DRAW TEXT
     push();
