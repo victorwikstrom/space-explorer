@@ -1,13 +1,12 @@
 class GamePlay {
-  // Skapa interface så att player får tillgång till shots<>
   private gameGUI: IGameState;
-  private player: Player;
-  private isActive: boolean;
   private gameObjects: Array<GameObject>;
   private stars: Array<Star>;
-  public shots: Array<Shot>;
   public debris: Array<Debris>;
+  public shots: Array<Shot>;
+  private player: Player;
   private statusBar: StatusBar;
+  private isActive: boolean;
   private gameAcceleration: number;
 
   constructor(gameGUI: IGameState) {
@@ -108,22 +107,6 @@ class GamePlay {
     }
   }
 
-  /* private getValidYPos() {
-    const yPositions = this.gameObjects.map(
-      (gameObject) => gameObject.position.y
-    );
-    // const yPos = [0, 8, 50, 200, 230];
-
-    const indexStart = floor(random(yPositions.length - 1));
-    const indexEnd = indexStart + 1;
-
-    const validYPos = random(
-      yPositions[indexStart] + 25 * 2,
-      yPositions[indexEnd] - 25 * 2
-    );
-    return validYPos;
-  } */
-
   private checkCollision(obj: GameObject, p: Player, shots: Array<Shot>) {
     if (p.collides(obj)) {
       this.handleCollision(p, obj);
@@ -185,10 +168,9 @@ class GamePlay {
     if (health <= 0) {
       storeItem("highscore", this.statusBar.distanceFromEarth);
       //this.player.image = this.player.setPlayerImage(explosionImg)
-      this.gameObjects = []
+      this.gameObjects = [];
       this.player.die();
     }
     return health;
   }
-
 }

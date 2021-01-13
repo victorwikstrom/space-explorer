@@ -54,7 +54,7 @@ class GameIntro {
     // });
   }
 
-  public createElements() {
+  private createElements() {
     // CREATE INTROBOX
     push();
     this.introBox.show();
@@ -196,16 +196,6 @@ class GameIntro {
       this.stars.push(new Star());
     }
   }
-
-  //  private drawGameObjects() {
-  //    //let newPos = createVector(random(width), random(height));
-  //    for (let gameObject of this.gameObjects) {
-  //     if (gameObject instanceof Star) {
-  //       gameObject.draw();
-  //       gameObject.position.y = random(100)
-  //     }
-  //    }
-  //  }
 
   // CHANGE GUI TO PLAY
   private changeGui = () => {
