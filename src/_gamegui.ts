@@ -4,13 +4,15 @@ class GameGUI implements IGameState {
   private gamePlay: GamePlay;
   private gameOver: GameOver;
   public sound: Sound;
+  public highscorechart: HighscoreChart;
 
   constructor() {
-    this.currentGUI = "play";
+    this.currentGUI = "intro";
     this.gameIntro = new GameIntro(this);
     this.gamePlay = new GamePlay(this);
     this.gameOver = new GameOver(this);
     this.sound = new Sound();
+    this.highscorechart = new HighscoreChart();
   }
 
   public update() {
@@ -26,11 +28,13 @@ class GameGUI implements IGameState {
   }
 
   public draw() {
-    this.gameIntro.playButton.hide();
+    this.gameIntro.startgameButton.hide();
     this.gameIntro.continueButton.hide();
     this.gameIntro.input.hide();
+    // this.highscorechart.createHighscoreList.hide();
+    this.gameIntro.continueBox.hide();
+    this.gameIntro.startgameBox.hide();
     this.gameOver.button.hide();
-    this.gameIntro.playButton.hide();
 
     if (this.currentGUI === "intro") {
       this.gameIntro.draw();
