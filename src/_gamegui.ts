@@ -31,7 +31,7 @@ class GameGUI implements IGameState {
     this.gameIntro.startgameButton.hide();
     this.gameIntro.continueButton.hide();
     this.gameIntro.input.hide();
-    // this.gameIntro.nameInput.hide();
+    this.gameIntro.nameInput.hide();
     // this.highscorechart.createHighscoreList.hide();
     this.gameIntro.continueBox.hide();
     this.gameIntro.startgameBox.hide();

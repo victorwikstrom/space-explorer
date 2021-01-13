@@ -12,11 +12,6 @@ class GameIntro {
   // private backstory: Array<string>;
   private stars: Array<Star>;
   public nameInput: p5.Element;
-  public continueBox: p5.Element;
-  public startgameBox: p5.Element;
-  public continueButton: p5.Element;
-  public playButton: p5.Element;
-  public playButton: p5.Element;
   public playButton: p5.Element;
   private soundtrack: p5.SoundFile;
   private buttonSound: p5.SoundFile;
@@ -53,9 +48,8 @@ class GameIntro {
   }
 
   public update() {
-    this.highscoreChart.update();
-    this.continueButton.mousePressed(() => {
-      this.isActive = false;
+    gameGUI.highscoreChart.setPlayerName(this.getNameInput());
+    this.startgameButton.mousePressed(() => {
       this.continueButton.hide();
       this.input.hide();
       this.backstoryText.show();
@@ -65,24 +59,20 @@ class GameIntro {
 
     // TOGGLE FROM NAME INPUT TO BACKSTORY TEXT
     this.continueButton.mousePressed(() => {
-      this.isActive = false;
       this.continueButton.hide();
       this.input.hide();
       this.backstoryText.show();
       // this.toggleBackstoryText();
       this.startgameButton.show();
     });
-        // gameGUI.highscoreChart.setPlayerName(this.getNameInput());
-        // this.playButton.mousePressed(() => {
-        //   gameGUI.sound.playSound(this.buttonSound);
-        //   gameGUI.highscoreChart.setPlayerName(this.getNameInput());
-        //   gameGUI.sound.stopSound(this.soundtrack);
-        //   this.changeGui();
-
-        //   //this.toggleBackstory();
-        // });
-        // gameGUI.sound.update();
-  }
+          // this.playButton.mousePressed(() => {
+          //   gameGUI.sound.playSound(this.buttonSound);
+          //   gameGUI.highscoreChart.setPlayerName(this.getNameInput());
+          //   gameGUI.sound.stopSound(this.soundtrack);
+          //   this.changeGui();
+          //   //this.toggleBackstory();
+          // });
+          // gameGUI.sound.update();
 
     // GO TO NEXT GUI -
     this.startgameButton.mousePressed(() => {
@@ -95,7 +85,7 @@ class GameIntro {
       this.changeGui();
     });
   }
-//   public update() {
+  //   public update() {
 //     this.highscoreChart.update();
 //     this.continueButton.mousePressed(this.createBackstoryText);
 //     this.startgameButton.mousePressed(this.changeGui);
@@ -155,6 +145,15 @@ class GameIntro {
       this.continueBox.hide();
       this.changeGui();
     });
+  }
+
+  // CHANGE GUI TO PLAY
+  private changeGui = () => {
+    this.gameGUI.updateGUI("play");
+  };
+
+  private getNameInput() {
+    return String(this.nameInput.value());
   }
 
   public createElements() {
@@ -358,15 +357,6 @@ class GameIntro {
     }
   }
 
-  // CHANGE GUI TO PLAY
-  private changeGui = () => {
-    this.gameGUI.updateGUI("play");
-  };
-
-  private getNameInput() {
-    return String(this.nameInput.value());
-  }
-}
 
 // class GameIntro {
 //   private gameGUI: IGameState;
