@@ -3,19 +3,14 @@ class BlackHole extends GameObject {
   // private collisionSound: string; // TO BE ADDED LATER
   public image: p5.Image;
 
-  //VARIABLES NOT USED ANYMORE:
-  //public fill: p5.Color;
-  //private stroke: p5.Color;
-
   constructor() {
     super();
-    //this.collisionSound: "" //TO BE ADDED LATER
     this.position = this.position;
-    this.velocity = createVector(random(2, 3), 0);
-
     this.radius = width / random(10, 12);
-    this.damage = 12; //HIGHER THAN 10 TO DIE
+    this.velocity = createVector(random(2, 3), 0);
     this.image = this.setPlayerImage(blackHoleImg);
+    this.damage = 12; //HIGHER THAN 10 TO DIE
+    //this.collisionSound: "" //TO BE ADDED LATER
   }
   public update() {
     super.update();
@@ -30,8 +25,6 @@ class BlackHole extends GameObject {
       this.radius * 2
     );
   }
-
-  public handleShot() {}
 
   private setPlayerImage(img: p5.Image) {
     img.resize(this.radius, 0);

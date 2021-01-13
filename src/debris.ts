@@ -10,7 +10,6 @@ class Debris extends GameObject {
 
   constructor(x: number, y: number, color: String) {
     super();
-    this.size = 0;
     this.x = x;
     this.y = y;
     this.xspeed = random(-5, 5);
