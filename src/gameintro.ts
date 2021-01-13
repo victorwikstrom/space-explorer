@@ -10,6 +10,16 @@ class GameIntro {
   public continueButton: p5.Element;
   public startgameButton: p5.Element;
   // private backstory: Array<string>;
+  private stars: Array<Star>;
+  public nameInput: p5.Element;
+  public continueBox: p5.Element;
+  public startgameBox: p5.Element;
+  public continueButton: p5.Element;
+  public playButton: p5.Element;
+  public playButton: p5.Element;
+  public playButton: p5.Element;
+  private soundtrack: p5.SoundFile;
+  private buttonSound: p5.SoundFile;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -32,7 +42,14 @@ class GameIntro {
     //   "WITH THE HELP OF THE VALUABLE SPACE DIAMONDS THAT YOU CAN COLLECT DURING THE JOURNEY.",      
     // ];
     this.startgameButton = createButton("START GAME");
+    this.stars = [];
+    this.continueBox = createDiv();
+    this.startgameBox = createDiv();
+    this.nameInput = createInput("");
     this.continueButton = createButton("CONTINUE");
+    this.playButton = createButton("START GAME");
+    this.soundtrack = soundtrack;
+    this.buttonSound = buttonClickSound;
   }
 
   public update() {
@@ -55,6 +72,17 @@ class GameIntro {
       // this.toggleBackstoryText();
       this.startgameButton.show();
     });
+        // gameGUI.highscoreChart.setPlayerName(this.getNameInput());
+        // this.playButton.mousePressed(() => {
+        //   gameGUI.sound.playSound(this.buttonSound);
+        //   gameGUI.highscoreChart.setPlayerName(this.getNameInput());
+        //   gameGUI.sound.stopSound(this.soundtrack);
+        //   this.changeGui();
+
+        //   //this.toggleBackstory();
+        // });
+        // gameGUI.sound.update();
+  }
 
     // GO TO NEXT GUI -
     this.startgameButton.mousePressed(() => {
@@ -87,14 +115,24 @@ class GameIntro {
   public draw() {
     // GUI SETUP
     if (this.isActive === false) {
-      this.createGameObjects();
+          // this.createGameObjects();
+          // this.isActive = true;
+      this.createStars();
+      gameGUI.sound.loopSound(this.soundtrack);
       this.isActive = true;
+    }
+
+    for (let star of this.stars) {
+      star.draw();
     }
     this.drawGameObjects();
     this.createElements();
+    gameGUI.sound.draw();
+
+    //this.createBackstoryText();
+    gameGUI.highscoreChart.draw();
 
     //DRAW HIGHSCORE CHART
-    this.highscoreChart.createHighscoreList();
 
     // TOGGLE FROM NAME INPUT TO BACKSTORY TEXT
     this.continueButton.mousePressed(() => {
@@ -154,19 +192,45 @@ class GameIntro {
 
     //CREATE INPUTFIELD
     push();
-    this.input.show();
-    this.input.position(windowWidth / 2 - 410, windowHeight / 2 - 70);
-    this.input.size(380, 60);
-    this.input.style("stroke", "red");
-    this.input.style("strokeWeight", "4");
-    this.input.style("background-color", "#00f2");
-    this.input.style("color", "#FAFDEB");
-    this.input.style("border", "3px solid red");
-    this.input.style("border-radius", "8px");
-    this.input.style("font-size", "20");
-    this.input.style("textAlign", "LEFT");
-    this.input.style("padding", "10");
-    storeItem("playerName", this.input.value());
+        // this.input.show();
+        // this.input.position(windowWidth / 2 - 410, windowHeight / 2 - 70);
+        // this.input.size(380, 60);
+        // this.input.style("stroke", "red");
+        // this.input.style("strokeWeight", "4");
+        // this.input.style("background-color", "#00f2");
+        // this.input.style("color", "#FAFDEB");
+        // this.input.style("border", "3px solid red");
+        // this.input.style("border-radius", "8px");
+        // this.input.style("font-size", "20");
+        // this.input.style("textAlign", "LEFT");
+        // this.input.style("padding", "10");
+        // storeItem("playerName", this.input.value());
+    this.nameInput.show();
+    this.nameInput.position(windowWidth / 2 - 400, windowHeight / 2 - 90);
+    this.nameInput.size(380, 60);
+    this.nameInput.style("stroke", "red");
+    this.nameInput.style("strokeWeight", "4");
+    this.nameInput.style("background-color", "#00f2");
+    this.nameInput.style("color", "#FAFDEB");
+    this.nameInput.style("border", "4px solid red");
+    this.nameInput.style("border-radius", "8px");
+    this.nameInput.style("font-size", "20");
+    this.nameInput.style("textAlign", "LEFT");
+    this.nameInput.style("padding", "10");
+    pop();
+
+    // CREATE PLAY BUTTON
+    push();
+    this.playButton.show();
+    this.playButton.position(width / 2 - 140, height / 2 + 100);
+    this.playButton.size(280, 70);
+    this.playButton.style("background-color", "#01c2cb");
+    this.playButton.style("color", "white");
+    this.playButton.style("font", "spaceExplorerBold");
+    this.playButton.style("font-size", "25");
+    this.playButton.style("border", "1px solid red");
+    this.playButton.style("border-radius", "8px");
+    this.playButton.style("box-shadow", "0 3px #f009");
     pop();
 
     // CREATE CONTINUE BUTTON
@@ -280,7 +344,7 @@ class GameIntro {
   }
 
   // CREATE STARS
-  private createGameObjects() {
+  private createStars() {
     for (let i = 0; i < 1000; i++) {
       this.gameObjects.push(new Star());
     }
@@ -298,6 +362,10 @@ class GameIntro {
   private changeGui = () => {
     this.gameGUI.updateGUI("play");
   };
+
+  private getNameInput() {
+    return String(this.nameInput.value());
+  }
 }
 
 // class GameIntro {

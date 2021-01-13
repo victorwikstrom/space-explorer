@@ -1,7 +1,7 @@
 class Meteorite extends GameObject {
   damage: number;
   image: p5.Image;
-  // private collisionSound: string - To be added later
+  public collisionSound: p5.SoundFile;
 
   //VARIABLES NOT USED ANYMORE:
   //color: p5.Color;
@@ -13,7 +13,7 @@ class Meteorite extends GameObject {
     this.damage = 5;
     this.radius = width / 40;
     this.image = this.setPlayerImage(meteoriteImg);
-    // this.collisionSound = p5.SoundFile;
+    this.collisionSound = explodeSound;
   }
 
   update() {

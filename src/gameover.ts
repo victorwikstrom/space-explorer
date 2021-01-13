@@ -3,36 +3,25 @@ class GameOver {
   private isActive: boolean;
   public button: p5.Element;
   private gameObjects: Array<GameObject>;
-  private highscoreChart: HighscoreChart;
   private gameoverBox: p5.Element;
+  private soundtrack: p5.SoundFile;
+  private buttonSound: p5.SoundFile;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
     this.isActive = false;
     this.gameObjects = [];
     this.gameoverBox = createDiv();
-    this.highscoreChart = new HighscoreChart();
     this.button = createButton("PLAY AGAIN");
+    this.soundtrack = soundtrack;
+    this.buttonSound = buttonClickSound;
   }
 
   public update() {
-    this.highscoreChart.update();
-    this.button.mousePressed(this.changeGui);
-    gameGUI.sound.update();
-  }
-
-  public draw() {
-    // GUI SETUP
-    if (this.isActive === false) {
-      this.createGameObjects();
-      this.isActive = true;
-    }
-    this.drawGameObjects();
-    this.createElements();
-    gameGUI.sound.draw();
-
-    //DRAW HIGHSCORE CHART
-    this.highscoreChart.draw();
+    this.button.mousePressed(() => {
+      gameGUI.sound.playSound(this.buttonSound);
+      this.changeGui;
+    });
 
     //GO TO NEXT GUI
     this.button.mousePressed(() => {
@@ -40,12 +29,39 @@ class GameOver {
       this.button.hide();
       //this.highscoreChart.hide();
       this.gameoverBox.hide();
+      gameGUI.sound.stopSound(this.soundtrack);
+      this.gameGUI.updateGUI("play");
+    });
+
+    gameGUI.sound.update();
+  }
+
+  public draw() {
+    // GUI SETUP
+    if (this.isActive === false) {
+      this.createGameObjects();
+      gameGUI.sound.loopSound(this.soundtrack);
+      this.isActive = true;
+    }
+    this.drawGameObjects();
+    this.createElements();
+    gameGUI.sound.draw();
+
+    //DRAW HIGHSCORE CHART
+    gameGUI.highscoreChart.draw();
+
+    //GO TO NEXT GUI
+    this.button.mousePressed(() => {
+      this.isActive = false;
+      this.button.hide();
+      //this.highscoreChart.hide();
+      this.gameoverBox.hide();
+      gameGUI.sound.stopSound(this.soundtrack);
       this.gameGUI.updateGUI("play");
     });
   }
 
   private createElements() {
-    this.highscoreChart.draw();
     // CREATE GAMEOVERBOX
     push();
     this.gameoverBox.show();
@@ -84,8 +100,13 @@ class GameOver {
     fill("white");
     textSize(20);
     text("YOU REACHED:", width / 2 - 398, height / 2 - 100);
-    //text("HIGHSCORE:", width / 2 + 140, height / 2 - 115);
+    fill("red");
+    textSize(35);
+    let score = this.gameGUI.highscoreChart.currentScore.toFixed();
+    text(score + " 000 L-Y", width / 2 - 398, height / 2 - 50);
     pop();
+
+    gameGUI.highscoreChart.draw();
   }
 
   // CREATE STARS

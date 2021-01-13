@@ -3,6 +3,8 @@ class SpaceDiamond extends GameObject {
   color: p5.Color;
   damage: number;
   image: p5.Image;
+  hitSound: p5.SoundFile;
+  shotSound: p5.SoundFile;
 
   constructor() {
     super();
@@ -14,6 +16,8 @@ class SpaceDiamond extends GameObject {
     this.radius = width / 100;
     this.damage = -1; // Negative damage in order to apply health
     this.image = this.setPlayerImage(spaceDiamondImg);
+    this.hitSound = diamondHit;
+    this.shotSound = diamondShot;
   }
 
   public update() {

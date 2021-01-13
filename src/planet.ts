@@ -3,7 +3,7 @@ class Planet extends GameObject {
   color: p5.Color;
   images: Array<p5.Image>;
   number: number;
-  // collisionSound: p5.SoundFile;
+  collisionSound: p5.SoundFile;
 
   constructor() {
     super();
@@ -29,7 +29,7 @@ class Planet extends GameObject {
       planet12,
     ];
     this.number = floor(random(12));
-    //this.collisionSound = p5.SoundFile;
+    this.collisionSound = explodeSound;
   }
 
   update() {
@@ -38,6 +38,11 @@ class Planet extends GameObject {
 
   draw() {
     image(
-      this.images[this.number], this.position.x, this.position.y, this.radius * 2, this.radius * 2);
+      this.images[this.number],
+      this.position.x,
+      this.position.y,
+      this.radius * 2,
+      this.radius * 2
+    );
   }
 }
