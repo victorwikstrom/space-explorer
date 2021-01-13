@@ -183,13 +183,13 @@ class GamePlay {
 
   private updateHealth(health: number, obj: GameObject) {
     health = this.player.currentHealth - obj.damage;
-    if (health <= 0) {
-      storeItem("highscore", this.statusBar.distanceFromEarth);
-      //this.player.image = this.player.setPlayerImage(explosionImg)
-      this.gameObjects = []
+     if (health <= 0) {
+      this.gameGUI.highscoreChart.setCurrentScore(this.statusBar.distanceFromEarth);
+      this.gameGUI.highscoreChart.addNewHighscore();
       this.player.die();
     }
     return health;
   }
 
 }
+
