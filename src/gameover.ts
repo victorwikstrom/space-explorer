@@ -30,7 +30,6 @@ class GameOver {
 
     //DRAW HIGHSCORE CHART
     gameGUI.highscoreChart.draw();
-    //this.createHighscoreNumberRed();
 
     //GO TO NEXT GUI
     this.button.mousePressed(() => {
@@ -67,9 +66,6 @@ class GameOver {
     this.button.style("box-shadow", "0 3px #f009");
     pop();
 
-    // CREATE HIGHSCORECHART
- 
-
     // CREATE TEXT
     push();
     fill("#CCE5FF");
@@ -85,7 +81,10 @@ class GameOver {
     fill("white");
     textSize(20);
     text("YOU REACHED:", width / 2 - 398, height / 2 - 100);
-    //text(highscore.score, width / 2 + 140, height / 2 - 115);
+    fill("red")
+    textSize(35);
+    let score = this.gameGUI.highscoreChart.currentScore.toFixed();
+    text(score + " 000 L-Y", width / 2 - 398, height / 2 - 50);
     pop();
 
     gameGUI.highscoreChart.draw();
