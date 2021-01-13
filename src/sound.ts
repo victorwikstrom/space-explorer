@@ -33,7 +33,7 @@ class Sound {
         this.audioButton = createImg("assets/images/audio-8.png");
         this.audioButton.style("background-color", "blue");
         this.audioButton.style("border-radius", "50%");
-        this.audioButton.position(windowWidth - 80, 12);
+        this.audioButton.position(windowWidth - 80, 11);
       }
     
       public setMuteIcon(muteIcon: p5.Image) {
