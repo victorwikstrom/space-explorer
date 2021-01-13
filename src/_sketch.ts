@@ -32,14 +32,16 @@ let planet12: p5.Image;
  */
 function preload() {
   shipImg = loadImage("assets/images/spaceship.png");
-  soundtrack = loadSound("assets/sound/Fair_Use_Trio_-_06_-_2001_A_Space_Odyssey.mp3");
+  soundtrack = loadSound("assets/music/intro-soundtrack.mp3");
   muteIcon = loadImage("assets/images/sound-off.svg");
   soundIcon = loadImage("assets/images/sound-on.svg");
   audioIcon = loadImage("assets/images/audio-8.png");
   spaceDiamondImg = loadImage("assets/images/spacediamond.png");
   blackHoleImg = loadImage("assets/images/blackhole.png");
   meteoriteImg = loadImage("assets/images/meteorite.png");
-  spaceExplorerHeading = loadFont("assets/fonts/barlow-condensed-blackitalic.woff");
+  spaceExplorerHeading = loadFont(
+    "assets/fonts/barlow-condensed-blackitalic.woff"
+  );
   spaceExplorerBold = loadFont("assets/fonts/phatt.woff");
   explosionImg = loadImage("assets/images/explosion.png");
 
