@@ -5,6 +5,14 @@ let muteIcon: p5.Image;
 let soundIcon: p5.Image;
 let audioIcon: p5.Image;
 let soundtrack: p5.SoundFile;
+let playerCollision: p5.SoundFile;
+let gameOverSound: p5.SoundFile;
+let gamePlaySound: p5.SoundFile;
+let shotSound: p5.SoundFile;
+let diamondShot: p5.SoundFile;
+let diamondHit: p5.SoundFile;
+let explodeSound: p5.SoundFile;
+let buttonClickSound: p5.SoundFile;
 let spaceDiamondImg: p5.Image;
 let blackHoleImg: p5.Image;
 let meteoriteImg: p5.Image;
@@ -33,6 +41,13 @@ let planet12: p5.Image;
 function preload() {
   shipImg = loadImage("assets/images/spaceship.png");
   soundtrack = loadSound("assets/music/intro-soundtrack.mp3");
+  gamePlaySound = loadSound("assets/music/gameplay-soundtrack.mp3");
+  shotSound = loadSound("assets/sound/player-shot.mp3");
+  buttonClickSound = loadSound("assets/sound/button-click.mp3");
+  diamondHit = loadSound("assets/sound/diamond-hit.mp3");
+  diamondShot = loadSound("assets/sound/diamond-shot.mp3");
+  explodeSound = loadSound("assets/sound/planet-shot.mp3");
+  shotSound = loadSound("assets/sound/player-shot.mp3");
   muteIcon = loadImage("assets/images/sound-off.svg");
   soundIcon = loadImage("assets/images/sound-on.svg");
   audioIcon = loadImage("assets/images/audio-8.png");
@@ -70,8 +85,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
   gameGUI = new GameGUI();
-  soundtrack.play();
-  soundtrack.setVolume(0.5);
 }
 
 /**

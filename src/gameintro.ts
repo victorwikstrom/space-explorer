@@ -6,6 +6,8 @@ class GameIntro {
   public nameInput: p5.Element;
   public continueButton: p5.Element;
   public playButton: p5.Element;
+  private soundtrack: p5.SoundFile;
+  private buttonSound: p5.SoundFile;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -15,22 +17,28 @@ class GameIntro {
     this.nameInput = createInput("");
     this.continueButton = createButton("CONTINUE");
     this.playButton = createButton("START GAME");
+    this.soundtrack = soundtrack;
+    this.buttonSound = buttonClickSound;
   }
 
   public update() {
     gameGUI.highscoreChart.setPlayerName(this.getNameInput());
     this.playButton.mousePressed(() => {
+      gameGUI.sound.playSound(this.buttonSound);
       gameGUI.highscoreChart.setPlayerName(this.getNameInput());
+      gameGUI.sound.stopSound(this.soundtrack);
       this.changeGui();
 
       //this.toggleBackstory();
     });
+    gameGUI.sound.update();
   }
 
   public draw() {
     // GUI SETUP
     if (this.isActive === false) {
       this.createStars();
+      gameGUI.sound.loopSound(this.soundtrack);
       this.isActive = true;
     }
 

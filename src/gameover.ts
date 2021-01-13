@@ -4,6 +4,8 @@ class GameOver {
   public button: p5.Element;
   private gameObjects: Array<GameObject>;
   private gameoverBox: p5.Element;
+  private soundtrack: p5.SoundFile;
+  private buttonSound: p5.SoundFile;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -11,10 +13,26 @@ class GameOver {
     this.gameObjects = [];
     this.gameoverBox = createDiv();
     this.button = createButton("PLAY AGAIN");
+    this.soundtrack = soundtrack;
+    this.buttonSound = buttonClickSound;
   }
 
   public update() {
-    this.button.mousePressed(this.changeGui);
+    this.button.mousePressed(() => {
+      gameGUI.sound.playSound(this.buttonSound);
+      this.changeGui;
+    });
+
+    //GO TO NEXT GUI
+    this.button.mousePressed(() => {
+      this.isActive = false;
+      this.button.hide();
+      //this.highscoreChart.hide();
+      this.gameoverBox.hide();
+      gameGUI.sound.stopSound(this.soundtrack);
+      this.gameGUI.updateGUI("play");
+    });
+
     gameGUI.sound.update();
   }
 
@@ -22,6 +40,7 @@ class GameOver {
     // GUI SETUP
     if (this.isActive === false) {
       this.createGameObjects();
+      gameGUI.sound.loopSound(this.soundtrack);
       this.isActive = true;
     }
     this.drawGameObjects();
@@ -30,6 +49,7 @@ class GameOver {
 
     //DRAW HIGHSCORE CHART
     gameGUI.highscoreChart.draw();
+
 
     //GO TO NEXT GUI
     this.button.mousePressed(() => {
@@ -42,7 +62,6 @@ class GameOver {
   }
 
   private createElements() {
-    
     // CREATE GAMEOVERBOX
     push();
     this.gameoverBox.show();
