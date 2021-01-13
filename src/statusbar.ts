@@ -49,14 +49,14 @@ class StatusBar {
     fill("red");
     text("SPACESHIP CONDITION", width - width / 3 + 200, 30);
     fill("blue");
-    (CENTER);
+    textAlign(CENTER);
     this.drawEllipses(health);
     pop();
   }
 
   drawEllipses(health: number) {
     for (let i = 0; i < health && i < 10; i++) {
-      const x = width - width / 3 + 35 + i * 20;
+      const x = width - width / 3 + 60 + i * 20;
       this.ellipses.push(ellipse(x, 50, 10, 10));
     }
   }

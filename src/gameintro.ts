@@ -1,18 +1,17 @@
 class GameIntro {
   private gameGUI: IGameState;
   private isActive: boolean;
-  private gameObjects: Array<GameObject>;
+  private stars: Array<Star>;
   private introBox: p5.Element;
   public input: p5.Element;
   private highscoreChart: HighscoreChart;
   public continueButton: p5.Element;
-  private playButton: p5.Element;
-  
+  public playButton: p5.Element;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
     this.isActive = false;
-    this.gameObjects = [];
+    this.stars = [];
     this.introBox = createDiv();
     this.highscoreChart = new HighscoreChart();
     this.input = createInput("");
@@ -30,12 +29,15 @@ class GameIntro {
 
   public draw() {
     // GUI SETUP
-    if (this.isActive === false) {
-      this.createGameObjects();
-      this.isActive = true;
-    }
+     if (this.isActive === false) {
+      this.createStars();
+       this.isActive = true;
+     }
 
-    this.drawGameObjects();
+    for (let star of this.stars){
+      star.draw();
+    }
+    //this.drawGameObjects();
     this.createElements();
     gameGUI.sound.draw();
 
@@ -194,19 +196,21 @@ class GameIntro {
   // }
 
   // CREATE STARS
-  private createGameObjects() {
+   private createStars() {
     for (let i = 0; i < 1000; i++) {
-      this.gameObjects.push(new Star());
+      this.stars.push(new Star());
     }
   }
 
-  private drawGameObjects() {
-    for (let gameObject of this.gameObjects) {
-      if (gameObject instanceof Star) {
-        gameObject.draw();
-      }
-    }
-  }
+  //  private drawGameObjects() {
+  //    //let newPos = createVector(random(width), random(height));
+  //    for (let gameObject of this.gameObjects) {
+  //     if (gameObject instanceof Star) {
+  //       gameObject.draw();
+  //       gameObject.position.y = random(100)
+  //     }
+  //    }
+  //  }
 
   // CHANGE GUI TO PLAY
   private changeGui = () => {

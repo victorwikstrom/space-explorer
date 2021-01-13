@@ -10,6 +10,20 @@ let blackHoleImg: p5.Image;
 let meteoriteImg: p5.Image;
 let spaceExplorerHeading: p5.Font;
 let spaceExplorerBold: p5.Font;
+let explosionImg: p5.Image;
+//PLANET IMAGES
+let planet1: p5.Image;
+let planet2: p5.Image;
+let planet3: p5.Image;
+let planet4: p5.Image;
+let planet5: p5.Image;
+let planet6: p5.Image;
+let planet7: p5.Image;
+let planet8: p5.Image;
+let planet9: p5.Image;
+let planet10: p5.Image;
+let planet11: p5.Image;
+let planet12: p5.Image;
 
 /**
  * Built in preload function in P5
@@ -27,6 +41,21 @@ function preload() {
   meteoriteImg = loadImage("assets/images/meteorite.png");
   spaceExplorerHeading = loadFont("assets/fonts/barlow-condensed-blackitalic.woff");
   spaceExplorerBold = loadFont("assets/fonts/phatt.woff");
+  explosionImg = loadImage("assets/images/explosion.png");
+
+  // PLANET IMAGES
+  planet1 = loadImage("assets/images/planets/1.png");
+  planet2 = loadImage("assets/images/planets/2.png");
+  planet3 = loadImage("assets/images/planets/3.png");
+  planet4 = loadImage("assets/images/planets/4.png");
+  planet5 = loadImage("assets/images/planets/5.png");
+  planet6 = loadImage("assets/images/planets/6.png");
+  planet7 = loadImage("assets/images/planets/7.png");
+  planet8 = loadImage("assets/images/planets/8.png");
+  planet9 = loadImage("assets/images/planets/9.png");
+  planet10 = loadImage("assets/images/planets/10.png");
+  planet11 = loadImage("assets/images/planets/11.png");
+  planet12 = loadImage("assets/images/planets/12.png");
 }
 
 /**
