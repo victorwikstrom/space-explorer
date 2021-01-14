@@ -94,7 +94,7 @@ class GameIntro {
     // CREATE PLAY BUTTON
     push();
     this.playButton.show();
-    this.playButton.position(width / 2 - 140, height / 2 + 100);
+    this.playButton.position(width / 2 - 400, height / 2 + 10);
     this.playButton.size(280, 70);
     this.playButton.style("background-color", "#01c2cb");
     this.playButton.style("color", "white");
@@ -106,18 +106,19 @@ class GameIntro {
     pop();
 
     // CREATE CONTINUE BUTTON
-    push();
-    this.continueButton.show();
-    this.continueButton.position(windowWidth / 2 - 410, windowHeight / 2 + 10);
-    this.continueButton.size(300, 80);
-    this.continueButton.style("background-color", "#01c2cb");
-    this.continueButton.style("color", "white");
-    //this.continueButton.style("font-family, "spaceExplorerBold");
-    this.continueButton.style("font-size", "25");
-    this.continueButton.style("border", "1px solid red");
-    this.continueButton.style("border-radius", "8px");
-    this.continueButton.style("box-shadow", "0 3px #f009");
-    pop();
+    // push();
+    // this.continueButton.show();
+    // this.continueButton.position(windowWidth / 2 - 410, windowHeight / 2 + 10);
+    // this.continueButton.size(300, 80);
+    // this.continueButton.style("background-color", "#01c2cb");
+    // this.continueButton.style("color", "white");
+    // //this.continueButton.style("font-family, "spaceExplorerBold");
+    // this.continueButton.style("font-size", "25");
+    // this.continueButton.style("border", "1px solid red");
+    // this.continueButton.style("border-radius", "8px");
+    // this.continueButton.style("box-shadow", "0 3px #f009");
+    // this.continueButton.hide();
+    // pop();
 
     // CREATE GREETING
     // private greet() {

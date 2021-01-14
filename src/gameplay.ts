@@ -194,6 +194,7 @@ class GamePlay {
       );
       this.gameGUI.highscoreChart.addNewHighscore();
       gameGUI.sound.stopSound(this.gamePlaySound);
+      this.gameObjects = []
       this.player.die();
     }
     return health;
