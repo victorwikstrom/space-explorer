@@ -76,11 +76,11 @@ class GamePlay {
 
   /** Call draw() on all gameObjects */
   private drawGameObjects() {
-    for (let gameObject of this.gameObjects) {
-      gameObject.draw();
-    }
     for (let star of this.stars) {
       star.draw();
+    }
+    for (let gameObject of this.gameObjects) {
+      gameObject.draw();
     }
     if (this.debris.length) {
       for (let debris of this.debris) {
@@ -154,7 +154,7 @@ class GamePlay {
       gameGUI.sound.playSound(obj.collisionSound);
     } else if (obj instanceof Planet) {
       gameGUI.sound.playSound(obj.collisionSound);
-      this.createDebris(35, obj.position.x, obj.position.y, "red");
+      this.createDebris(random(30, 40), obj.position.x, obj.position.y, "red");
     } else if (obj instanceof SpaceDiamond) {
       gameGUI.sound.playSound(obj.shotSound);
       this.createDebris(25, obj.position.x, obj.position.y, "yellow");
@@ -177,6 +177,7 @@ class GamePlay {
       );
       this.gameGUI.highscoreChart.addNewHighscore();
       gameGUI.sound.stopSound(this.gamePlaySound);
+      this.gameObjects = [];
       this.player.die();
     }
     return health;
