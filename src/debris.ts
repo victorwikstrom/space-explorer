@@ -42,7 +42,7 @@ class Debris extends GameObject {
     if (c === "blue") {
       return color(102, 255, 255, this.opacity);
     } else if (c === "red") {
-      return color(255, 51, 51, this.opacity);
+      return color(255, random(51, 255), 51, this.opacity);
     } else if (c === "yellow") {
       return color(255, 255, 102, this.opacity);
     } else {

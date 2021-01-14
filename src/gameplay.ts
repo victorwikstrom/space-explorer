@@ -171,7 +171,7 @@ class GamePlay {
       gameGUI.sound.playSound(obj.collisionSound);
     } else if (obj instanceof Planet) {
       gameGUI.sound.playSound(obj.collisionSound);
-      this.createDebris(35, obj.position.x, obj.position.y, "red");
+      this.createDebris(random(30, 40), obj.position.x, obj.position.y, "red");
     } else if (obj instanceof SpaceDiamond) {
       gameGUI.sound.playSound(obj.shotSound);
       this.createDebris(25, obj.position.x, obj.position.y, "yellow");
@@ -194,7 +194,7 @@ class GamePlay {
       );
       this.gameGUI.highscoreChart.addNewHighscore();
       gameGUI.sound.stopSound(this.gamePlaySound);
-      this.gameObjects = []
+      this.gameObjects = [];
       this.player.die();
     }
     return health;

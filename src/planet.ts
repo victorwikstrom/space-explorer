@@ -39,8 +39,8 @@ class Planet extends GameObject {
   draw() {
     image(
       this.images[this.number],
-      this.position.x,
-      this.position.y,
+      this.position.x - this.radius,
+      this.position.y - this.radius,
       this.radius * 2,
       this.radius * 2
     );
