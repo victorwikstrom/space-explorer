@@ -8,7 +8,7 @@ class GamePlay {
   private statusBar: StatusBar;
   private isActive: boolean;
   private gameAcceleration: number;
-  gamePlaySound: p5.SoundFile;
+  private gamePlaySound: p5.SoundFile;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
