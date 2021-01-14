@@ -150,7 +150,7 @@ class Player {
   }
 
   die() {
-    //this.drawPlayerDiedView();
+    this.drawPlayerDiedView();
     setTimeout(this.updateGUI, 2000);
     gameGUI.updateGUI("over");
   }

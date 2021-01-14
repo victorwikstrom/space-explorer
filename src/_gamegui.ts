@@ -28,11 +28,21 @@ class GameGUI implements IGameState {
   }
 
   public draw() {
-    this.gameIntro.playButton.hide();
+    this.gameIntro.startgameButton.hide();
     this.gameIntro.continueButton.hide();
     this.gameIntro.nameInput.hide();
     this.gameOver.button.hide();
-    this.gameIntro.playButton.hide();
+    this.gameIntro.backstoryText1.hide();
+    this.gameIntro.backstoryText2.hide();
+    this.gameIntro.backstoryText3.hide();
+    this.gameIntro.backstoryText4.hide();
+    this.gameIntro.backstoryText5.hide();
+    this.gameIntro.backstoryText6.hide();
+    this.gameIntro.backstoryText7.hide();
+    this.gameIntro.backstoryText8.hide();
+    this.gameIntro.backstoryText9.hide();
+    this.gameIntro.backstoryText10.hide();
+    this.gameIntro.backstoryText11.hide();
 
     if (this.currentGUI === "intro") {
       this.gameIntro.draw();

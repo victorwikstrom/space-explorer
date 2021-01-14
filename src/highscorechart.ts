@@ -71,7 +71,8 @@ class HighscoreChart {
     fill("#01c2cb");
     textSize(22);
     // HIGHSCORE TEXT
-    text("HIGHSCORES", width / 2 + 140, height / 2 - 100);
+    // text("HIGHSCORES", width / 2 + 140, height / 2 - 100);
     pop();
+    noLoop();
   }
 }
