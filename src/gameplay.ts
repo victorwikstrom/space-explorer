@@ -77,11 +77,11 @@ class GamePlay {
 
   /** Call draw() on all gameObjects */
   private drawGameObjects() {
-    for (let gameObject of this.gameObjects) {
-      gameObject.draw();
-    }
     for (let star of this.stars) {
       star.draw();
+    }
+    for (let gameObject of this.gameObjects) {
+      gameObject.draw();
     }
     if (this.debris.length) {
       for (let debris of this.debris) {
