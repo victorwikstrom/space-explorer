@@ -24,13 +24,13 @@ class Sound {
   
   public toggleSound() {
     if (soundtrack.isPlaying()) {
-      this.audioButton.html("MUTE AUDIO");
       soundtrack.pause();
       gamePlaySound.pause();
-    } else {
       this.audioButton.html("PLAY AUDIO");
+    } else {
       soundtrack.play();
       gamePlaySound.play();
+      this.audioButton.html("MUTE AUDIO");
     }
   }
 
