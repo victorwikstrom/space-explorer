@@ -72,7 +72,6 @@ class GameIntro {
       star.draw();
     }
     this.createElements();
-    this.gameGUI.sound.draw();
   }
 
   private createElements() {

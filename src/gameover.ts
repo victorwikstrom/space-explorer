@@ -65,7 +65,6 @@ class GameOver {
     }
 
     this.createElements();
-    gameGUI.sound.draw();
 
     //DRAW HIGHSCORE CHART
     gameGUI.highscoreChart.draw();
