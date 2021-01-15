@@ -54,9 +54,7 @@ function preload() {
   spaceDiamondImg = loadImage("assets/images/spacediamond.png");
   blackHoleImg = loadImage("assets/images/blackhole.png");
   meteoriteImg = loadImage("assets/images/meteorite.png");
-  spaceExplorerHeading = loadFont(
-    "assets/fonts/barlow-condensed-blackitalic.woff"
-  );
+  spaceExplorerHeading = loadFont("assets/fonts/barlow-condensed-blackitalic.woff");
   spaceExplorerBold = loadFont("assets/fonts/phatt.woff");
   explosionImg = loadImage("assets/images/explosion.png");
 
