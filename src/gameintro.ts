@@ -47,7 +47,7 @@ class GameIntro {
     this.playButton.style("border", "2px solid red");
     this.playButton.style("border-radius", "8px");
     this.playButton.style("box-shadow", "0 3px red");
-    
+
     this.playButton.mousePressed(() => {
       this.gameGUI.sound.playSound(this.buttonSound);
       this.gameGUI.highscoreChart.setPlayerName(this.getNameInput());
@@ -76,7 +76,6 @@ class GameIntro {
   }
 
   private createElements() {
-
     // CREATE TEXT
     push();
     fill("red");
