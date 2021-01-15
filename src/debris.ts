@@ -5,7 +5,6 @@ class Debris extends GameObject {
   private xspeed: number;
   private yspeed: number;
   public opacity;
-  // private collisionSound: string - To be added later
 
   constructor(x: number, y: number, color: String) {
     super();
@@ -16,8 +15,6 @@ class Debris extends GameObject {
     this.radius = random(2, 10);
     this.opacity = 255;
     this.color = color;
-
-    // this.collisionSound = p5.SoundFile;
   }
 
   update() {

@@ -43,8 +43,8 @@ class GameOver {
       gameGUI.sound.loopSound(this.soundtrack);
       this.isActive = true;
     }
-    
-    for (let star of this.stars){
+
+    for (let star of this.stars) {
       star.draw();
     }
 

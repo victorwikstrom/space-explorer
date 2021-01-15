@@ -45,11 +45,6 @@ class GamePlay {
     gameGUI.sound.draw();
   }
 
-  /** Change gui to Game Over */
-  // private changeGui = () => {
-  //   this.gameGUI.updateGUI("over");
-  // };
-
   private createStars() {
     for (let i = 0; i < 1000; i++) {
       this.stars.push(new Star());
@@ -149,7 +144,7 @@ class GamePlay {
       this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
     }
   }
-  
+
 /** Call update() on all gameObjects */
   private explode(obj: GameObject) {
     if (obj instanceof Meteorite) {

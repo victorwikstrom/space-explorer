@@ -1,5 +1,4 @@
 class BlackHole extends GameObject {
-  // private collisionSound: string; // TO BE ADDED LATER
   public image: p5.Image;
 
   constructor() {
@@ -9,7 +8,6 @@ class BlackHole extends GameObject {
     this.velocity = createVector(random(2, 3), 0);
     this.damage = 100; 
     this.image = this.setPlayerImage(blackHoleImg);
-    //this.collisionSound: "" //TO BE ADDED LATER
   }
   public update() {
     super.update();
