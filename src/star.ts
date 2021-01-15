@@ -7,7 +7,7 @@ class Star extends GameObject {
     this.opacity = random(100, 200);
     this.position = createVector(random(width), random(height));
     this.velocity = createVector(random(0.5, 1), 0);
-    (this.color = random(229, 255)), 255, 255;
+    this.color = random(229, 255);
   }
 
   public update() {
@@ -23,7 +23,8 @@ class Star extends GameObject {
     } else if (this.velocity.x > 0.9) {
       strokeWeight(3);
     }
-    line(this.position.x, this.position.y, this.position.x, this.position.y);
+    
     stroke(this.color, this.opacity);
+    point(this.position.x, this.position.y);
   }
 }
