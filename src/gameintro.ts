@@ -47,26 +47,24 @@ class GameIntro {
     this.playButton.style("border", "2px solid red");
     this.playButton.style("border-radius", "8px");
     this.playButton.style("box-shadow", "0 3px red");
+    
+    this.playButton.mousePressed(() => {
+      this.gameGUI.sound.playSound(this.buttonSound);
+      this.gameGUI.highscoreChart.setPlayerName(this.getNameInput());
+      this.gameGUI.sound.stopSound(this.soundtrack);
+      this.changeGui();
+    });
   }
 
   public update() {
-    gameGUI.highscoreChart.setPlayerName(this.getNameInput());
-    this.playButton.show();
-    this.nameInput.show();
-    this.playButton.mousePressed(() => {
-      gameGUI.sound.playSound(this.buttonSound);
-      gameGUI.highscoreChart.setPlayerName(this.getNameInput());
-      gameGUI.sound.stopSound(this.soundtrack);
-      this.changeGui();
-    });
-    gameGUI.sound.update();
+    this.gameGUI.sound.update();
   }
 
   public draw() {
     // GUI SETUP
     if (this.isActive === false) {
       this.createStars();
-      gameGUI.sound.loopSound(this.soundtrack);
+      this.gameGUI.sound.loopSound(this.soundtrack);
       this.isActive = true;
     }
 
@@ -74,22 +72,10 @@ class GameIntro {
       star.draw();
     }
     this.createElements();
-    gameGUI.sound.draw();
-
-    // GO TO NEXT GUI
-    this.playButton.mousePressed(() => {
-      this.isActive = false;
-      this.changeGui();
-      this.playButton.hide();
-      this.nameInput.hide();
-      this.introBox.hide();
-    });
+    this.gameGUI.sound.draw();
   }
 
   private createElements() {
-    this.nameInput.show();
-    this.introBox.show();
-    this.playButton.show();
 
     // CREATE TEXT
     push();
@@ -113,6 +99,7 @@ class GameIntro {
     // CREATE BACKSTORY TEXT
     push();
     fill("white");
+    noStroke();
     textSize(12);
     textFont(spaceExplorerBold);
     textAlign(CENTER);
