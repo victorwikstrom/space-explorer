@@ -1,15 +1,11 @@
 class Shot extends GameObject {
   private stroke: p5.Color;
 
-  //   shotSound: p5.SoundFile;
-
   constructor(x: number, y: number) {
     super();
     this.position = createVector(x, y);
     this.velocity = createVector(0, 0);
     this.stroke = color("white");
-
-    //     this.shotSound = p5.SoundFile;
   }
 
   public update() {

@@ -27,9 +27,7 @@ class Player {
     this.image = this.setPlayerImage(shipImg);
     this.textColor = color("white");
     this.shotSound = shotSound;
-
     this.shots = [];
-
     this.rechargeGun = 500;
   }
 
@@ -129,10 +127,6 @@ class Player {
       }
     }
   }
-
-  updateScore() {}
-
-  updateHealth() {}
 
   public collides(obj: GameObject): boolean {
     let d = dist(

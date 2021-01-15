@@ -1,18 +1,14 @@
 class Meteorite extends GameObject {
-  damage: number;
   image: p5.Image;
   public collisionSound: p5.SoundFile;
-
-  //VARIABLES NOT USED ANYMORE:
-  //color: p5.Color;
 
   constructor() {
     super();
     this.position = this.position;
-    this.velocity = createVector(random(8, 10), 0);
-    this.damage = 5;
     this.radius = width / 40;
+    this.velocity = createVector(random(8, 10), 0);
     this.image = this.setPlayerImage(meteoriteImg);
+    this.damage = 5;
     this.collisionSound = explodeSound;
   }
 

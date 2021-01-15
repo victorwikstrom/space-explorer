@@ -1,19 +1,14 @@
 class Planet extends GameObject {
-  damage: number;
-  color: p5.Color;
-  images: Array<p5.Image>;
-  number: number;
+  private images: Array<p5.Image>;
+  private number: number;
   collisionSound: p5.SoundFile;
 
   constructor() {
     super();
-    this.size = 0;
     this.position = this.position;
-    this.velocity = createVector(random(3, 5), 0);
-    // this.acceleration = createVector(0, 0);
-    this.damage = 3;
     this.radius = width / random(25, 35);
-    this.color = color(95, 45, 139);
+    this.velocity = createVector(random(3, 5), 0);
+    this.damage= 3;
     this.images = [
       planet1,
       planet2,

@@ -1,15 +1,14 @@
 class GamePlay {
-  // Skapa interface så att player får tillgång till shots<>
   private gameGUI: IGameState;
-  private player: Player;
-  private isActive: boolean;
   private gameObjects: Array<GameObject>;
   private stars: Array<Star>;
-  public shots: Array<Shot>;
   public debris: Array<Debris>;
+  public shots: Array<Shot>;
+  private player: Player;
   private statusBar: StatusBar;
+  private isActive: boolean;
   private gameAcceleration: number;
-  gamePlaySound: p5.SoundFile;
+  private gamePlaySound: p5.SoundFile;
 
   constructor(gameGUI: IGameState) {
     this.gameGUI = gameGUI;
@@ -45,11 +44,6 @@ class GamePlay {
     this.statusBar.draw(this.player.currentHealth);
     gameGUI.sound.draw();
   }
-
-  /** Change gui to Game Over */
-  // private changeGui = () => {
-  //   this.gameGUI.updateGUI("over");
-  // };
 
   private createStars() {
     for (let i = 0; i < 1000; i++) {
@@ -110,22 +104,7 @@ class GamePlay {
     }
   }
 
-  /* private getValidYPos() {
-    const yPositions = this.gameObjects.map(
-      (gameObject) => gameObject.position.y
-    );
-    // const yPos = [0, 8, 50, 200, 230];
-
-    const indexStart = floor(random(yPositions.length - 1));
-    const indexEnd = indexStart + 1;
-
-    const validYPos = random(
-      yPositions[indexStart] + 25 * 2,
-      yPositions[indexEnd] - 25 * 2
-    );
-    return validYPos;
-  } */
-
+/** Check collision between gameobjects, player and shots */
   private checkCollision(obj: GameObject, p: Player, shots: Array<Shot>) {
     if (p.collides(obj)) {
       this.handleCollision(p, obj);
@@ -156,6 +135,7 @@ class GamePlay {
     }
   }
 
+
   private handleShot(shot: Shot, obj: GameObject) {
     obj.isHit = true;
     this.explode(obj);
@@ -165,6 +145,7 @@ class GamePlay {
     }
   }
 
+/** Call update() on all gameObjects */
   private explode(obj: GameObject) {
     if (obj instanceof Meteorite) {
       this.createDebris(15, obj.position.x, obj.position.y, "blue");
