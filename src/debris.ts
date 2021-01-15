@@ -29,7 +29,7 @@ class Debris extends GameObject {
     push();
     strokeWeight(this.radius);
     stroke(this.getColor(this.color));
-    line(this.x, this.y, this.x, this.y);
+    point(this.x, this.y);
     pop();
   }
 

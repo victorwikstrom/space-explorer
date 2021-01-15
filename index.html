@@ -1,13 +1,59 @@
 <html>
   <head>
     <style>
+      @font-face {
+        font-family: "spaceExplorerHeading";
+        src: url("assets/fonts/barlow-condensed-blackitalic.woff") format("woff");
+      }
+      @font-face {
+        font-family: "spaceExplorerBold";
+        src: url("assets/fonts/phatt.woff") format("woff");
+      }
+
       html,
       body,
       canvas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 100%;
         width: 100%;
         margin: 0;
         background: black;
+        font-family: spaceExplorerBold, Arial, Helvetica, sans-serif;
+      }
+
+      button:active {
+        outline: none;
+        border: none;
+      }
+      input:focus {
+        outline: none;
+        border: none;
+      }
+
+      /* LOADING SCREEN */
+
+      #p5_loading {
+        color: blue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        flex-direction: column;
+      }
+
+      #p5_loading h1 {
+        display: flex;
+        flex-direction: column;
+        font-size: 6rem;
+        text-align: center;
+        font-family: spaceExplorerHeading, Arial, Helvetica, sans-serif;
+      }
+      #p5_loading h2 {
+        display: flex;
+        font-size: 2rem;
+        text-align: center;
       }
     </style>
 
@@ -16,6 +62,10 @@
     <script src="build/bundle.js"></script>
   </head>
   <body>
+    <div id="p5_loading">
+      <h1>SPACE EXPLORER</h1>
+      <h2>LOADING...</h2>
+    </div>
     <!-- Code injected via JavaScript -->
   </body>
 </html>
