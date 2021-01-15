@@ -21,16 +21,6 @@ class Sound {
     this.audioButton.html(this.audioText);
   }
 
-  public draw() {}
-
-  public setMuteIcon(muteIcon: p5.Image) {
-    return muteIcon;
-  }
-
-  public setSoundIcon(soundIcon: p5.Image) {
-    return soundIcon;
-  }
-
   public toggleSound() {
     if (soundtrack.isPlaying()) {
       soundtrack.pause();
