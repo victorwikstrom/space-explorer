@@ -1,36 +1,32 @@
 class Sound {
-  public audioButton: p5.Element
+  public audioButton: p5.Element;
+  public audioText: string;
 
   constructor() {
-    this.audioButton = createButton("MUTE AUDIO");
+    this.audioText = "MUTE AUDIO";
+    this.audioButton = createButton(this.audioText);
     this.audioButton.mousePressed(this.toggleSound);
     this.audioButton.style("background-color", "transparent");
     this.audioButton.style("color", "white");
     this.audioButton.style("border-radius", "10");
     this.audioButton.position(windowWidth - 110, 11);
   }
-  
-  public update() {}
-  
-  public draw() {}
-  
-  public setMuteIcon(muteIcon: p5.Image) {
-    return muteIcon;
+
+  public update() {
+    if (soundtrack.isPlaying()) {
+      this.audioText = "MUTE AUDIO";
+    } else {
+      this.audioText = "PLAY AUDIO";
+    }
+    this.audioButton.html(this.audioText);
   }
-  
-  public setSoundIcon(soundIcon: p5.Image) {
-    return soundIcon;
-  }
-  
+
   public toggleSound() {
     if (soundtrack.isPlaying()) {
-      this.audioButton.html("MUTE AUDIO");
       soundtrack.pause();
       gamePlaySound.pause();
     } else {
-      this.audioButton.html("PLAY AUDIO");
       soundtrack.play();
-      gamePlaySound.play();
     }
   }
 
