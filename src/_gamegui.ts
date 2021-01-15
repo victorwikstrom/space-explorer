@@ -29,21 +29,19 @@ class GameGUI implements IGameState {
 
   public draw() {
     this.gameIntro.playButton.hide();
-    this.gameIntro.continueButton.hide();
     this.gameIntro.nameInput.hide();
+    this.gameIntro.introBox.hide();
+    this.gameIntro.nameInput.hide();
+    this.gameOver.gameoverBox.hide();
     this.gameOver.button.hide();
-    this.gameIntro.playButton.hide();
 
     if (this.currentGUI === "intro") {
       this.gameIntro.draw();
-      //soundtrack.play();
     }
     if (this.currentGUI === "play") {
-      //gamePlaySound.play();
       this.gamePlay.draw();
     }
     if (this.currentGUI === "over") {
-      //soundtrack.play();
       this.gameOver.draw();
     }
   }
@@ -56,8 +54,6 @@ class GameGUI implements IGameState {
       this.gamePlay = new GamePlay(this);
       this.gameOver = new GameOver(this);
       this.gameIntro = new GameIntro(this);
-    } else {
-      return;
-    }
+    } 
   }
 }
