@@ -109,6 +109,7 @@ class GamePlay {
     }
   }
 
+/** Check collision between gameobjects, player and shots */
   private checkCollision(obj: GameObject, p: Player, shots: Array<Shot>) {
     if (p.collides(obj)) {
       this.handleCollision(p, obj);
@@ -139,6 +140,7 @@ class GamePlay {
     }
   }
 
+
   private handleShot(shot: Shot, obj: GameObject) {
     obj.isHit = true;
     this.explode(obj);
@@ -147,7 +149,8 @@ class GamePlay {
       this.gameObjects.splice(this.gameObjects.indexOf(obj), 1);
     }
   }
-
+  
+/** Call update() on all gameObjects */
   private explode(obj: GameObject) {
     if (obj instanceof Meteorite) {
       this.createDebris(15, obj.position.x, obj.position.y, "blue");
