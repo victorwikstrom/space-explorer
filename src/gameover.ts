@@ -78,8 +78,8 @@ class GameOver {
     this.button.size(280, 70);
     this.button.style("background-color", "#01c2cb");
     this.button.style("color", "white");
-    this.button.style("textFont", "statusbarAndOther");
-    this.button.style("font-size", "25");
+    this.button.style("font-family", "spaceExplorerBold");
+    this.button.style("font-size", "15");
     this.button.style("border", "1px solid red");
     this.button.style("border-radius", "8px");
     this.button.style("box-shadow", "0 3px #f009");
@@ -89,12 +89,12 @@ class GameOver {
     push();
     fill("#CCE5FF");
     noStroke();
-    textSize(100);
+    textSize(150);
     textFont(spaceExplorerHeading);
     textAlign(CENTER);
-    text("GAME OVER", width / 2 - 40, 140);
+    text("GAME OVER", width / 2 +3, 180);
     fill("red");
-    text("GAME OVER", width / 2 - 37, 140);
+    text("GAME OVER", width / 2, 180);
     textAlign(LEFT);
     textFont(spaceExplorerBold);
     fill("white");

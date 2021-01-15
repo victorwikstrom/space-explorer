@@ -98,8 +98,8 @@ class GameIntro {
     this.playButton.size(280, 70);
     this.playButton.style("background-color", "#01c2cb");
     this.playButton.style("color", "white");
-    this.playButton.style("font", "spaceExplorerBold");
-    this.playButton.style("font-size", "25");
+    this.playButton.style("font-family", "spaceExplorerBold");
+    this.playButton.style("font-size", "15");
     this.playButton.style("border", "1px solid red");
     this.playButton.style("border-radius", "8px");
     this.playButton.style("box-shadow", "0 3px #f009");
@@ -130,12 +130,12 @@ class GameIntro {
     push();
     fill("red");
     noStroke();
-    textSize(100);
+    textSize(150);
     textAlign(CENTER);
     textFont(spaceExplorerHeading);
-    text("SPACE EXPLORER", width / 2 - 40, 140);
+    text("SPACE EXPLORER", width / 2 +3, 180);
     fill("blue");
-    text("SPACE EXPLORER", width / 2 - 37, 140);
+    text("SPACE EXPLORER", width / 2, 180);
 
     // PLEASE ENTER YOUR NAME
     fill("#01c2cb");
